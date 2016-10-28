@@ -1,0 +1,64 @@
+<html>
+<head>
+<style>
+ .wrapper > *{
+	margin:8px 25%;
+ }
+ .shadowed{
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+ } 
+ .rounded{
+	border-radius:8px;
+ }
+ .mainMenu{
+	display:block;
+	list-style-type: none;
+    margin: 0px;
+    padding:0px;
+	transition: background-color 0.5s ease;
+ }
+ .active{
+ 	color:#002663;
+	background:white;
+	border-top:5px solid orange;
+ }
+ .mainMenu > li{
+	display:inline-block;
+	font-size:18px;
+	color:#f9f9f9;
+	padding:8px;
+	margin:8px;
+ }
+.mainMenu > li:hover{
+	color:#002663;
+	background:white;
+	transition: background-color 0.5s ease;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+ }
+.mainMenu > li:active{
+ 	color:#002663;
+	background:orange;
+	transition: background-color 0.5s ease;
+ }
+</style>
+</head>
+<body>
+	<div class='wrapper'>
+		<h2 style='color:#002663;'><a href='home.html'>Digital Dash</h2></a><hr/>
+		<div class='shadowed rounded' style='border:1px solid #666; background:#002663;'>
+			<ul class='mainMenu'>
+				<li class='rounded'><a href='update.html'>Update</a></li>
+				<li class='rounded'>Delete</li>
+				<li class='rounded'>Undo</li>
+				<li class='rounded'>New</li>
+			</ul>
+		</div>
+		<div class='shadowed rounded' style='border:1px solid #002663; background:#f0f0f0; padding:8px;'>
+			This is what we will use to get the display stuff
+			<br>
+			<div class='rounded'style='display:inline-block; font-size:18px; color:#f9f9f9; background:#002663; padding:8px; margin:8px;'> This will be a button</div>
+			<div class='rounded'style='display:inline-block; font-size:18px; color:#f9f9f9; background:#002663; padding:8px; margin:8px;'> This will be a button</div>
+		</div>
+	</div>
+</body>
+</html>
