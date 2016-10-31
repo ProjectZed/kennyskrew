@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <title>Digital Dash</title>
 </head>
-<body>
+<body ng-app="digitalDash">
 	<div class="wrapper container">
 		<h2><a href="index.html">Digital Dash</a></h2>
 		<div class="rounded shadowed" style="">
@@ -91,20 +91,22 @@
         <li class="rounded pull-right"><a href="#">Logout</a></li>
 			</ul>
 		</div>
-		<div class="shadowed rounded dynContent" style="" ng-app="myUpdate" ng-controller="scheduleTime">
+
+		<div class="shadowed rounded dynContent" style="" ng-controller="scheduleTime">
       <h5>Update Schedule Start time by Run Name and Audit ID</h5>
-			<form>
-				<input type="text" class="" placeholder="p_drvr_step_id Input" ng-model=""/>
-				<input type="text" class="" placeholder="p_audt_id  Input" ng-model=""/>
-				<input type="text" class="" placeholder="p_sched_start  Input" ng-model=""/>
+			<form ng-app="digitalDash">
+				<input type="text" class="" placeholder="p_drvr_step_id Input" ng-model="driverStep" />
+				<input type="text" class="" placeholder="p_audt_id  Input" ng-model="auditId" />
+				<input type="text" class="" placeholder="p_sched_start  Input" ng-model="scheduleStart" />
         <div class="submit-btn">
-  				<input class="non-urgent" type="submit" value="Exec"/>
-          <input class="urgent" type="submit" value="Urgent Exec"/>
+  				<button class="btn btn-success" type="button" ng-click="getValue()"> Exec </button>
+          <button class="btn btn-danger" type="button"> Urgent Exec </button>
         </div>
 			</form>
+      <div class="alert alert-info">{{ banner }}</div>
 		</div>
 	</div>
 
-  <script src="../js/controllers/UpdateController.js"></script>
+  <script src="controllers/UpdateController.js"></script>
 </body>
 </html>

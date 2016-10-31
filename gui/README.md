@@ -1,2 +1,0 @@
-# DigitalDashGUI
-Digital Dash Gui
