@@ -3,10 +3,11 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/mainStyling.css">
+  <link rel="stylesheet" type="text/css" href="css/mainStyling.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <title>Page Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <title>Digital Dash</title>
 </head>
 <body>
 	<div class="wrapper container">
@@ -90,12 +91,12 @@
         <li class="rounded pull-right"><a href="#">Logout</a></li>
 			</ul>
 		</div>
-		<div class="shadowed rounded dynContent" style="">
+		<div class="shadowed rounded dynContent" style="" ng-app="myUpdate" ng-controller="scheduleTime">
       <h5>Update Schedule Start time by Run Name and Audit ID</h5>
 			<form>
-				<input type="text" class="" placeholder="p_drvr_step_id Input"/>
-				<input type="text" class="" placeholder="p_audt_id  Input"/>
-				<input type="text" class="" placeholder="p_sched_start  Input"/>
+				<input type="text" class="" placeholder="p_drvr_step_id Input" ng-model=""/>
+				<input type="text" class="" placeholder="p_audt_id  Input" ng-model=""/>
+				<input type="text" class="" placeholder="p_sched_start  Input" ng-model=""/>
         <div class="submit-btn">
   				<input class="non-urgent" type="submit" value="Exec"/>
           <input class="urgent" type="submit" value="Urgent Exec"/>
@@ -103,5 +104,7 @@
 			</form>
 		</div>
 	</div>
+
+  <script src="../js/controllers/UpdateController.js"></script>
 </body>
 </html>
