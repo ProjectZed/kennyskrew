@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="digitalDash">
 <head>
+  <title>Digital Dash</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/mainStyling.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  <title>Digital Dash</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/UpdateController.js"></script>
+
 </head>
 <body>
 	<div class="wrapper container">
@@ -20,21 +24,21 @@
   					<span class="caret"></span></button>
   					<ul class="dropdown-menu">
   					  <li>Driver Schedule</li>
-  					  <li><a href="M_UD_DR_SCHED_START_RN_AID.html">Update Schedule Start time by Run Name and Audit ID </a></li>
-  					  <li><a href="M_UD_DR_SCHED_STTS_RN_AID.html">Update Status Code by Run Name and Audit ID </a></li>
-  					  <li><a href="M_UD_DR_SCHED_VAL_END_RN_AID.html">Update Valuation End Date by Run Name and Audit ID </a></li>
-  					  <li><a href="M_UD_DR_SCHED_VAL_START_RN_AID.html">Update Valuation Start time by Run Name and Audit ID </a></li>
-  					  <li><a href="M_UD_DR_SCHED_SLA_AID.html">Update SLA Date and Time by Audit ID </a></li>
-  					  <li><a href="M_UD_DR_SCHED_SLA_RN.html">Update SLA Date and Time by Run Name </a></li>
-  					  <li><a href="M_UD_DR_SCHED_H_SLA_RN.html">Update Historical SLA Date and Time by Run Name </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_START_RN_AID">Update Schedule Start time by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_STTS_RN_AID">Update Status Code by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_VAL_END_RN_AID">Update Valuation End Date by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_VAL_START_RN_AID">Update Valuation Start time by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_SLA_AID">Update SLA Date and Time by Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_SLA_RN">Update SLA Date and Time by Run Name </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_H_SLA_RN">Update Historical SLA Date and Time by Run Name </a></li>
   					  <li>Driver Step Detail</li>
-  					  <li><a href="M_UD_DR_STEP_DTL_RN_GN.html">Update Run Status Code by Run Name and Group Number</a></li>
-  					  <li><a href="M_UD_DR_STEP_DTL_RN_STPDTLID.html">Update Run Status Code by Run Name and Driver Step Detail ID</a></li>
+  					  <li><a href="#M_UD_DR_STEP_DTL_RN_GN">Update Run Status Code by Run Name and Group Number</a></li>
+  					  <li><a href="#M_UD_DR_STEP_DTL_RN_STPDTLID">Update Run Status Code by Run Name and Driver Step Detail ID</a></li>
   					  <li>Driver Step</li>
-  					  <li><a href="M_UD_DR_STEP_ASI_SID.html">Update Active Step Indicator by Driver Step ID</a></li>
-  					  <li><a href="M_UD_DR_STEP_ASI_RN_SID.html">Update Active Step Indicator by Run Name and Driver Step ID</a></li>
-  					  <li><a href="M_UD_DR_STEP_ASI_RN.html">Update Active Step Indicator by Run Name</a></li>
-  					  <li><a href="M_UD_DR_STEP_ASI_RN_GN.html">Update Active Step Indicator by Run Name and Group Number</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_SID">Update Active Step Indicator by Driver Step ID</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN_SID">Update Active Step Indicator by Run Name and Driver Step ID</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN">Update Active Step Indicator by Run Name</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN_GN">Update Active Step Indicator by Run Name and Group Number</a></li>
   					</ul>
 				  </div>
 				</li>
@@ -87,14 +91,13 @@
 					</div>
 				</li>
 				<li class="rounded"><a href='undo.html'>Log</a></li>
-				<li class="rounded"><a href='peerReview.html'>Peer Review</a></li>
-        <li class="rounded pull-right"><a href="#">Logout</a></li>
+				<li class="rounded"><a href='peerReview.html'>Peer</a></li>
+        <li class="rounded"><a href="#">Logout</a></li>
 			</ul>
 		</div>
-		<div class="shadowed rounded dynContent" style="">
-			This section will change depending on where you are located
-		</div>
-	</div>
 
+		<div ng-view></div>
+
+  </div>
 </body>
 </html>

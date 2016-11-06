@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div class="shadowed rounded dynContent" style="">
+  <h5>Update SLA Date and Time by Audit ID</h5>
+	<form>
+		<input type="text" class="" placeholder="SLA_DT Input" ng-model="sla_dt" />
+		<input type="text" class="" placeholder="SLA_TIME Input" ng-model="sla_time" />
+		<input type="text" class="" placeholder="AUDT_ID Input" ng-model="auditId" />
+		<input type="text" class="" placeholder="PERF_DTL_DESC Input" ng-model="perf_dtl" />
+    <div class="submit-btn">
+      <button class="btn btn-success" type="button" ng-click="submitValue()"> Exec </button>
+      <button class="btn btn-danger" type="button"> Urgent Exec </button>
+    </div>
+	</form>
+  <div class="alert alert-info">{{ banner }}</div>
+</div>
