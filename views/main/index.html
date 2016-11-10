@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="main">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index Page</title>
+
+	<link rel="shortcut icon" href="../../common/images/favicon.ico" />
+    <!-- Bootstrap -->
+		<link rel="stylesheet" type="text/css" href="stylesheets/mainStyling.css">
+
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="main">
+	<div class="wrapper container">
+		<h2><a href="../">Digital Dash</a> <span class="welcome">welcome <%= user.username %></span></h2>
+		<div class="rounded shadowed" style="">
+			<ul class="mainMenu rounded">
+				<li class="rounded" style="padding:0px;">
+				  <div class="dropdown">
+  					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Update
+  					<span class="caret"></span></button>
+  					<ul class="dropdown-menu">
+  					  <li>Driver Schedule</li>
+  					  <li ui-sref="M_UD_DR_SCHED_START_RN_AID"><a href="#">Update Schedule Start time by Run Name and Audit ID </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_STTS_RN_AID"><a href="#">Update Status Code by Run Name and Audit ID </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_VAL_END_RN_AID"><a href="#">Update Valuation End Date by Run Name and Audit ID </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_VAL_START_RN_AID"><a href="#">Update Valuation Start time by Run Name and Audit ID </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_SLA_AID"><a href="#">Update SLA Date and Time by Audit ID </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_SLA_RN"><a href="#">Update SLA Date and Time by Run Name </a></li>
+  					  <li ui-sref="M_UD_DR_SCHED_H_SLA_RN"><a href="#">Update Historical SLA Date and Time by Run Name </a></li>
+  					  <li>Driver Step Detail</li>
+  					  <li ui-sref="M_UD_DR_STEP_DTL_RN_GN"><a href="#">Update Run Status Code by Run Name and Group Number</a></li>
+  					  <li ui-sref="M_UD_DR_STEP_DTL_RN_STP_DTL_ID"><a href="#">Update Run Status Code by Run Name and Driver Step Detail ID</a></li>
+  					  <li>Driver Step</li>
+  					  <li ui-sref="M_UD_DR_STEP_ASI_SID"><a href="#">Update Active Step Indicator by Driver Step ID</a></li>
+  					  <li ui-sref="M_UD_DR_STEP_ASI_RN_SID"><a href="#">Update Active Step Indicator by Run Name and Driver Step ID</a></li>
+  					  <li ui-sref="M_UD_DR_STEP_ASI_RN"><a href="#">Update Active Step Indicator by Run Name</a></li>
+  					  <li ui-sref="M_UD_DR_STEP_ASI_RN_GN"><a href="#">Update Active Step Indicator by Run Name and Group Number</a></li>
+  					</ul>
+				  </div>
+				</li>
+				<li class="rounded" style="padding:0px;">
+				  <div class="dropdown">
+					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Delete
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+					  <li>Driver Schedule</li>
+					  <li ui-sref="M_DL_DR_SCHED_RN"><a href="#">Delete all entries by Run Name</a></li>
+					  <li>Driver Step</li>
+					  <li ui-sref="M_DL_DR_STEP_RN"><a href="#">Delete all entries by Run Name</a></li>
+					  <li ui-sref="M_DL_DR_STEP_RN_GN"><a href="#">Delete all entries by Run Name and Group Number</a></li>
+					  <li ui-sref="M_DL_DR_STEP_RN_SID"><a href="#">Delete all entries by Run Name and Driver Step ID</a></li>
+					  <li ui-sref="M_DL_DR_STEP_DTL_RN"><a href="#">Driver Step Detail - Delete </a></li>
+					</ul>
+				  </div>
+				</li>
+				<li class="rounded" style="padding:0px;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Add
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li ui-sref="addDriverScedule"><a href="#">Driver Schedule</a></li>
+						  <li ui-sref="addDriverStep"><a href="#">Driver Step</a></li>
+						</ul>
+					</div>
+				</li>
+        <li class="rounded" style="padding:0px;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">View
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li ui-sref="viewfailures"><a href="#">Failures</a></li>
+						  <li><a href="#">Dependencies</a></li>
+						  <li><a href="#">Job service-level agreements </a></li>
+						  <li><a href="#">Pending SLA jobs </a></li>
+						  <li class="hist"><span>Historical runtime average</span>
+							<a href="#">  Batch </a>
+							<a href="#">  Job </a>
+							<a href="#">  Step </a>
+						  </li>
+						  <li class="hist"><span>Hstorical trending</span>
+							<a href="#">  Batch </a>
+							<a href="#">  Job </a>
+							<a href="#">  Step </a>
+						  </li>
+						  <li><a href="#">Current Running</a></li>
+						</ul>
+					</div>
+				</li>
+				<li ui-sref="undo" class="rounded"><a href="#">Log</a></li>
+				<li ui-sref="peerReview" class="rounded"><a href="#">Peer Review</a></li>
+        <li class="rounded"><a id="logOut" role="button" href="../logout">Logout</a></li>
+			</ul>
+		</div>
+		<div class="shadowed rounded dynContent" ui-view>
+			This section will change depending on where you are located
+		</div>
+	</div>
+
+	<!-- jquery -->
+	<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- angularjs -->
+	<script type="text/javascript" src="/angularjs/angular.js"></script>
+    <script type="text/javascript" src="/angularjs/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/angularjs/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/angularjs/angular-resource.min.js"></script>
+
+    <!-- w5v -->
+    <script type="text/javascript" src="/javascripts/w5cValidator.min.js"></script>
+	<!-- me js -->
+	<script type="text/javascript" src="/javascripts/main/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+	.wrapper *{
+		/*margin:8px;
+		padding:8px;*/
+	}
+ .wrapper > *{
+	margin:8px 20%;
+ }
+ .shadowed{
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+ }
+ .rounded{
+	border-radius:8px;
+ }
+ .mainMenu{
+	display:block;
+	list-style-type: none;
+    margin: 0px;
+    padding:0px;
+	transition: background-color 0.5s ease;
+	background:#002663;
+ }
+ .active{
+ 	color:#002663;
+	background:white;
+	border-top:5px solid orange;
+ }
+ .mainMenu > li{
+	display:inline-block;
+	font-size:18px;
+	color:#f9f9f9;
+	padding:4px;
+	margin: 4px;
+ }
+ .dropDown{
+	color:#002663;
+ }
+.mainMenu > li:hover{
+	color:#002663;
+	background:white;
+	transition: background-color 0.5s ease;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+ }
+.mainMenu > li:active{
+ 	color:#002663;
+	background:orange;
+	transition: background-color 0.5s ease;
+ }
+ .dynContent{
+	padding:8px;
+	border:1px solid #002663;
+ }
+ .dropdown > .btn{
+	color:#002663;
+ }
+ select{
+	 margin:8px;
+ }
+ .dynContent form > input, h5, div{
+	display:block;
+	padding:0px;
+	margin:8px;
+ }
+
+ .hist > span{
+	 padding: 3px 20px;
+ }
+
+ .hist > a{
+	 margin: 3px 30px;
+ }
+ .urgent{
+	 border: 1px solid gray;
+	 background-color: orange;
+	 display: inline-block;
+	 margin: 8px;
+	 border-radius: 8px;
+}
+
+.non-urgent{
+	border: 1px solid gray;
+	background-color: #66B2FF;
+	display: inline-block;;
+	margin: 8px;
+	border-radius: 8px;
+}
+
+.env{
+	display: block;
+}
+
+.welcome{
+	color:#337ab7;
+}
