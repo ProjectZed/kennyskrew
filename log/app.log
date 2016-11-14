@@ -3203,3 +3203,28 @@
 [2016-11-10 14:21:06.329] [INFO] nomel - GET /javascripts/w5cValidator.min.js
 [2016-11-10 14:21:06.330] [INFO] nomel - GET /javascripts/main/main.js
 [2016-11-10 14:21:06.356] [INFO] nomel - GET /angularjs/angular.js
+[2016-11-14 18:03:57.399] [DEBUG] index - undefined
+[2016-11-14 18:03:57.420] [WARN] nomel - GET /
+[2016-11-14 18:03:57.438] [INFO] nomel - GET /login
+[2016-11-14 18:03:57.468] [INFO] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 18:03:57.550] [INFO] nomel - GET /javascripts/login/login.js
+[2016-11-14 18:03:57.554] [INFO] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 18:03:57.804] [ERROR] nomel - GET /favicon.ico
+[2016-11-14 18:04:04.475] [DEBUG] userDao - [ RowDataPacket { id: 1 } ]
+[2016-11-14 18:04:04.505] [DEBUG] userDao - [ RowDataPacket { id: 1, name: 'root', password: 'root' } ]
+[2016-11-14 18:04:04.507] [DEBUG] userDao - { username: 'root' }
+[2016-11-14 18:04:04.515] [INFO] nomel - POST /login
+[2016-11-14 18:04:04.532] [DEBUG] index - { username: 'root' }
+[2016-11-14 18:04:04.535] [DEBUG] index - { username: 'root' }
+[2016-11-14 18:04:04.546] [INFO] nomel - GET /home
+[2016-11-14 18:04:04.579] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 18:04:04.644] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 18:04:04.655] [INFO] nomel - GET /bootstrap/dist/js/bootstrap.min.js
+[2016-11-14 18:04:04.659] [INFO] nomel - GET /angularjs/angular-sanitize.min.js
+[2016-11-14 18:04:04.668] [INFO] nomel - GET /bootstrap/dist/css/bootstrap.min.css
+[2016-11-14 18:04:04.672] [INFO] nomel - GET /angularjs/angular-ui-router.js
+[2016-11-14 18:04:04.676] [INFO] nomel - GET /angularjs/angular-resource.min.js
+[2016-11-14 18:04:04.679] [INFO] nomel - GET /javascripts/w5cValidator.min.js
+[2016-11-14 18:04:04.686] [INFO] nomel - GET /javascripts/main/main.js
+[2016-11-14 18:04:04.697] [INFO] nomel - GET /angularjs/angular.js
+[2016-11-14 18:04:04.923] [ERROR] nomel - GET /common/images/favicon.ico
