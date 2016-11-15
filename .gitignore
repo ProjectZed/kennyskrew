@@ -1,4 +1,4 @@
-logs/*
+log/*
 !.gitkeep
 node_modules/
 gui/bower_components/
