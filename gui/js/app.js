@@ -4,7 +4,7 @@ app.config(function($routeProvider) {
       $routeProvider
       .when("/M_UD_DR_SCHED_START_RN_AID", {
           templateUrl: "template/M_UD_DR_SCHED_START_RN_AID.html",
-          controller: "scheduleTime"
+          controller: "scheduleStartTime"
       })
       .when("/M_UD_DR_SCHED_STTS_RN_AID", {
           templateUrl: "template/M_UD_DR_SCHED_STTS_RN_AID.html",
@@ -48,11 +48,11 @@ app.config(function($routeProvider) {
       })
       .when("/M_UD_DR_STEP_ASI_RN", {
           templateUrl: "template/M_UD_DR_STEP_ASI_RN.html",
-          controller: ""
+          controller: "active_step_indicator_runName"
       })
       .when("/M_UD_DR_STEP_ASI_RN_GN", {
           templateUrl: "template/M_UD_DR_STEP_ASI_RN_GN.html",
-          controller: ""
+          controller: "active_step_indicator_runName_grpNumber"
       })
 
       //more route for ADD and DELETE

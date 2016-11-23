@@ -5,6 +5,8 @@ Digital Dash
 
 install Node JS.
 
-run `npm install` in the Node terminal, then `npm start`.
+cd kennyskrew/server.
 
-open `localhost:8000` in web browser
+then run `node server.js`.
+
+open `localhost:3000` in web browser
