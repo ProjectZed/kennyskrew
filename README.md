@@ -5,7 +5,7 @@ Digital Dash
 
 install Node JS.
 
-cd kennyskrew/server.
+cd `kennyskrew/server`.
 
 then run `node server.js`.
 
