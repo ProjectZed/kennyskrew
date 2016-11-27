@@ -5,9 +5,10 @@
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
-  "dependencies" : {
+  "dependencies": {
     "body-parser": "^1.4.3",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "bower": "^1.7.7",
@@ -31,6 +32,5 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js"
-
-    }
+  }
 }

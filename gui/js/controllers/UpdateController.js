@@ -3,7 +3,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
     $scope.submitValue = function () {
       $http.put('/update/scheduleStartTime', $scope.form).
         success(function(data) {
-          $scope.banner = "Sent successfully";
+          $scope.banner = data;
         });
     };
 
@@ -13,7 +13,7 @@ app.controller('statusCode', function($scope, $http) {
   $scope.submitValue = function () {
     $http.put('/update/statusCode', $scope.form).
       success(function(data) {
-        $scope.banner = "Sent successfully";
+        $scope.banner = data;
       });
   };
 });

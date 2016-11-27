@@ -5,8 +5,10 @@ Digital Dash
 
 install Node JS.
 
-cd `kennyskrew/server`.
+In the terminal, cd into project folder and run `npm install`.
 
-then run `node server.js`.
+open file `server.js` in `server` folder with text editor, change the path of `var db = new...` to where you store your db file
 
-open `localhost:3000` in web browser
+back to terminal, cd into server folder, run `node server.js`.
+
+open `localhost:3000` in web browser.
