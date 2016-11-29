@@ -2,6 +2,7 @@ var app = angular.module('digitalDash', ['ngRoute']);
 
 app.config(function($routeProvider) {
       $routeProvider
+      //route for UPDATE
       .when("/M_UD_DR_SCHED_START_RN_AID", {
           templateUrl: "template/M_UD_DR_SCHED_START_RN_AID.html",
           controller: "scheduleStartTime"
@@ -54,7 +55,36 @@ app.config(function($routeProvider) {
           templateUrl: "template/M_UD_DR_STEP_ASI_RN_GN.html",
           controller: "active_step_indicator_runName_grpNumber"
       })
+      //route for ADD
+      .when("/AddDriverSchedule", {
+          templateUrl: "template/addDriverScedule.html",
+          controller: "Add_Driver_Schedule"
+      })
+      .when("/AddDriverStep", {
+          templateUrl: "template/addDriverStep.html",
+          controller: "Add_Driver_Step"
+      })
+      //route for DELETE
+      .when("/M_DL_DR_SCHED_RN", {
+          templateUrl: "template/M_DL_DR_SCHED_RN.html",
+          controller: "Dl_Driver_Schedule"
+      })
+      .when("/M_DL_DR_STEP_RN_GN", {
+          templateUrl: "template/M_DL_DR_STEP_RN_GN.html",
+          controller: "Dl_Driver_Step_RunName_GrpNbr"
+      })
+      .when("/M_DL_DR_STEP_RN", {
+          templateUrl: "template/M_DL_DR_STEP_RN.html",
+          controller: "Dl_Driver_Step_RunName"
+      })
+      .when("/M_DL_DR_STEP_RN_SID", {
+          templateUrl: "template/M_DL_DR_STEP_RN_SID.html",
+          controller: "Dl_Driver_Step_RunName_Sid"
+      })
+      .when("/M_DL_DR_STEP_DTL_RN", {
+          templateUrl: "template/M_DL_DR_STEP_DTL_RN.html",
+          controller: "Dl_Driver_Step_Detail_RunName"
+      })
 
-      //more route for ADD and DELETE
 
   });

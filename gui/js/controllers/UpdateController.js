@@ -6,7 +6,6 @@ app.controller('scheduleStartTime', function($scope, $http) {
           $scope.banner = data
         });
     };
-
 });
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
