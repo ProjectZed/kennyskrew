@@ -337,3 +337,5 @@
 [2016-11-10 03:14:57.714] [ERROR] nomel - GET /
 [2016-11-10 03:16:34.396] [ERROR] nomel - GET /
 [2016-11-10 14:20:53.572] [ERROR] nomel - GET /favicon.ico
+[2016-11-17 13:23:32.022] [ERROR] nomel - GET /favicon.ico
+[2016-11-17 13:23:53.201] [ERROR] nomel - GET /common/images/favicon.ico

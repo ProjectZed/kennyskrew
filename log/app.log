@@ -3203,3 +3203,114 @@
 [2016-11-10 14:21:06.329] [INFO] nomel - GET /javascripts/w5cValidator.min.js
 [2016-11-10 14:21:06.330] [INFO] nomel - GET /javascripts/main/main.js
 [2016-11-10 14:21:06.356] [INFO] nomel - GET /angularjs/angular.js
+[2016-11-14 17:06:04.855] [DEBUG] index - undefined
+[2016-11-14 17:06:04.881] [WARN] nomel - GET /
+[2016-11-14 17:06:04.911] [WARN] nomel - GET /login
+[2016-11-14 17:06:04.936] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:06:05.029] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:06:05.032] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-14 17:08:21.159] [DEBUG] userDao - [ RowDataPacket { id: 1 } ]
+[2016-11-14 17:08:21.207] [DEBUG] userDao - [ RowDataPacket { id: 1, name: 'abc', password: '123' } ]
+[2016-11-14 17:08:21.207] [DEBUG] userDao - { username: 'abc' }
+[2016-11-14 17:08:21.213] [INFO] nomel - POST /login
+[2016-11-14 17:08:21.312] [DEBUG] index - { username: 'abc' }
+[2016-11-14 17:08:21.313] [DEBUG] index - { username: 'abc' }
+[2016-11-14 17:08:21.318] [INFO] nomel - GET /home
+[2016-11-14 17:08:21.405] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:08:21.602] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:08:21.603] [WARN] nomel - GET /bootstrap/dist/css/bootstrap.min.css
+[2016-11-14 17:08:21.618] [WARN] nomel - GET /bootstrap/dist/js/bootstrap.min.js
+[2016-11-14 17:08:21.624] [WARN] nomel - GET /angularjs/angular.js
+[2016-11-14 17:08:21.635] [WARN] nomel - GET /angularjs/angular-sanitize.min.js
+[2016-11-14 17:08:21.637] [WARN] nomel - GET /javascripts/w5cValidator.min.js
+[2016-11-14 17:08:21.641] [WARN] nomel - GET /angularjs/angular-ui-router.js
+[2016-11-14 17:08:21.641] [WARN] nomel - GET /angularjs/angular-resource.min.js
+[2016-11-14 17:08:21.643] [WARN] nomel - GET /javascripts/main/main.js
+[2016-11-14 17:32:59.659] [DEBUG] index - undefined
+[2016-11-14 17:32:59.671] [WARN] nomel - GET /home
+[2016-11-14 17:32:59.693] [INFO] nomel - GET /login
+[2016-11-14 17:32:59.901] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:33:00.113] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:33:00.117] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-14 17:33:16.313] [INFO] nomel - GET /register
+[2016-11-14 17:33:16.356] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:33:16.473] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:33:16.483] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-14 17:33:54.744] [DEBUG] userDao - OkPacket {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 5,
+  serverStatus: 2,
+  warningCount: 0,
+  message: '',
+  protocol41: true,
+  changedRows: 0 }
+[2016-11-14 17:33:54.748] [WARN] nomel - POST /register
+[2016-11-14 17:33:54.758] [WARN] nomel - GET /login
+[2016-11-14 17:33:54.811] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:33:54.812] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:33:54.816] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-14 17:34:13.748] [DEBUG] userDao - [ RowDataPacket { id: 5 } ]
+[2016-11-14 17:34:13.753] [DEBUG] userDao - [ RowDataPacket { id: 5, name: 'kk', password: '123' } ]
+[2016-11-14 17:34:13.755] [DEBUG] userDao - { username: 'kk' }
+[2016-11-14 17:34:13.756] [INFO] nomel - POST /login
+[2016-11-14 17:34:13.777] [DEBUG] index - { username: 'kk' }
+[2016-11-14 17:34:13.778] [DEBUG] index - { username: 'kk' }
+[2016-11-14 17:34:13.782] [INFO] nomel - GET /home
+[2016-11-14 17:34:13.852] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:34:13.865] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:34:13.882] [WARN] nomel - GET /bootstrap/dist/css/bootstrap.min.css
+[2016-11-14 17:34:13.883] [WARN] nomel - GET /angularjs/angular.js
+[2016-11-14 17:34:13.891] [WARN] nomel - GET /bootstrap/dist/js/bootstrap.min.js
+[2016-11-14 17:34:13.895] [WARN] nomel - GET /angularjs/angular-ui-router.js
+[2016-11-14 17:34:13.901] [WARN] nomel - GET /angularjs/angular-sanitize.min.js
+[2016-11-14 17:34:13.929] [WARN] nomel - GET /javascripts/main/main.js
+[2016-11-14 17:34:13.933] [WARN] nomel - GET /javascripts/w5cValidator.min.js
+[2016-11-14 17:34:13.934] [WARN] nomel - GET /angularjs/angular-resource.min.js
+[2016-11-14 17:34:24.183] [WARN] nomel - GET /M_UD_DR_SCHED_START_RN_AID
+[2016-11-14 17:34:28.794] [WARN] nomel - GET /M_UD_DR_SCHED_VAL_END_RN_AID
+[2016-11-14 17:34:41.013] [WARN] nomel - GET /undo
+[2016-11-14 17:34:41.598] [WARN] nomel - GET /peerReview
+[2016-11-14 17:34:44.291] [DEBUG] index - { username: 'kk' }
+[2016-11-14 17:34:44.292] [WARN] nomel - GET /logout
+[2016-11-14 17:34:44.306] [DEBUG] index - null
+[2016-11-14 17:34:44.310] [WARN] nomel - GET /
+[2016-11-14 17:34:44.325] [INFO] nomel - GET /login
+[2016-11-14 17:34:44.380] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-14 17:34:44.392] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-14 17:34:44.394] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-17 13:23:30.837] [DEBUG] index - undefined
+[2016-11-17 13:23:30.872] [WARN] nomel - GET /
+[2016-11-17 13:23:31.234] [DEBUG] index - undefined
+[2016-11-17 13:23:31.239] [WARN] nomel - GET /
+[2016-11-17 13:23:31.258] [INFO] nomel - GET /login
+[2016-11-17 13:23:31.305] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-17 13:23:31.390] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-17 13:23:31.395] [WARN] nomel - GET /javascripts/login/login.js
+[2016-11-17 13:23:32.022] [ERROR] nomel - GET /favicon.ico
+[2016-11-17 13:23:52.519] [DEBUG] userDao - [ RowDataPacket { id: 4 } ]
+[2016-11-17 13:23:52.555] [DEBUG] userDao - [ RowDataPacket { id: 4, name: 'root', password: 'root' } ]
+[2016-11-17 13:23:52.556] [DEBUG] userDao - { username: 'root' }
+[2016-11-17 13:23:52.558] [INFO] nomel - POST /login
+[2016-11-17 13:23:52.575] [DEBUG] index - { username: 'root' }
+[2016-11-17 13:23:52.576] [DEBUG] index - { username: 'root' }
+[2016-11-17 13:23:52.581] [INFO] nomel - GET /home
+[2016-11-17 13:23:52.653] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-17 13:23:52.778] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-17 13:23:52.788] [WARN] nomel - GET /bootstrap/dist/js/bootstrap.min.js
+[2016-11-17 13:23:52.797] [WARN] nomel - GET /bootstrap/dist/css/bootstrap.min.css
+[2016-11-17 13:23:52.811] [WARN] nomel - GET /angularjs/angular.js
+[2016-11-17 13:23:52.825] [WARN] nomel - GET /angularjs/angular-sanitize.min.js
+[2016-11-17 13:23:52.828] [WARN] nomel - GET /javascripts/w5cValidator.min.js
+[2016-11-17 13:23:52.834] [WARN] nomel - GET /angularjs/angular-ui-router.js
+[2016-11-17 13:23:52.835] [WARN] nomel - GET /angularjs/angular-resource.min.js
+[2016-11-17 13:23:52.836] [WARN] nomel - GET /javascripts/main/main.js
+[2016-11-17 13:23:53.201] [ERROR] nomel - GET /common/images/favicon.ico
+[2016-11-17 13:24:12.438] [DEBUG] index - { username: 'root' }
+[2016-11-17 13:24:12.455] [WARN] nomel - GET /logout
+[2016-11-17 13:24:12.467] [DEBUG] index - null
+[2016-11-17 13:24:12.470] [WARN] nomel - GET /
+[2016-11-17 13:24:12.520] [INFO] nomel - GET /login
+[2016-11-17 13:24:12.593] [WARN] nomel - GET /stylesheets/mainStyling.css
+[2016-11-17 13:24:12.668] [WARN] nomel - GET /javascripts/jquery.min.js
+[2016-11-17 13:24:12.672] [WARN] nomel - GET /javascripts/login/login.js
