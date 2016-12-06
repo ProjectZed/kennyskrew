@@ -20,7 +20,6 @@ app.controller('login', function($scope, $http) {
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -32,47 +31,28 @@ app.controller('scheduleStartTime', function($scope, $http) {
       } else {
         return false;
       }
-=======
-    $scope.submitValue = function () {
-      $http.put('/update/scheduleStartTime', $scope.form).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-      });
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     };
 });
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/statusCode', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);;
       });
-<<<<<<< HEAD:gui/js/controllers.js
-
       return true;
     } else {
       return false;
     }
-=======
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
   };
 });
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/valuationEnd', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);;
@@ -81,13 +61,9 @@ app.controller('valuationEnd', function($scope, $http) {
 });
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/valuationStart', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -97,7 +73,6 @@ app.controller('valuationStart', function($scope, $http) {
 
 //DEMO controller for SLA Date and Time by Audit
 app.controller('sla_by_audit', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -110,25 +85,13 @@ app.controller('sla_by_audit', function($scope, $http) {
         return false;
       }
     }
-=======
-  $scope.submitValue = function () {
-    $http.put('/update/sla_by_audit', $scope.form).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-      });
-  };
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
 });
 
 //controller for SLA Date and Time by run name
 app.controller('sla_by_runname', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/sla_by_runname', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -137,13 +100,9 @@ app.controller('sla_by_runname', function($scope, $http) {
 });
 //controller for  Historical SLA Date and Time
 app.controller('histoy_SLA', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/histoy_SLA', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -152,13 +111,9 @@ app.controller('histoy_SLA', function($scope, $http) {
 });
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/status_name_grpNumder', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -167,13 +122,9 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 });
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/status_name_dtlID', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -182,13 +133,9 @@ app.controller('status_name_dtlID', function($scope, $http) {
 });
 //controller for Active Step Indicator by Driver Step ID
 app.controller('active_step_indicator_stepID', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/active_step_indicator_stepID', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -197,13 +144,9 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/active_step_indicator_runName_stepID', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -212,13 +155,9 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/active_step_indicator_runName', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
@@ -227,13 +166,9 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
-<<<<<<< HEAD:gui/js/controllers.js
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-=======
-  $scope.submitValue = function () {
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc:gui/js/controllers/UpdateController.js
     $http.put('/update/active_step_indicator_runName_grpNumber', $scope.form).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);

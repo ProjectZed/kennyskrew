@@ -128,7 +128,6 @@ app.put('/update/valuationStart', function(req, res) {
 
 //DEMO
 app.put('/update/sla_by_audit', function(req, res) {
-<<<<<<< HEAD
   // if (true) {
   //   var data = {
   //     from: 'Digital Dash <postmaster@sandbox5535bd649fbc436193cba0471dc6d85d.mailgun.org>',
@@ -162,23 +161,6 @@ app.put('/update/sla_by_audit', function(req, res) {
           });
         }
       });
-=======
-  db.serialize(function() {
-    db.all("UPDATE C_DRIVER_SCHEDULE SET sla_date = '" + req.body.sla_dt + "' AND sla_time = '" + req.body.sla_time + "' WHERE audit_id = " + req.body.auditId + " ", function(err){
-      if(err){
-        res.send("Error when querrying");
-      }
-      else {
-        db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
-          if(err){
-            res.send("Error response");
-          }
-          else{
-            res.send(rows);
-          }
-        });
-      }
->>>>>>> 6d75c1ae96030dc97a6bac994c6df1ae988af7dc
     });
 });
 
