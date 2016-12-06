@@ -55,8 +55,9 @@ app.controller('valuationEnd', function($scope, $http) {
     if (r == true) {
     $http.put('/update/valuationEnd', $scope.form).
       success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);;
+        $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Valuation Start time
@@ -68,6 +69,7 @@ app.controller('valuationStart', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 
@@ -96,6 +98,7 @@ app.controller('sla_by_runname', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for  Historical SLA Date and Time
@@ -107,6 +110,7 @@ app.controller('histoy_SLA', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Run Status Code by Run Name and Group Number
@@ -118,6 +122,7 @@ app.controller('status_name_grpNumder', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Run Status Code by Run Name and Driver Step Detail ID
@@ -129,6 +134,7 @@ app.controller('status_name_dtlID', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Active Step Indicator by Driver Step ID
@@ -140,6 +146,7 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
@@ -151,6 +158,7 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Update Active Step Indicator by Run Name
@@ -162,6 +170,7 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 //controller for Update Active Step Indicator by Run Name and Group Number
@@ -173,6 +182,7 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
+    }
   };
 });
 
