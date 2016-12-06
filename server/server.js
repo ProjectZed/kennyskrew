@@ -3,12 +3,14 @@ var app = express();
 var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
 //your database location
-var db = new sqlite3.Database("/Users/thanhpham/Downloads/LibertyMutual.db");
+var db = new sqlite3.Database("/home/joe/Downloads/LibertyMutual.db");
 
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/../gui"));
+var globalConfig = new Object(); //any shared information
 
+require('./routes')(app,globalConfig);
 
 
 app.put('/update/scheduleStartTime', function(req, res) {
