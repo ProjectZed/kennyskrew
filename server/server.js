@@ -2,15 +2,12 @@ var express  = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
-<<<<<<< HEAD
+
 //your database location
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
-=======
 
-//database location
-var db = new sqlite3.Database("/Users/thanhpham/Downloads/LibertyMutual.db");
 //user table
-var users = new sqlite3.Database("/Users/thanhpham/Downloads/Users.db");
+var users = new sqlite3.Database(__dirname + "/../server/database//Users.db");
 users.serialize(function() {
     users.run("CREATE TABLE IF NOT EXISTS user_info (id INT PRIMARY KEY, username TEXT, password TEXT, email TEXT, type TEXT)");
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
@@ -21,10 +18,6 @@ users.serialize(function() {
 // var api_key = 'key-a63b9592560ea2c4f5dabe2dc8c53682';
 // var domain = 'sandbox5535bd649fbc436193cba0471dc6d85d.mailgun.org';
 // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
->>>>>>> d24c52a1225d84ae0b01d0ec54a18de031d4973a
-
-
 
 //Config middleware
 app.use(bodyParser.urlencoded({ extended : true }));
