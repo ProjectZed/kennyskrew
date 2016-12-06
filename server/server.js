@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
 //your database location
-var db = new sqlite3.Database("/Users/thanhpham/Downloads/LibertyMutual.db");
+var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
