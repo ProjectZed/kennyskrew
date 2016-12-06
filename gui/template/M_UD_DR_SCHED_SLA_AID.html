@@ -6,8 +6,8 @@
 		<input type="text" class="" datetime="yyyy-MM-dd HH:mm:ss" placeholder="SLA_TIME Input" ng-model="form.sla_time" />
 		<input type="text" class="" placeholder="AUDT_ID Input" ng-model="form.auditId" />
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="submitValue()"> Exec </button>
-      <button class="btn btn-danger" type="button"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()"> Exec </button>
+      <button class="btn btn-danger" type="button"ng-click="urgentExec()"> Urgent Exec </button>
     </div>
 	</form>
   <pre class="alert alert-info">{{ banner }}</pre>
