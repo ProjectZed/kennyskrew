@@ -6,9 +6,13 @@ app.controller('login', function($scope, $http) {
       $http.post('/login', $scope.form).
       success(function(data) {
         //go to homepage.html
+        console.log('success');
         console.log(data);
       });
-      window.location.href="template/homepage.html";
+      failure(function(err){
+        console.log('err');
+      });
+      window.location.href="main/index";
     };
 });
 //controller for peer review
