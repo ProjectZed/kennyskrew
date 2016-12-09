@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="digitalDash">
+<html ng-app="digitalDash" ng-controller="login">
 <head>
   <title>Digital Dash</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,96 +10,21 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/controllers/UpdateController.js"></script>
-  <script src="js/controllers/DeleteController.js"></script>
-  <script src="js/controllers/AddController.js"></script>
-
+  <script src="js/controllers.js"></script>
 </head>
 <body>
-	<div class="wrapper container">
-		<h2><a href="index.html">Digital Dash</a></h2>
-		<div class="rounded shadowed" style="">
-			<ul class="mainMenu rounded">
-				<li class="rounded" style="padding:0px;">
-				  <div class="dropdown">
-  					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Update
-  					<span class="caret"></span></button>
-  					<ul class="dropdown-menu">
-  					  <li>Driver Schedule</li>
-  					  <li><a href="#M_UD_DR_SCHED_START_RN_AID">Update Schedule Start time by Run Name and Audit ID </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_STTS_RN_AID">Update Status Code by Run Name and Audit ID </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_VAL_END_RN_AID">Update Valuation End Date by Run Name and Audit ID </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_VAL_START_RN_AID">Update Valuation Start time by Run Name and Audit ID </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_SLA_AID">Update SLA Date and Time by Audit ID </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_SLA_RN">Update SLA Date and Time by Run Name </a></li>
-  					  <li><a href="#M_UD_DR_SCHED_H_SLA_RN">Update Historical SLA Date and Time by Run Name </a></li>
-  					  <li>Driver Step Detail</li>
-  					  <li><a href="#M_UD_DR_STEP_DTL_RN_GN">Update Run Status Code by Run Name and Group Number</a></li>
-  					  <li><a href="#M_UD_DR_STEP_DTL_RN_STPDTLID">Update Run Status Code by Run Name and Driver Step Detail ID</a></li>
-  					  <li>Driver Step</li>
-  					  <li><a href="#M_UD_DR_STEP_ASI_SID">Update Active Step Indicator by Driver Step ID</a></li>
-  					  <li><a href="#M_UD_DR_STEP_ASI_RN_SID">Update Active Step Indicator by Run Name and Driver Step ID</a></li>
-  					  <li><a href="#M_UD_DR_STEP_ASI_RN">Update Active Step Indicator by Run Name</a></li>
-  					  <li><a href="#M_UD_DR_STEP_ASI_RN_GN">Update Active Step Indicator by Run Name and Group Number</a></li>
-  					</ul>
-				  </div>
-				</li>
-				<li class="rounded" style="padding:0px;">
-				  <div class="dropdown">
-					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Delete
-					<span class="caret"></span></button>
-					<ul class="dropdown-menu">
-					  <li>Driver Schedule</li>
-					  <li><a href="#M_DL_DR_SCHED_RN">Delete all entries by Run Name</a></li>
-					  <li>Driver Step</li>
-					  <li><a href="#M_DL_DR_STEP_RN">Delete all entries by Run Name</a></li>
-					  <li><a href="#M_DL_DR_STEP_RN_GN">Delete all entries by Run Name and Group Number</a></li>
-					  <li><a href="#M_DL_DR_STEP_RN_SID">Delete all entries by Run Name and Driver Step ID</a></li>
-					  <li><a href="#M_DL_DR_STEP_DTL_RN">Driver Step Detail - Delete </a></li>
-					</ul>
-				  </div>
-				</li>
-				<li class="rounded" style="padding:0px;">
-					<div class="dropdown">
-						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Add
-						<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-						  <li><a href="#addDriverScedule">Driver Schedule</a></li>
-						  <li><a href="#addDriverStep">Driver Step</a></li>
-						</ul>
-					</div>
-				</li>
-        <li class="rounded" style="padding:0px;">
-					<div class="dropdown">
-						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">View
-						<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-						  <li><a href="viewfailures.html">Failures</a></li>
-						  <li><a href="#">Dependencies</a></li>
-						  <li><a href="#">Job service-level agreements </a></li>
-						  <li><a href="#">Pending SLA jobs </a></li>
-						  <li class="hist"><span>Historical runtime average</span>
-							<a href="#">  Batch </a>
-							<a href="#">  Job </a>
-							<a href="#">  Step </a>
-						  </li>
-						  <li class="hist"><span>Historical trending</span>
-							<a href="#">  Batch </a>
-							<a href="#">  Job </a>
-							<a href="#">  Step </a>
-						  </li>
-						  <li><a href="#">Current Running</a></li>
-						</ul>
-					</div>
-				</li>
-				<li class="rounded"><a href="undo.html">Log</a></li>
-				<li class="rounded"><a href="peerReview.html">Peer</a></li>
-        <li class="rounded"><a href="#">Logout</a></li>
-			</ul>
-		</div>
-
-		<div ng-view></div>
-
+ <div class="signin">
+  <div class="container">
+    <h2 class="form-signin-heading">Welcome to Digital Dash</h2>
+    <form class="form-signin" ng-controller="login">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="text" id="inputEmail" class="form-control" placeholder="Email address" ng-model="form.username" />
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="form.password">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="submitLogin()">Sign in</button>
+    </form>
   </div>
+</div>
 </body>
 </html>
