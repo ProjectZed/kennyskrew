@@ -1,24 +1,4 @@
 
-//controller for login
-app.controller('login', function($scope, $http) {
-  $scope.submitLogin = function () {
-      console.log($scope.form);
-      $http.post('/login', $scope.form).
-      success(function(data) {
-        //go to homepage.html
-        console.log('success');
-        console.log(data);
-      });
-      failure(function(err){
-        console.log('err');
-      });
-      window.location.href="main/index";
-    };
-});
-//controller for peer review
-
-
-
 //-----------------------------------------------------------------------------
 // UPDATE controller
 //-----------------------------------------------------------------------------
