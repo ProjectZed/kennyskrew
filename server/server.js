@@ -31,19 +31,7 @@ require('./routes')(app,globalConfig);
 // MACROS Routes
 //-----------------------------------------------------------------------------
 
-//Login Logout
-app.post('/login', function(req, res) {
-  users.serialize(function() {
-    users.all("SELECT * FROM user_info WHERE username = '" + req.body.username + "' AND password = '" + req.body.password + "' ", function(err, rows){
-        if(err){
-          console.log("Fail authenticate");
-        }
-        else {
-          console.log(rows);
-        }
-    });
-  });
-});
+
 
 app.listen(3000, function() {
     console.log("App listening on port 3000");
