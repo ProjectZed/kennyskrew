@@ -6,13 +6,13 @@
         {"type": "console"},
         {
           "type": "dateFile",
-          "filename": "./logs/access.log",
+          "filename": "./access.log",
           "pattern": "-yyyy-MM-dd",
           "category": "http"
         },
         {
           "type": "file",
-          "filename": "./logs/app.log",
+          "filename": "./app.log",
           "maxLogSize": 10485760,
           "numBackups": 3
         },
@@ -21,7 +21,7 @@
           "level": "ERROR",
           "appender": {
             "type": "file",
-            "filename": "./logs/errors.log"
+            "filename": "./errors.log"
           }
         }
       ]

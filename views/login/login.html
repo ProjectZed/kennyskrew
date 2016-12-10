@@ -22,6 +22,13 @@
       <input type="text" id="inputEmail" class="form-control" placeholder="Email address" ng-model="form.username" />
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="form.password">
+
+      <div ng-init="environment='dev'" />
+        <input type="radio" ng-model="environment" value="dev"><label>Devlopment</label><br/>
+        <input type="radio" ng-model="environment" value="test"><label>Test</label><br/>
+        <input type="radio" ng-model="environment" value="qa"><label>Quality Assurance</label><br/>
+        <input type="radio" ng-model="environment" value="product"><label>Product</label>
+
       <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="submitLogin()">Sign in</button>
     </form>
   </div>
