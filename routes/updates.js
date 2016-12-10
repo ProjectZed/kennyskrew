@@ -1,0 +1,266 @@
+module.exports = function(app, globalConfig){
+  var db = globalConfig.db;
+
+  app.put('/update/scheduleStartTime', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = '" + req.body.sche_start + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/statusCode', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_SCHEDULE SET stts_cd = '" + req.body.Status + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/valuationEnd', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_SCHEDULE SET vlutn_end_dtm = '" + req.body.valEnd + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/valuationStart', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_SCHEDULE SET vlutn_start_dtm = '" + req.body.valStart + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  //DEMO
+  app.put('/update/sla_by_audit', function(req, res) {
+    // if (true) {
+    //   var data = {
+    //     from: 'Digital Dash <postmaster@sandbox5535bd649fbc436193cba0471dc6d85d.mailgun.org>',
+    //     to: 'serobnic@mail.ru',
+    //     subject: 'Hello',
+    //     text: req.body
+    //   };
+    //   mailgun.messages().send(data, function (error, body) {
+    //     if(error){
+    //       res.send("Mail not sent. Error occured");
+    //     }
+    //     else{
+    //       res.send("Your request for Update SLA Date and Time has been sent to administrator");
+    //     }
+    //   });
+    // }
+    // else {
+      db.serialize(function() {
+        db.all("UPDATE C_DRIVER_SCHEDULE SET sla_date = '" + req.body.sla_dt + "', sla_time = '" + req.body.sla_time + "' WHERE audit_id = " + req.body.auditId + " ", function(err){
+          if(err){
+            res.send("Error when querrying");
+          }
+          else {
+            db.all("SELECT * FROM C_DRIVER_SCHEDULE WHERE audit_id = " + req.body.auditId + " ", function(err, rows){
+              if(err){
+                res.send("Error response");
+              }
+              else{
+                res.send(rows);
+              }
+            });
+          }
+        });
+      });
+  });
+
+  app.put('/update/sla_by_runname', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_SCHEDULE SET sla_date = '" + req.body.sla_dt + "' AND sla_time = '" + req.body.sla_time + "' WHERE run_nme = '" + req.body.runName + "' ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT sla_date, sla_time, run_nme FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/histoy_SLA', function(req, res) {
+      console.log(req.body);
+      res.end();
+  });
+
+  app.put('/update/status_name_grpNumder', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.Status + "' WHERE run_name = '" + req.body.runName + "' AND grp_nbr = " + req.body.grp_number + " ", function(err){
+          if(err){
+            res.send("Error when querrying");
+          }
+          else {
+            db.all("SELECT run_stts_cd, run_name, grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_stts_cd = '" + req.body.Status + "' AND run_name = '" + req.body.runName + "' AND grp_nbr = " + req.body.grp_number + " ", function(err, rows){
+              if(err){
+                res.send("Error response");
+              }
+              else{
+                res.send(rows);
+              }
+            });
+          }
+      });
+    });
+  });
+  //DEMO
+  app.put('/update/status_name_dtlID', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.Status + "' WHERE run_name = '" + req.body.runName + "' AND drvr_step_dtl_id = " + req.body.dtl_id + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_STEP_DETAIL WHERE drvr_step_dtl_id = " + req.body.dtl_id + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/active_step_indicator_stepID', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP SET actv_step_ind = '" + req.body.actv_step_ind + "' WHERE drvr_step_id = '" + req.body.drvr_step_id + "' ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_STEP WHERE drvr_step_id = " + req.body.drvr_step_id + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/active_step_indicator_runName_stepID', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP SET actv_step_ind = '" + req.body.actv_step_ind + "' WHERE run_nme = '" + req.body.runName + "' AND drvr_step_id = '" + req.body.drvr_step_id + "' ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT * FROM C_DRIVER_STEP WHERE drvr_step_id = " + req.body.drvr_step_id + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/active_step_indicator_runName', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP SET actv_step_ind = '" + req.body.actv_step_ind + "' WHERE run_nme = '" + req.body.runName + "' ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT actv_step_ind, run_nme FROM C_DRIVER_STEP WHERE actv_step_ind = '" + req.body.actv_step_ind + "' AND run_nme = '" + req.body.runName + "' ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  app.put('/update/active_step_indicator_runName_grpNumber', function(req, res) {
+    db.serialize(function() {
+      db.all("UPDATE C_DRIVER_STEP SET actv_step_ind = '" + req.body.actv_step_ind + "' WHERE run_nme = '" + req.body.runName + "' AND grp_nbr = " + req.body.grp_number + " ", function(err){
+        if(err){
+          res.send("Error when querrying");
+        }
+        else {
+          db.all("SELECT actv_step_ind, run_nme, grp_nbr FROM C_DRIVER_STEP WHERE actv_step_ind = '" + req.body.actv_step_ind + "' AND run_nme = '" + req.body.runName + "' AND grp_nbr = " + req.body.grp_number + " ", function(err, rows){
+            if(err){
+              res.send("Error response");
+            }
+            else{
+              res.send(rows);
+            }
+          });
+        }
+      });
+    });
+  });
+}
