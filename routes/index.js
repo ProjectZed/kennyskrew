@@ -31,7 +31,7 @@ router.post('/login', function(req, res) {
 				console.log(password.trim());
 	}else{
   	users.serialize(function() {
-    users.all("SELECT * FROM user_info WHERE username = '" + username + "' AND password = '" + password + "' ", function(err, rows){
+    users.all("SELECT * FROM user_info WHERE username = '" + username + "'", function(err, rows){
         if(err){
           console.log("Fail authenticate");
         }
@@ -41,23 +41,18 @@ router.post('/login', function(req, res) {
 					if(rows.length > 0){
 						console.log('row more than 0');
 						var user = rows[0];
-						if(user.username === username &&
-							user.password === password){
+						if(user.password === password){
 								var user = {
 									username : user.username,
 									password : user.password
 								}
 								req.session.user = user;
-								res.redirect('/');
+								res.send(200, "success");
 						}else{
-							console.log('error1');
-							req.locals.errors = "error1";
-							res.redirect('back');
+							res.send(404, "Password Incorrect")
 						}
 					}else{
-						console.log('error2');
-						req.locals.errors = "error2";
-						res.rediect('back');
+						res.send(404, "No Such User")
 					}
         }
     });

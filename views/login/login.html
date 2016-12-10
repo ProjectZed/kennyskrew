@@ -17,12 +17,12 @@
  <div class="signin">
   <div class="container">
     <h2 class="form-signin-heading">Welcome to Digital Dash</h2>
-    <form class="form-signin" action="login" method="post">
+    <form class="form-signin" ng-controller="loginCtrl">
       <h2 class="form-signin-heading">Please sign in</h2>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="text" class="form-control" placeholder="Email address" name="username" />
+      <input type="text" class="form-control" placeholder="Email address" id="username" ng-model="form.username" onfocus="removeRedBorder('username')"/>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" class="form-control" placeholder="Password" name="password">
+      <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')"/>
 
       <div ng-init="environment='dev'" />
         <input type="radio" ng-model="environment" value="dev"><label>Devlopment</label><br/>
@@ -30,8 +30,9 @@
         <input type="radio" ng-model="environment" value="qa"><label>Quality Assurance</label><br/>
         <input type="radio" ng-model="environment" value="product"><label>Product</label>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="submitLogin()">Sign in</button>
     </form>
+    <h3 id="error-message"></h3>
   </div>
 </div>
 </body>

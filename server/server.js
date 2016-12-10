@@ -7,6 +7,7 @@ var logger = require('morgan');
 var log4js = require('log4js');
 var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
+var flash = require('req-flash');
 var app = express();
 
 //temporary session, might be deleted later for Active Directory
@@ -25,18 +26,19 @@ logger.setLevel('INFO');
 
 app.set('views', path.join(__dirname, '../views'));
 app.engine('.html', ejs.__express);
-app.set('view engine', 'html');// app.set('view engine', 'ejs');
+app.set('view engine', 'html');
+//app.set('view engine', 'ejs');
 
 //your database location
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
 //user table
-var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
-users.serialize(function() {
+//var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
+/*users.serialize(function() {
     users.run("CREATE TABLE IF NOT EXISTS user_info (id INT PRIMARY KEY, username TEXT, password TEXT, email TEXT, type TEXT)");
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
-});
+});*/
 
 // //MAILGUN service
 // var api_key = 'key-a63b9592560ea2c4f5dabe2dc8c53682';
@@ -48,9 +50,14 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(log4js.connectLogger(logger, {level: 'auto', format:':method :url'}));
-
+app.use(flash());
+app.use(function(req, res, next){
+  res.locals.messages = req.flash().error;
+  next();
+});
 
 app.use('/', routes);
+
 
 //-----------------------------------------------------------------------------
 // MACROS Routes

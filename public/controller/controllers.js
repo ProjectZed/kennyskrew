@@ -1,3 +1,28 @@
+app.controller('loginCtrl', function($scope, $http) {
+  $scope.submitLogin = function () {
+    console.log($scope.form);
+    $http.post('/login', $scope.form).
+    success(function(data) {
+      //go to homepage.html
+      console.log(data);
+      window.location.href="/";
+    }).error(function(error){
+      document.getElementById("error-message").innerHTML = error;
+      if(error === "Password Incorrect"){
+        document.getElementById("password").style.borderColor = "red";
+        console.log('password');
+      }else if(error === "No Such User"){
+        document.getElementById("username").style.borderColor = "red";
+        console.log('username');
+      }
+    });
+  }
+});
+
+function removeRedBorder(element){
+    document.getElementById(element).style.borderColor = "#EBE9ED";
+}
+
 app.controller('navController', function($scope, $http) {
     $scope.logout = function () {
       if(confirm("Are you sure want to exit?")){
