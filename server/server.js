@@ -61,6 +61,8 @@ app.put('/update/scheduleStartTime', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -81,6 +83,8 @@ app.put('/update/statusCode', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -101,6 +105,8 @@ app.put('/update/valuationEnd', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Valuation End Date: " + req.body.valEnd + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -121,6 +127,8 @@ app.put('/update/valuationStart', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Valuation Start Time: " + req.body.valStart + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -159,6 +167,8 @@ app.put('/update/sla_by_audit', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + ", (audit id: " + req.body.auditId + ")";
+              writeToLog(data);
               res.send(rows);
             }
           });
@@ -179,6 +189,7 @@ app.put('/update/sla_by_runname', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + ", (run name: " + req.body.auditId + ")";
             res.send(rows);
           }
         });
@@ -316,16 +327,16 @@ app.put('/update/active_step_indicator_runName_grpNumber', function(req, res) {
 /*
  * Write data to log file.
  */
-function writeToLog(data, callback) {
+function writeToLog(data) {
   var date =  new Date().toLocaleString();
-  data = date + data;
+  data = date + ": " + data + "\n";
   fs.appendFile('log.txt', data, function (err) {
     if (err) {
       // append failed
-      callback(err);
+      //callback(err);
     } else {
       // done
-      callback(null, data);
+      //callback(null, data);
     }
   })
 }
