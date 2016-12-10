@@ -2,6 +2,7 @@ var express  = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
+var fs = require('fs');
 
 //your database location
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
@@ -45,7 +46,9 @@ app.post('/login', function(req, res) {
   });
 });
 
-
+/*
+ *
+ */
 app.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
     db.all("UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = '" + req.body.sche_start + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
@@ -310,7 +313,22 @@ app.put('/update/active_step_indicator_runName_grpNumber', function(req, res) {
   });
 });
 
-
+/*
+ * Write data to log file.
+ */
+function writeToLog(data, callback) {
+  var date =  new Date().toLocaleString();
+  data = date + data;
+  fs.appendFile('log.txt', data, function (err) {
+    if (err) {
+      // append failed
+      callback(err);
+    } else {
+      // done
+      callback(null, data);
+    }
+  })
+}
 
 app.listen(3000, function() {
     console.log("App listening on port 3000");
