@@ -20,22 +20,42 @@ router.get('/login',function(req,res){
 });
 
 router.post('/login', function(req, res) {
-	console.log('post login');
-  users.serialize(function() {
-    users.all("SELECT * FROM user_info WHERE username = '" + req.body.username + "' AND password = '" + req.body.password + "' ", function(err, rows){
+	var username = req.body.username;
+	var password = req.body.password;
+	if(username.length == 0 || !username.trim() ||
+			password.length == 0 || !password.trim()){
+				console.log('0000');
+				console.log(username.length);
+				console.log(password.length);
+				console.log(username.trim());
+				console.log(password.trim());
+	}else{
+  	users.serialize(function() {
+    users.all("SELECT * FROM user_info WHERE username = '" + username + "' AND password = '" + password + "' ", function(err, rows){
         if(err){
           console.log("Fail authenticate");
         }
         else {
-          var user = {
-						username : req.body.username,
-						password : req.body.password
+					console.log('rows');
+					console.log(rows);
+					if(rows.length > 0){
+						var user = rows[0];
+						if(user.username === username &&
+							user.password === password){
+								var user = {
+									username : user.username,
+									password : user.password
+								}
+								req.session.user = user;
+								res.redirect('/');
+						}else{
+							res.status(404).end();
+						}
 					}
-					req.session.user = user;
-          res.redirect('/');
         }
     });
   });
+}
 });
 
 
@@ -69,7 +89,7 @@ function checkNotLogin(req,res,next){
 
 function checkLogin(req,res,next){
 	console.log('checkLogin');
-	//log.debug(req.session.user);
+	log.debug(req.session.user);
 	if(!req.session.user){
 		console.log(req.session.user);
 		return res.redirect('/login');
