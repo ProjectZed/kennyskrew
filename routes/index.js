@@ -1,6 +1,8 @@
 var express = require('express');
+var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
+var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
 
 /*router config*/
 
@@ -8,25 +10,33 @@ var log = require('log4js').getLogger("index");
 router.get('/',checkLogin);
 router.get('/', function(req, res) {
 	console.log('index');
-  res.render('main/index');
+  res.render('index');
 });
 
 // router.get('/login',checkNotLogin);
 router.get('/login',function(req,res){
-	console.log("app.usr local");
 	res.render('login/login');
 });
 
-router.get("/home", checkLogin);
-router.get('/home',function(req,res,next){
-	console.log('ok');
-	var user = {
-		username : 'admin',
-		password : 'admin'
-	}
-	res.locals.user = req.session.user;
-	log.debug(res.locals.user);
-	res.render('main/index');
+router.post('/login', function(req, res) {
+	console.log('post login');
+	console.log(req.url);
+  users.serialize(function() {
+    users.all("SELECT * FROM user_info WHERE username = '" + req.body.username + "' AND password = '" + req.body.password + "' ", function(err, rows){
+        if(err){
+          console.log("Fail authenticate");
+        }
+        else {
+          var user = {
+						username : req.body.username,
+						password : req.body.password
+					}
+					req.session.user = user;
+          res.redirect('/');
+					//res.render('index');
+        }
+    });
+  });
 });
 
 
@@ -60,7 +70,7 @@ function checkNotLogin(req,res,next){
 
 function checkLogin(req,res,next){
 	console.log('checkLogin');
-	log.debug(req.session.user);
+	//log.debug(req.session.user);
 	if(!req.session.user){
 		console.log(req.session.user);
 		return res.redirect('/login');

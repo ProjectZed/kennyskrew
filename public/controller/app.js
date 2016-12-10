@@ -56,7 +56,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       })
       //route for ADD
       .when("/AddDriverSchedule", {
-          templateUrl: "template/addDriverScedule.html",
+          templateUrl: "template/addDriverSchedule.html",
           controller: "DriverSchedule"
       })
       .when("/AddDriverStep", {
@@ -84,8 +84,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
           templateUrl: "template/M_DL_DR_STEP_DTL_RN.html",
           controller: "Dl_Driver_Step_Detail_RunName"
       })
-      //route for ADD
-
       //route for view logs
       .when("/Logs", {
           templateUrl: "template/viewlog.html",
@@ -95,8 +93,5 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       .when("/PeerReview", {
           templateUrl: "template/peerreview.html",
           controller: ""
-      })
-      .otherwise({
-            redirectTo: 'login/login.html'
       });
   }]);

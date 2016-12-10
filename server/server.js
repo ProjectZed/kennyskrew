@@ -10,12 +10,12 @@ var cookieParser = require('cookie-parser');
 var app = express();
 
 //temporary session, might be deleted later for Active Directory
+app.use(cookieParser());
 var session = require('express-session');
 var redisStore = require('connect-redis')(session);
-app.use(cookieParser());
 app.use(session({
   secret:'recommand 128 bytes random string',
-  cookie: {maxAge:60 * 1000}
+  cookie: {maxAge:60 * 1000 * 10} //10 mins
 }));
 
 //log4js
@@ -23,6 +23,7 @@ log4js.configure('./conf/my_log4js_configuration.json',{});
 var logger = log4js.getLogger('nomel');
 logger.setLevel('INFO');
 
+app.set('views', path.join(__dirname, '../views'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');// app.set('view engine', 'ejs');
 
@@ -43,20 +44,13 @@ users.serialize(function() {
 // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 //Config middleware
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../views')));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(log4js.connectLogger(logger, {level: 'auto', format:':method :url'}));
 
 
 app.use('/', routes);
-
-app.use(session({
-  // redisStore session
-  store: new redisStore(),
-  secret: 'somesecrettoken'
-}));
 
 //-----------------------------------------------------------------------------
 // MACROS Routes
