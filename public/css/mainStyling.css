@@ -1,7 +1,8 @@
-	.wrapper *{
-		/*margin:8px;
-		padding:8px;*/
+	body{
+		padding-top: 100px;
+		background: url(../image/a.jpg) no-repeat center center fixed;
 	}
+
  .wrapper > *{
 	margin:8px 20%;
  }
@@ -10,6 +11,10 @@
  }
  .rounded{
 	border-radius:8px;
+ }
+
+ .menu-btn{
+	 	width: 150px;
  }
  .mainMenu{
 	display:block;
@@ -55,7 +60,7 @@
  select{
 	 margin:8px;
  }
- .dynContent form > input, h5, div{
+ .dynContent form > input, h5{
 	display:block;
 	padding:0px;
 	margin:8px;
@@ -91,17 +96,14 @@
 .signin {
   padding-top: 40px;
 	height: 800px;
-  background-color: #eee;
 }
 
 .form-signin {
   max-width: 330px;
-  padding: 15px;
   margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
+.form-signin-heading{
+		text-align: center;
 }
 
 .form-signin .form-control {
@@ -125,4 +127,12 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.alert{
+	margin-top: 15px;
 }

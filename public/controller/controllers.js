@@ -1,19 +1,14 @@
-
-//controller for login
-app.controller('login', function($scope, $http) {
-  $scope.submitLogin = function () {
-      console.log($scope.form);
-      $http.post('/login', $scope.form).
-      success(function(data) {
-        //go to homepage.html
-        console.log(data);
-      });
-      window.location.href="template/homepage.html";
+app.controller('navController', function($scope, $http) {
+    $scope.logout = function () {
+      if(confirm("Are you sure want to exit?")){
+        $http.get('/logout').
+        success(function(data) {
+          console.log('logout success');
+          window.location.reload();
+        });;
+      }
     };
 });
-//controller for peer review
-
-
 
 //-----------------------------------------------------------------------------
 // UPDATE controller
