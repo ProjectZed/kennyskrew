@@ -9,18 +9,18 @@ var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
 /* GET home page. */
 router.get('/',checkLogin);
 router.get('/', function(req, res) {
-	console.log('index');
+	console.log('get index');
   res.render('index');
 });
 
 // router.get('/login',checkNotLogin);
 router.get('/login',function(req,res){
+	console.log('get login page');
 	res.render('login/login');
 });
 
 router.post('/login', function(req, res) {
 	console.log('post login');
-	console.log(req.url);
   users.serialize(function() {
     users.all("SELECT * FROM user_info WHERE username = '" + req.body.username + "' AND password = '" + req.body.password + "' ", function(err, rows){
         if(err){
@@ -33,18 +33,16 @@ router.post('/login', function(req, res) {
 					}
 					req.session.user = user;
           res.redirect('/');
-					//res.render('index');
         }
     });
   });
 });
 
 
-router.get("/logout", checkLogin);
-router.get('/logout',function(req,res,next){
+router.get('/logout',function(req,res){
+	console.log('logging out');
 	req.session.user=null;
-	req.flash('success', 'exit successfully');
-	res.redirect('/');
+	res.redirect("/login");
 });
 
 /*router config end*/
@@ -61,8 +59,9 @@ router.post('/register',function(req,res,next){
 
 // check user login status
 function checkNotLogin(req,res,next){
+	console.log('check for not login');
 	if(req.session.user){
-		req.flash('error','User already login');
+		console.log('redirect to index');
 		return res.redirect('/');
 	}
 	next();
