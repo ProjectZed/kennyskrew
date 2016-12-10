@@ -190,6 +190,7 @@ app.put('/update/sla_by_runname', function(req, res) {
           }
           else{
             var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + ", (run name: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -215,6 +216,8 @@ app.put('/update/status_name_grpNumder', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+              writeToLog(data);
               res.send(rows);
             }
           });
@@ -236,6 +239,8 @@ app.put('/update/status_name_dtlID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", driver step detail id: " + req.body.dtl_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -256,6 +261,8 @@ app.put('/update/active_step_indicator_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (driver step id: " + req.body.drvr_step_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -276,6 +283,8 @@ app.put('/update/active_step_indicator_runName_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", driver step id: " + req.body.drvr_step_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -296,6 +305,8 @@ app.put('/update/active_step_indicator_runName', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -316,6 +327,8 @@ app.put('/update/active_step_indicator_runName_grpNumber', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
