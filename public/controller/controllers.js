@@ -1,3 +1,14 @@
+app.controller('navController', function($scope, $http) {
+    $scope.logout = function () {
+      if(confirm("Are you sure want to exit?")){
+        $http.get('/logout').
+        success(function(data) {
+          console.log('logout success');
+          window.location.reload();
+        });;
+      }
+    };
+});
 
 //-----------------------------------------------------------------------------
 // UPDATE controller

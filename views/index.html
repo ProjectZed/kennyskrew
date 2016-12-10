@@ -37,7 +37,7 @@
                   </form>
               </div>
 
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navController">
                   <ul class="nav navbar-nav navbar-right list-inline">
                       <li>
                         <a href="#">Home</a>
@@ -60,7 +60,7 @@
                         </ul>
                       </li>
                       <li>
-                        <a href="#">LogOut</a>
+                        <a href="#" ng-click="logout()">LogOut</a>
                       </li>
                   </ul>
               </div>
