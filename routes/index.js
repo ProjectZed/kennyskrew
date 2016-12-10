@@ -39,6 +39,7 @@ router.post('/login', function(req, res) {
 					console.log('rows');
 					console.log(rows);
 					if(rows.length > 0){
+						console.log('row more than 0');
 						var user = rows[0];
 						if(user.username === username &&
 							user.password === password){
@@ -49,8 +50,14 @@ router.post('/login', function(req, res) {
 								req.session.user = user;
 								res.redirect('/');
 						}else{
-							res.status(404).end();
+							console.log('error1');
+							req.locals.errors = "error1";
+							res.redirect('back');
 						}
+					}else{
+						console.log('error2');
+						req.locals.errors = "error2";
+						res.rediect('back');
 					}
         }
     });
