@@ -1,36 +1,24 @@
-var jsonfile = require('jsonfile')
 var fileName = './database/pending.json';
 fs = require('fs');
+var JsonDB = require('node-json-db');
+var db = new JsonDB("myDataBase", true, true);
 //stack
-fs.closeSync(fs.openSync(fileName, 'a'));
+//fs.closeSync(fs.openSync(fileName, 'a'));
 
 var writeBuffer = [];
 
 var writeToFile = function(input) {
-  if(copy)
-    writeBuffer = copy;
-  writeBuffer.push(input);
-  console.log("writebuffer: ",writeBuffer);
-  jsonfile.writeFile(fileName, writeBuffer, function (err) {
-    if (err){
-      return console.log("write error: ",err);
-    }
-  })
+  db.push("./pending[]",input);
 }
 
-var readFromFile = function() {
-  var close = fs.openSync(fileName,"r");
-  fs.readFile(fileName, 'utf8', function (err,obj) {
-    if (err){
-      fs.closeSync(close);
-      return console.log("read error: ",err);
-    }
-    fs.closeSync(close);
-    console.log("object: ",obj);
-    return obj;
-  })
+var readFromFile = function(index) {
+  if(index){
+    var ind = "./pending["+index+"]";
+    console.log(ind);
+    //return db.getData(ind);
+  }
+  return db.getData("./pending[]");
 }
-var copy = readFromFile();
 
 module.exports = {
   writejson: function(input){
@@ -48,4 +36,4 @@ module.exports = {
 var testJson = module.exports;
 console.log("test write hello");
 testJson.writejson({Hello:'World'});
-console.log("Test read: " + testJson.readjson());
+//console.log("Test read: " + testJson.readjson());
