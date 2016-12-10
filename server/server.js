@@ -9,6 +9,7 @@ var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db"
 //user table
 var users = new sqlite3.Database(__dirname + "/../server/database//Users.db");
 users.serialize(function() {
+    users.run("CREATE TABLE IF NOT EXISTS `pendingMacro` (`id`	INTEGER PRIMARY KEY AUTOINCREMENT,`macro`	TEXT,`devsEmail`	TEXT,`managerEmail`	TEXT,`dateTime`	TEXT);");
     users.run("CREATE TABLE IF NOT EXISTS user_info (id INT PRIMARY KEY, username TEXT, password TEXT, email TEXT, type TEXT)");
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
