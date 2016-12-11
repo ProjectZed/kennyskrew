@@ -2,10 +2,10 @@ var express = require('express');
 var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
+var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
 
 /*router config*/
-
 /* GET home page. */
 router.get('/',checkLogin);
 router.get('/', function(req, res) {
@@ -47,19 +47,18 @@ router.post('/login', function(req, res) {
 									password : user.password
 								}
 								req.session.user = user;
-								res.send(200, "success");
+								res.status(200).send("success");
 						}else{
-							res.send(404, "Password Incorrect")
+							res.status(404).send("Password Incorrect");
 						}
 					}else{
-						res.send(404, "No Such User")
+						res.status(404).send("No Such User");
 					}
         }
     });
   });
 }
 });
-
 
 router.get('/logout',function(req,res){
 	console.log('logging out');
@@ -68,16 +67,6 @@ router.get('/logout',function(req,res){
 });
 
 /*router config end*/
-
-
-/*router.post('/login',checkNotLogin);
-router.post('/login',function(req,res,next){
-	userDao.queryById(req, res, next);
-});*/
-
-router.post('/register',function(req,res,next){
-	userDao.add(req, res, next);
-});
 
 // check user login status
 function checkNotLogin(req,res,next){
@@ -98,4 +87,5 @@ function checkLogin(req,res,next){
 	}
 	next();
 }
+
 module.exports = router;

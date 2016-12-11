@@ -1,6 +1,13 @@
+app.controller('environmentCtrl', function($scope) {
+  $scope.environments = ["Development", "Test", "Quality Assurance", "Product"];
+  $scope.selectedEnvironment = "Development";
+});
+
 app.controller('loginCtrl', function($scope, $http) {
   $scope.submitLogin = function () {
     console.log($scope.form);
+    //var env = $('#env').find(":selected").text();
+    //console.log(env);
     $http.post('/login', $scope.form).
     success(function(data) {
       //go to homepage.html
