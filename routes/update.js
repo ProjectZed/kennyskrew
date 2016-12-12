@@ -295,6 +295,6 @@ function viewLog() {
     if(err) {
       return console.log(err);
     }
-    console.log(data);
+    return data;
   });
 }
