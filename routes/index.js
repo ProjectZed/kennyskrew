@@ -25,7 +25,7 @@ router.post('/login', function(req, res) {
 	if(typeof(username) === 'undefined' ||
 			typeof(password) === 'undefined' ||
 			username.length == 0 || !username.trim() ||
-			password.length == 0 || !password.trim() ||){
+			password.length == 0 || !password.trim()){
 				console.log('Empty username or password');
 	}else{
   	users.serialize(function() {
