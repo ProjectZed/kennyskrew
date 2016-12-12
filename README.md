@@ -1,14 +1,34 @@
 # kennyskrew
 Digital Dash
 
-## Getting Started
+# Getting Started
 
-install Node JS.
+1. Install Node JS.
 
-In the terminal, cd into project folder and run `npm install`.
+2. In the terminal, cd into project folder
 
-open file `server.js` in `server` folder with text editor, change the path of `var db = new...` to where you store your db file
+3. run `npm install`.
 
-back to terminal, cd into server folder, run `node server.js`.
+4. run `npm start`.
 
-open `localhost:3000` in web browser.
+5. open `localhost:3000` in web browser.
+
+#Project file
+client side file:
+
+  views -> static resource file including html, css and javascript.
+
+  public -> public static resource
+
+
+Server side file:
+
+  server -> server.js -> including all the server method.
+
+  server -> database -> LibertyMutual.db -> simulation for LibertyMutual's database
+
+  server -> database -> users.db -> database use for authentication(temporary eventually will be active directory).
+
+  routes -> angular-route file
+
+  conf -> middleware configuration file

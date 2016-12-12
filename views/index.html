@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html ng-app="digitalDash">
+<head>
+  <title>Digital Dash</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="css/mainStyling.css">
+  <link rel="stylesheet" type="text/css" href="css/navbar-fixer.css">
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="controller/app.js"></script>
+  <script src="controller/controllers.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+          <div class="container topnav">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand logo" href="#">DigitalDash</a>
+                  <form class= "navbar-form navbar-left" role ="search">
+                    <div class= "input-group">
+                      <input ref="key" type ="text" class= "form-control" placeholder="Search"/>
+                      <span class= "input-group-btn">
+                          <button type = "button" class= "btn btn-default" >
+                            <span class= "glyphicon glyphicon-search"></span>
+                          </button>
+                      </span>
+                    </div>
+                  </form>
+              </div>
+
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navController">
+                  <ul class="nav navbar-nav navbar-right list-inline">
+                      <li>
+                        <a href="#">Home</a>
+                      </li>
+                      <li>
+                        <a href="#">Logs</a>
+                      </li>
+                      <li class="nav-icon">
+                        <a class= "dropdown-toggle" data-toggle = "dropdown" href = "#">
+                          PeerReview
+                          <span class= "badge">2</span>
+                        </a>
+                        <ul class= "dropdown-menu">
+                          <li>
+                            <a href = "#">PeerReview 1</a>
+                          </li>
+                          <li>
+                            <a href = "#">PeerReview 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#" ng-click="logout()">LogOut</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+	<div class="wrapper container">
+		<div class="rounded shadowed" style="">
+			<ul class="mainMenu rounded">
+				<li class="rounded" style="padding:0px;">
+				  <div class="dropdown">
+  					<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">Update
+  					<span class="caret"></span></button>
+  					<ul class="dropdown-menu">
+  					  <li>Driver Schedule</li>
+  					  <li><a href="#M_UD_DR_SCHED_START_RN_AID">Update Schedule Start time by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_STTS_RN_AID">Update Status Code by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_VAL_END_RN_AID">Update Valuation End Date by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_VAL_START_RN_AID">Update Valuation Start time by Run Name and Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_SLA_AID">Update SLA Date and Time by Audit ID </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_SLA_RN">Update SLA Date and Time by Run Name </a></li>
+  					  <li><a href="#M_UD_DR_SCHED_H_SLA_RN">Update Historical SLA Date and Time by Run Name </a></li>
+  					  <li>Driver Step Detail</li>
+  					  <li><a href="#M_UD_DR_STEP_DTL_RN_GN">Update Run Status Code by Run Name and Group Number</a></li>
+  					  <li><a href="#M_UD_DR_STEP_DTL_RN_STPDTLID">Update Run Status Code by Run Name and Driver Step Detail ID</a></li>
+  					  <li>Driver Step</li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_SID">Update Active Step Indicator by Driver Step ID</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN_SID">Update Active Step Indicator by Run Name and Driver Step ID</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN">Update Active Step Indicator by Run Name</a></li>
+  					  <li><a href="#M_UD_DR_STEP_ASI_RN_GN">Update Active Step Indicator by Run Name and Group Number</a></li>
+  					</ul>
+				  </div>
+				</li>
+				<li class="rounded" style="padding:0px;">
+				  <div class="dropdown">
+					<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">Delete
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+					  <li>Driver Schedule</li>
+					  <li><a href="#M_DL_DR_SCHED_RN">Delete all entries by Run Name</a></li>
+					  <li>Driver Step</li>
+					  <li><a href="#M_DL_DR_STEP_RN">Delete all entries by Run Name</a></li>
+					  <li><a href="#M_DL_DR_STEP_RN_GN">Delete all entries by Run Name and Group Number</a></li>
+					  <li><a href="#M_DL_DR_STEP_RN_SID">Delete all entries by Run Name and Driver Step ID</a></li>
+					  <li><a href="#M_DL_DR_STEP_DTL_RN">Driver Step Detail - Delete </a></li>
+					</ul>
+				  </div>
+				</li>
+				<li class="rounded" style="padding:0px;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">Add
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li><a href="#AddDriverSchedule">Driver Schedule</a></li>
+						  <li><a href="#AddDriverStep">Driver Step</a></li>
+						</ul>
+					</div>
+				</li>
+        <li class="rounded" style="padding:0px;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">View
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li ui-sref="viewfailures"><a href="#">Failures</a></li>
+						  <li><a href="#">Dependencies</a></li>
+						  <li><a href="#">Job service-level agreements </a></li>
+						  <li><a href="#">Pending SLA jobs </a></li>
+						  <li class="hist"><span>Historical runtime average</span>
+							<a href="#">  Batch </a>
+							<a href="#">  Job </a>
+							<a href="#">  Step </a>
+						  </li>
+						  <li class="hist"><span>Hstorical trending</span>
+							<a href="#">  Batch </a>
+							<a href="#">  Job </a>
+							<a href="#">  Step </a>
+						  </li>
+						  <li><a href="#">Current Running</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+    <div class="shadowed rounded dynContent" ng-view="">
+		</div>
+  </div>
+</body>
+</html>
