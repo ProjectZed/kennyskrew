@@ -28,6 +28,7 @@ router.get('/login',function(req,res){
 router.post('/login', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
+<<<<<<< HEAD
 	if(typeof(username) === 'undefined' ||
 			typeof(password) === 'undefined' ||
 			username.length == 0 || !username.trim() ||
@@ -46,6 +47,16 @@ router.post('/login', function(req, res) {
 					console.log('3');
 					res.status(200).send("Password Incorrect");
 				}
+=======
+	if(username.length == 0 || !username.trim() ||
+			password.length == 0 || !password.trim() ||
+			typeof(username) === undefined || typeof(password) === undefined){
+				console.log('0000');
+				console.log(username.length);
+				console.log(password.length);
+				console.log(username.trim());
+				console.log(password.trim());
+>>>>>>> login page style updateing
 	}else{
   	users.serialize(function() {
     users.all("SELECT * FROM user_info WHERE username = '" + username + "'", function(err, rows){
