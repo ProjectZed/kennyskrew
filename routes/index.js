@@ -29,6 +29,7 @@ router.post('/login', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(typeof(username) === 'undefined' ||
 			typeof(password) === 'undefined' ||
 			username.length == 0 || !username.trim() ||
@@ -57,6 +58,13 @@ router.post('/login', function(req, res) {
 				console.log(username.trim());
 				console.log(password.trim());
 >>>>>>> login page style updateing
+=======
+	if(typeof(username) === 'undefined' ||
+			typeof(password) === 'undefined' ||
+			username.length == 0 || !username.trim() ||
+			password.length == 0 || !password.trim() ||){
+				console.log('Empty username or password');
+>>>>>>> fixed check for undefined in login
 	}else{
   	users.serialize(function() {
     users.all("SELECT * FROM user_info WHERE username = '" + username + "'", function(err, rows){
