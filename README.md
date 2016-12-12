@@ -7,18 +7,19 @@ Digital Dash
 
 2. In the terminal, cd into project folder
 
-3. run `npm install`.
+3. run `npm start`.
 
-4. run `npm start`.
+4. open `localhost:3000` in web browser.
 
-5. open `localhost:3000` in web browser.
+#Login Username 'admin'
+#Login Password 'abcd'
 
 #Project file
 client side file:
 
-  views -> static resource file including html, css and javascript.
+  views -> static html file.
 
-  public -> public static resource
+  public -> static resource files.
 
 
 Server side file:
