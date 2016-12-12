@@ -25,7 +25,8 @@ router.post('/login', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	if(username.length == 0 || !username.trim() ||
-			password.length == 0 || !password.trim()){
+			password.length == 0 || !password.trim() ||
+			typeof(username) === undefined || typeof(password) === undefined){
 				console.log('0000');
 				console.log(username.length);
 				console.log(password.length);
