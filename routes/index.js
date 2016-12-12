@@ -29,6 +29,19 @@ router.post('/login', function(req, res) {
 			username.length == 0 || !username.trim() ||
 			password.length == 0 || !password.trim()){
 				console.log('Empty username or password');
+				if(typeof(username) === 'undefined' &&
+						typeof(password) === 'undefined'){
+							console.log('1');
+						res.status(404).send("Both username and password are incorrect.");
+					}
+				if(typeof(username) === 'undefined'){
+					console.log('2');
+					res.status(404).send("No Such User");
+				}
+				if(typeof(password) === 'undefined'){
+					console.log('3');
+					res.status(404).send("Password Incorrect");
+				}
 	}else{
   	users.serialize(function() {
     users.all("SELECT * FROM user_info WHERE username = '" + username + "'", function(err, rows){

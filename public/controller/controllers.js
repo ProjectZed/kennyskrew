@@ -21,6 +21,10 @@ app.controller('loginCtrl', function($scope, $http) {
       }else if(error === "No Such User"){
         document.getElementById("username").style.borderColor = "red";
         console.log('username');
+      }else if( error === "Both username and password are incorrect."){
+        document.getElementById("username").style.borderColor = "red";
+        document.getElementById("password").style.borderColor = "red";
+        console.log('both username and password');
       }
     });
   }
