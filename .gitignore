@@ -1,6 +1,7 @@
 !.gitkeep
 node_modules/
 gui/bower_components/
+log.txt
 tmp
 .DS_Store
 .idea
