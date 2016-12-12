@@ -15,6 +15,7 @@ app.controller('loginCtrl', function($scope, $http) {
     //console.log($scope.form);
     //var env = $('#env').find(":selected").text();
     //console.log(env);
+<<<<<<< HEAD
     if($scope.form.username === 'undefined' ||
         $scope.form.password === 'undefined' ||
         $scope.form.username.length == 0 ||
@@ -68,6 +69,25 @@ app.controller('loginCtrl', function($scope, $http) {
           }
         };
 
+=======
+    $http.post('/login', $scope.form).
+    success(function(data) {
+      //go to homepage.html
+      console.log(data);
+      window.location.href="/";
+    }).error(function(error){
+      document.getElementById("error-message").innerHTML = error;
+      if(error === "Password Incorrect"){
+        document.getElementById("password").style.borderColor = "red";
+        console.log('password');
+      }else if(error === "No Such User"){
+        document.getElementById("username").style.borderColor = "red";
+        console.log('username');
+      }else if( error === "Both username and password are incorrect."){
+        document.getElementById("username").style.borderColor = "red";
+        document.getElementById("password").style.borderColor = "red";
+        console.log('both username and password');
+>>>>>>> update login border
       }
     );
 
