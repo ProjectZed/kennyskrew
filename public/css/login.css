@@ -57,9 +57,13 @@ select{
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
+<<<<<<< HEAD
   border-radius: 2px;
 }
 
 h3{
   text-align: center;
+=======
+  border-radius: 5px;
+>>>>>>> login page style updateing
 }
