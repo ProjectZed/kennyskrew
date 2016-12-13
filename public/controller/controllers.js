@@ -5,6 +5,8 @@ app.controller('environmentCtrl', function($scope) {
 
 app.controller('loginCtrl', function($scope, $http) {
   $scope.submitLogin = function () {
+    document.getElementById('username').style.borderColor = "#EBE9ED";
+    document.getElementById('password').style.borderColor = "#EBE9ED";
     console.log($scope.form);
     //var env = $('#env').find(":selected").text();
     //console.log(env);
@@ -14,16 +16,18 @@ app.controller('loginCtrl', function($scope, $http) {
       console.log(data);
       window.location.href="/";
     }).error(function(error){
-      document.getElementById("error-message").innerHTML = error;
       if(error === "Password Incorrect"){
         document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Username doesn't match password.";
         console.log('password');
       }else if(error === "No Such User"){
         document.getElementById("username").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Username doesn't exist.";
         console.log('username');
       }else if( error === "Both username and password are incorrect."){
         document.getElementById("username").style.borderColor = "red";
         document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = error;
         console.log('both username and password');
       }
     });

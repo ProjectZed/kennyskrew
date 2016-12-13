@@ -34,11 +34,11 @@ router.post('/login', function(req, res) {
 							console.log('1');
 						res.status(404).send("Both username and password are incorrect.");
 					}
-				if(typeof(username) === 'undefined'){
+				else if(typeof(username) === 'undefined'){
 					console.log('2');
 					res.status(404).send("No Such User");
 				}
-				if(typeof(password) === 'undefined'){
+				else if(typeof(password) === 'undefined'){
 					console.log('3');
 					res.status(404).send("Password Incorrect");
 				}
