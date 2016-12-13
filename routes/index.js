@@ -32,15 +32,15 @@ router.post('/login', function(req, res) {
 				if(typeof(username) === 'undefined' &&
 						typeof(password) === 'undefined'){
 							console.log('1');
-						res.status(404).send("Both username and password are incorrect.");
+						res.status(200).send("Both username and password are incorrect.");
 					}
 				else if(typeof(username) === 'undefined'){
 					console.log('2');
-					res.status(404).send("No Such User");
+					res.status(200).send("No Such User");
 				}
 				else if(typeof(password) === 'undefined'){
 					console.log('3');
-					res.status(404).send("Password Incorrect");
+					res.status(200).send("Password Incorrect");
 				}
 	}else{
   	users.serialize(function() {
@@ -62,10 +62,10 @@ router.post('/login', function(req, res) {
 								req.session.user = user;
 								res.status(200).send("success");
 						}else{
-							res.status(404).send("Password Incorrect");
+							res.status(200).send("Password Incorrect");
 						}
 					}else{
-						res.status(404).send("No Such User");
+						res.status(200).send("No Such User");
 					}
         }
     });

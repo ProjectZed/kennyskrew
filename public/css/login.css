@@ -10,6 +10,11 @@ body{
   max-width: 330px;
   margin: 0 auto;
 }
+
+.form-signin > input{
+  text-align: center;
+}
+
 .form-signin-heading{
 		text-align: center;
 }
@@ -45,7 +50,12 @@ body{
 	color: red;
 }
 
+#username{
+  margin-bottom: 0.1px;
+}
 select{
+  display: block;
+  margin: 0 auto;
   margin-bottom: 15px;
   border-radius: 2px;
 }
