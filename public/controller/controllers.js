@@ -4,36 +4,73 @@ app.controller('environmentCtrl', function($scope) {
 });
 
 app.controller('loginCtrl', function($scope, $http) {
+  document.getElementById('username').style.borderColor = "#EBE9ED";
+  document.getElementById('password').style.borderColor = "#EBE9ED";
   $scope.submitLogin = function () {
-    document.getElementById('username').style.borderColor = "#EBE9ED";
-    document.getElementById('password').style.borderColor = "#EBE9ED";
-    console.log($scope.form);
+    //console.log($scope.form);
     //var env = $('#env').find(":selected").text();
     //console.log(env);
-    $http.post('/login', $scope.form).
-    success(function(data) {
-      //go to homepage.html
-      console.log(data);
-      window.location.href="/";
-    }).error(function(error){
-      if(error === "Password Incorrect"){
-        document.getElementById("password").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = "Username doesn't match password.";
-        console.log('password');
-      }else if(error === "No Such User"){
-        document.getElementById("username").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = "Username doesn't exist.";
-        console.log('username');
-      }else if( error === "Both username and password are incorrect."){
-        document.getElementById("username").style.borderColor = "red";
-        document.getElementById("password").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = error;
-        console.log('both username and password');
-      }
-    });
-  }
-});
+    if($scope.form.username === 'undefined' ||
+        $scope.form.password === 'undefined' ||
+        $scope.form.username.length == 0 ||
+        !$scope.form.username.trim() ||
+        $scope.form.password.length == 0 ||
+        !$scope.form.password.trim()){
 
+        if(($scope.form.username === 'undefined' ||
+            $scope.form.username.length == 0 ||
+            !$scope.form.username.trim())
+            &&
+          ($scope.form.password === 'undefined' ||
+          $scope.form.password.length == 0 ||
+          !$scope.form.password.trim())){
+            redBorder('username');
+            redBorder('password');
+            errorOut('Empty Username and Password');
+          }else if($scope.form.username === 'undefined' ||
+              $scope.form.username.length == 0 ||
+              !$scope.form.username.trim()){
+              redBorder('username');
+              errorOut('Empty Username');
+          }else if($scope.form.password === 'undefined' ||
+              $scope.form.password.length == 0 ||
+              !$scope.form.password.trim()){
+              redBorder('password');
+              errorOut('Empty Password');
+          }
+        }else{
+          $http.post('/login', $scope.form).
+            success(function(data) {
+              //go to homepage.html
+              if(data === "Password Incorrect"){
+                redBorder('password');
+                errorOut("Username doesn't match password.");
+                //console.log('password');
+              }else if(data === "No Such User"){
+                redBorder('username');
+                errorOut("Username doesn't exist.");
+                //console.log('username');
+              }else if( data === "Both username and password are incorrect."){
+                redBorder('username');
+                redBorder('password');
+                errorOut(error);
+                //console.log('both username and password');
+              }else if( data === "success"){
+                window.location.href="/";
+              }
+            });
+          }
+        };
+      }
+    );
+
+function errorOut(message){
+  document.getElementById("error-message").innerHTML = message;
+}
+
+function redBorder(element){
+    document.getElementById(element).style.borderColor = "red";
+}
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
 }
@@ -43,7 +80,7 @@ app.controller('navController', function($scope, $http) {
       if(confirm("Are you sure want to exit?")){
         $http.get('/logout').
         success(function(data) {
-          console.log('logout success');
+          //console.log('logout success');
           window.location.reload();
         });;
       }
