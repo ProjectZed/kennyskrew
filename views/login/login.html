@@ -19,10 +19,10 @@
     <h1 class="form-signin-heading header">Welcome to Digital Dash</h1>
     <form class="form-signin" ng-controller="loginCtrl">
       <h3 class="">Please sign in</h3>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="username" class="form-control" placeholder="Email address" id="username" ng-model="form.username" onfocus="removeRedBorder('username')"/>
+      <label for="inputEmail" class="sr-only">Username</label>
+      <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')"/>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')"/>
+      <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')" onchange="removeRedBorder('password')"/>
       <select id="env" ng-controller="environmentCtrl" ng-model="selectedEnvironment" ng-options="x for x in environments"></select>
 
       <!--
