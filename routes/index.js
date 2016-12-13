@@ -39,6 +39,7 @@ router.post('/login', function(req, res) {
 						typeof(password) === 'undefined'){
 							console.log('1');
 <<<<<<< HEAD
+<<<<<<< HEAD
 						res.status(200).send("Both username and password are incorrect.");
 					}
 				else if(typeof(username) === 'undefined'){
@@ -68,14 +69,17 @@ router.post('/login', function(req, res) {
 >>>>>>> fixed check for undefined in login
 =======
 						res.status(404).send("Both username and password are incorrect.");
+=======
+						res.status(200).send("Both username and password are incorrect.");
+>>>>>>> center login page and fixed error
 					}
 				else if(typeof(username) === 'undefined'){
 					console.log('2');
-					res.status(404).send("No Such User");
+					res.status(200).send("No Such User");
 				}
 				else if(typeof(password) === 'undefined'){
 					console.log('3');
-					res.status(404).send("Password Incorrect");
+					res.status(200).send("Password Incorrect");
 				}
 >>>>>>> update login border
 	}else{
