@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var routes = require('../routes/index');
 var updateRoutes = require('../routes/update');
+var viewLog = require('../routes/writeLog')
 var sqlite3 = require('sqlite3').verbose();
 var logger = require('morgan');
 var log4js = require('log4js');
@@ -54,6 +55,7 @@ app.use(log4js.connectLogger(logger, {level: 'auto', format:':method :url'}));
 
 app.use('/', routes);
 app.use('/', updateRoutes);
+app.use('/', viewLog);
 
 app.listen(3000, function() {
     console.log("App listening on port 3000");

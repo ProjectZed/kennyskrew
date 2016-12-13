@@ -87,7 +87,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       //route for view logs
       .when("/Logs", {
           templateUrl: "template/viewlog.html",
-          controller: ""
+          controller: "ViewLog"
       })
       //route for peer review
       .when("/PeerReview", {
