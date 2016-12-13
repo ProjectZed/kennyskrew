@@ -284,3 +284,13 @@ app.controller('DriverStep', function($scope, $http) {
         });
     };
 });
+
+/*
+ * Controller for view log file
+ */
+ app.controller('ViewLog', function($scope, $http) {
+   $http.get('/ViewLog').
+   success(function(data) {
+     console.log(data);
+   });
+ });
