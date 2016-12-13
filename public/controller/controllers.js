@@ -13,7 +13,13 @@ app.controller('loginCtrl', function($scope, $http) {
   document.getElementById('password').style.borderColor = "#EBE9ED";
 
   $scope.submitLogin = function () {
+<<<<<<< HEAD
     //console.log($scope.form);
+=======
+    document.getElementById('username').style.borderColor = "#EBE9ED";
+    document.getElementById('password').style.borderColor = "#EBE9ED";
+    console.log($scope.form);
+>>>>>>> fixed username undefined, issue where both username and password are empty. devided to remain red border of password
     //var env = $('#env').find(":selected").text();
     //console.log(env);
 <<<<<<< HEAD
@@ -77,16 +83,18 @@ app.controller('loginCtrl', function($scope, $http) {
       console.log(data);
       window.location.href="/";
     }).error(function(error){
-      document.getElementById("error-message").innerHTML = error;
       if(error === "Password Incorrect"){
         document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Username doesn't match password.";
         console.log('password');
       }else if(error === "No Such User"){
         document.getElementById("username").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Username doesn't exist.";
         console.log('username');
       }else if( error === "Both username and password are incorrect."){
         document.getElementById("username").style.borderColor = "red";
         document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = error;
         console.log('both username and password');
 >>>>>>> update login border
       }
