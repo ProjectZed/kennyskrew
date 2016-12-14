@@ -41,11 +41,6 @@ var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db"
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
 });*/
 
-// //MAILGUN service
-// var api_key = 'key-a63b9592560ea2c4f5dabe2dc8c53682';
-// var domain = 'sandbox5535bd649fbc436193cba0471dc6d85d.mailgun.org';
-// var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
 //Config middleware
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
