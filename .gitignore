@@ -1,7 +1,4 @@
-!.gitkeep
 node_modules/
-gui/bower_components/
-tmp
-.DS_Store
-.idea
-*.log
+public/components
+.nyc_output
+.sass-cache
