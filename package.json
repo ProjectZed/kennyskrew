@@ -1,14 +1,13 @@
 {
   "name": "DigitalDash",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Liberty Mutual Database Management System",
   "repository": "https://github.com/ProjectZed/kennyskrew",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.13.4",
-    "mailgun-js": "^0.7.14",
     "nw-gyp": "^3.4.0",
     "node-gyp": "^3.4.0",
     "sqlite3": "^3.1.8",
