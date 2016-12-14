@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
@@ -87,5 +88,15 @@ function checkLogin(req,res,next){
 	}
 	next();
 }
+
+router.get('/Logs', function(req, res) {
+  fs.readFile('log.txt', (err, result) => {
+    if (err) {
+    } else {
+			var array = result.toString().split("\n");
+      res.send(array.slice(0, array.length-1));
+    }
+  });
+});
 
 module.exports = router;
