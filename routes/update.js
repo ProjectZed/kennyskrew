@@ -3,6 +3,7 @@ var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
+var fs = require('fs');
 
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
@@ -16,6 +17,8 @@ router.put('/update/scheduleStartTime', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -36,6 +39,8 @@ router.put('/update/statusCode', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -56,6 +61,8 @@ router.put('/update/valuationEnd', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Valuation End Date: " + req.body.valEnd + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -76,6 +83,8 @@ router.put('/update/valuationStart', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Valuation Start Time: " + req.body.valStart + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -96,6 +105,8 @@ router.put('/update/sla_by_audit', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + " " + req.body.sla_time + ", (audit id: " + req.body.auditId + ")";
+              writeToLog(data);
               res.send(rows);
             }
           });
@@ -116,6 +127,8 @@ router.put('/update/sla_by_runname', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + " " + req.body.sla_time + ", (run name: " + req.body.auditId + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -141,6 +154,8 @@ router.put('/update/status_name_grpNumder', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+              writeToLog(data);
               res.send(rows);
             }
           });
@@ -161,6 +176,8 @@ router.put('/update/status_name_dtlID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", driver step detail id: " + req.body.dtl_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -181,6 +198,8 @@ router.put('/update/active_step_indicator_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (driver step id: " + req.body.drvr_step_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -201,6 +220,8 @@ router.put('/update/active_step_indicator_runName_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", driver step id: " + req.body.drvr_step_id + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -221,6 +242,8 @@ router.put('/update/active_step_indicator_runName', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -241,6 +264,8 @@ router.put('/update/active_step_indicator_runName_grpNumber', function(req, res)
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+            writeToLog(data);
             res.send(rows);
           }
         });
@@ -250,3 +275,26 @@ router.put('/update/active_step_indicator_runName_grpNumber', function(req, res)
 });
 
 module.exports = router;
+
+function writeToLog(data) {
+  var date =  new Date().toLocaleString();
+  data = date + ": " + data + "\n";
+  fs.appendFile('log.txt', data, function (err) {
+    if (err) {
+      // append failed
+      //callback(err);
+    } else {
+      // done
+      //callback(null, data);
+    }
+  });
+}
+
+function viewLog() {
+  fs.readFile('log.txt', 'utf8', function (err, data) {
+    if(err) {
+      return console.log(err);
+    }
+    return data;
+  });
+}
