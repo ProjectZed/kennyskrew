@@ -20,7 +20,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "node routes/index.js"
+    "start": "node ./node_modules/babel-cli/bin/babel-node.js routes/index.js"
   },
   "engines": {
     "node": "4.4.7"
