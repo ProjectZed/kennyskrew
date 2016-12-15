@@ -125,6 +125,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
         $scope.auditId= $scope.units[0];
       });
     }
+
     $scope.selectedValue2 = function(y) {
       foo = { audit : y.audit_id }
     }
