@@ -162,35 +162,62 @@ app.controller('navController', function($scope, $http) {
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
+<<<<<<< HEAD
     //exec button
     hideButton(permission);
 
     /* drop down */
     var val, foo;
     $http.get('/get/runname_driverschedule').
+=======
+    var val, foo;
+    $http.get('/get/driverSchedule').
+>>>>>>> dropdown on first update macro
     success(function(data) {
       $scope.items = data;
       $scope.runName= $scope.items[0];
     });
+<<<<<<< HEAD
     $scope.selectedValue = function(x) {
       val = { name : x.run_nme }
       $http.post('/get/audit_id_driverschedule', val).
+=======
+
+    $scope.selectedValue = function(x) {
+      val = {
+        name : x.run_nme
+      }
+      $http.post('/get/xyz', val).
+>>>>>>> dropdown on first update macro
       success(function(data) {
         $scope.units = data;
         $scope.auditId= $scope.units[0];
       });
     }
+<<<<<<< HEAD
     $scope.selectedValue2 = function(y) {
       foo = { audit : y.audit_id }
     }
     /* end */
+=======
+
+    $scope.selectedValue2 = function(y) {
+      foo = {
+        ids : y.audit_id
+      }
+    }
+>>>>>>> dropdown on first update macro
 
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
         var input = {
           runName : val.name,
+<<<<<<< HEAD
           auditId : foo.audit,
+=======
+          auditId : foo.ids,
+>>>>>>> dropdown on first update macro
           sche_start : $scope.sche_start
         }
         console.log(input);
