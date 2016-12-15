@@ -142,9 +142,6 @@ router.post('/get/detailID_driverstep', function (req, res) {
   });
 });
 
-
-
-
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
     db.all("UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = '" + req.body.sche_start + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
