@@ -87,15 +87,46 @@ app.controller('navController', function($scope, $http) {
     };
 });
 
+
 //-----------------------------------------------------------------------------
 // UPDATE controller
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
+    var val, foo;
+    $http.get('/get/driverSchedule').
+    success(function(data) {
+      $scope.items = data;
+      $scope.runName= $scope.items[0];
+    });
+
+    $scope.selectedValue = function(x) {
+      val = {
+        name : x.run_nme
+      }
+      $http.post('/get/xyz', val).
+      success(function(data) {
+        $scope.units = data;
+        $scope.auditId= $scope.units[0];
+      });
+    }
+
+    $scope.selectedValue2 = function(y) {
+      foo = {
+        ids : y.audit_id
+      }
+    }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
-        $http.put('/update/scheduleStartTime', $scope.form).
+        var input = {
+          runName : val.name,
+          auditId : foo.ids,
+          sche_start : $scope.sche_start
+        }
+        console.log(input);
+        $http.put('/update/scheduleStartTime', input).
         success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2);
         });

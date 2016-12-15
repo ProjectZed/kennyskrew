@@ -4,6 +4,33 @@ var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
+router.get('/get/driverSchedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
+        if(err){
+          console.log("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/xyz', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
+        console.log(req.body.name);
+        if(err){
+          console.log("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
     db.all("UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = '" + req.body.sche_start + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){

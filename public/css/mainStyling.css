@@ -96,3 +96,11 @@
 .alert{
 	margin-top: 15px;
 }
+
+.input-append .btn.dropdown-toggle {
+    float: none;
+}
+
+.form-control {
+		width: 250px;
+}
