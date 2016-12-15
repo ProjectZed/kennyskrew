@@ -5,6 +5,7 @@ var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
+<<<<<<< HEAD
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
@@ -59,6 +60,13 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
         if(err){
           res.send("error querrying");
+=======
+router.get('/get/driverSchedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
+        if(err){
+          console.log("error querrying");
+>>>>>>> dropdown on first update macro
         }
         else{
           res.send(rows);
@@ -67,6 +75,7 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
   });
 });
 
+<<<<<<< HEAD
 router.get('/get/runname_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_STEP", function(err, rows){
@@ -96,6 +105,14 @@ router.post('/get/detailID_driverstep', function (req, res) {
       db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
         if(err){
           res.send("error querrying");
+=======
+router.post('/get/xyz', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
+        console.log(req.body.name);
+        if(err){
+          console.log("error querrying");
+>>>>>>> dropdown on first update macro
         }
         else{
           res.send(rows);
@@ -104,9 +121,12 @@ router.post('/get/detailID_driverstep', function (req, res) {
   });
 });
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> dropdown on first update macro
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
     db.all("UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = '" + req.body.sche_start + "' WHERE run_nme = '" + req.body.runName + "' AND audit_id = " + req.body.auditId + " ", function(err){
