@@ -1,10 +1,11 @@
-var fs = require('fs');
 var express = require('express');
+var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
+var LogController = require("./logController");
 
 /*router config*/
 /* GET home page. */
@@ -90,12 +91,9 @@ function checkLogin(req,res,next){
 }
 
 router.get('/Logs', function(req, res) {
-  fs.readFile('log.txt', (err, result) => {
-    if (err) {
-    } else {
-			var array = result.toString().split("\n");
-      res.send(array.slice(0, array.length-1));
-    }
+  LogController.readLog((result) => {
+    var array = result.toString().split("\n");
+  	res.send(array.slice(0, array.length-1));
   });
 });
 

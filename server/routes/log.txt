@@ -1,2 +1,0 @@
-12/10/2016, 4:01:43 PM: User, UPDATE, Schedule Start Time: 10, (run name: O_2_D_CTI, audit id: 289201545)
-12/10/2016, 4:02:46 PM: User, UPDATE, Status Code: 1, (run name: O_2_D_CTI, audit id: 289201542)
