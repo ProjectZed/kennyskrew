@@ -150,6 +150,7 @@ app.controller('navController', function($scope, $http) {
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //exec button
     hideButton(permission);
 
@@ -160,10 +161,16 @@ app.controller('scheduleStartTime', function($scope, $http) {
     var val, foo;
     $http.get('/get/driverSchedule').
 >>>>>>> dropdown on first update macro
+=======
+    /* drop down */
+    var val, foo;
+    $http.get('/get/runname_driverschedule').
+>>>>>>> done update macros
     success(function(data) {
       $scope.items = data;
       $scope.runName= $scope.items[0];
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
     $scope.selectedValue = function(x) {
       val = { name : x.run_nme }
@@ -176,11 +183,17 @@ app.controller('scheduleStartTime', function($scope, $http) {
       }
       $http.post('/get/xyz', val).
 >>>>>>> dropdown on first update macro
+=======
+    $scope.selectedValue = function(x) {
+      val = { name : x.run_nme }
+      $http.post('/get/audit_id_driverschedule', val).
+>>>>>>> done update macros
       success(function(data) {
         $scope.units = data;
         $scope.auditId= $scope.units[0];
       });
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     $scope.selectedValue2 = function(y) {
       foo = { audit : y.audit_id }
@@ -188,12 +201,16 @@ app.controller('scheduleStartTime', function($scope, $http) {
     /* end */
 =======
 
+=======
+>>>>>>> done update macros
     $scope.selectedValue2 = function(y) {
-      foo = {
-        ids : y.audit_id
-      }
+      foo = { audit : y.audit_id }
     }
+<<<<<<< HEAD
 >>>>>>> dropdown on first update macro
+=======
+    /* end */
+>>>>>>> done update macros
 
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
@@ -201,10 +218,14 @@ app.controller('scheduleStartTime', function($scope, $http) {
         var input = {
           runName : val.name,
 <<<<<<< HEAD
+<<<<<<< HEAD
           auditId : foo.audit,
 =======
           auditId : foo.ids,
 >>>>>>> dropdown on first update macro
+=======
+          auditId : foo.audit,
+>>>>>>> done update macros
           sche_start : $scope.sche_start
         }
         console.log(input);
@@ -220,7 +241,10 @@ app.controller('scheduleStartTime', function($scope, $http) {
 });
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -261,7 +285,10 @@ app.controller('statusCode', function($scope, $http) {
 });
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -299,7 +326,10 @@ app.controller('valuationEnd', function($scope, $http) {
 });
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -384,7 +414,10 @@ app.controller('sla_by_runname', function($scope, $http) {
 
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -425,7 +458,10 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 });
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -479,7 +515,10 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -517,7 +556,10 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -545,7 +587,10 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
+<<<<<<< HEAD
   hideButton(permission);
+=======
+>>>>>>> done update macros
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
