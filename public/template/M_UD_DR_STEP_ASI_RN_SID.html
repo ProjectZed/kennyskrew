@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Update Active Step Indicator by Run Name and Driver Step ID</h5>
+  <h4>Update Active Step Indicator by Run Name and Driver Step ID</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="p_run_nme Input" ng-model="form.runName"/>
-		<input type="text" class="" placeholder="p_drvr_step_id Input" ng-model="form.drvr_step_id"/>
-		<input type="text" class="" placeholder="p_actv_step_ind Input" ng-model="form.actv_step_ind"/>
+    <h4> Run name </h4>
+    <select class="form-control" ng-model="runName" ng-change="selectedValue(runName)" ng-options="opt as opt.run_nme for opt in items ">
+    </select>
+
+    <h4> Driver Step ID </h4>
+    <select class="form-control" ng-model="driverStepID" ng-change="selectedValue2(driverStepID)" ng-options="opt as opt.drvr_step_id for opt in units ">
+    </select>
+
+    <h4> Active Step Indicator </h4>
+    <input type="text" class="form-control" ng-model="actv_step_ind" />
+
     <div class="submit-btn">
-      <button class="btn btn-success" type="button"> Exec </button>
-      <button class="btn btn-danger" type="button" ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()"> Exec </button>
+      <button class="btn btn-danger" type="button"ng-click="urgentExec()"> Urgent Exec </button>
     </div>
 	</form>
   <pre class="alert alert-info">{{ banner }}</pre>
