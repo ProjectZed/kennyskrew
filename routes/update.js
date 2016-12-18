@@ -6,6 +6,7 @@ var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
@@ -67,6 +68,13 @@ router.get('/get/driverSchedule', function (req, res) {
         if(err){
           console.log("error querrying");
 >>>>>>> dropdown on first update macro
+=======
+router.get('/get/runname_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
+        if(err){
+          res.send("error querrying");
+>>>>>>> done update macros
         }
         else{
           res.send(rows);
@@ -74,6 +82,7 @@ router.get('/get/driverSchedule', function (req, res) {
     });
   });
 });
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 router.get('/get/runname_driverstep', function (req, res) {
@@ -107,12 +116,54 @@ router.post('/get/detailID_driverstep', function (req, res) {
           res.send("error querrying");
 =======
 router.post('/get/xyz', function (req, res) {
+=======
+router.post('/get/audit_id_driverschedule', function (req, res) {
+>>>>>>> done update macros
     db.serialize(function() {
       db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
-        console.log(req.body.name);
         if(err){
+<<<<<<< HEAD
           console.log("error querrying");
 >>>>>>> dropdown on first update macro
+=======
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/runname_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_name FROM C_DRIVER_STEP_DETAIL", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/detailID_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
         }
         else{
           res.send(rows);
@@ -182,6 +233,47 @@ router.post('/get/detailID_driverstep', function (req, res) {
     });
   });
 });
+
+router.get('/get/runname_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_STEP", function(err, rows){
+        if(err){
+          res.send("error querrying");
+>>>>>>> done update macros
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+
+
 
 <<<<<<< HEAD
 
