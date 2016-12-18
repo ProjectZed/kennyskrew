@@ -125,7 +125,6 @@ app.controller('scheduleStartTime', function($scope, $http) {
         $scope.auditId= $scope.units[0];
       });
     }
-
     $scope.selectedValue2 = function(y) {
       foo = { audit : y.audit_id }
     }
@@ -153,6 +152,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
   hideButton(permission);
+
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -194,6 +194,7 @@ app.controller('statusCode', function($scope, $http) {
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
   hideButton(permission);
+
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').

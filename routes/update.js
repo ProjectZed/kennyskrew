@@ -103,6 +103,33 @@ router.post('/get/detailID_driverstep', function (req, res) {
     });
   });
 });
+router.post('/get/grpNumber_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+
+
 
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
