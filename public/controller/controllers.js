@@ -490,47 +490,159 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule
 app.controller('Dl_Driver_Schedule', function($scope, $http) {
+    /* drop down */
+    var val;
+    $http.get('/get/runname_driverschedule').
+    success(function(data) {
+      $scope.items = data;
+      $scope.runName= $scope.items[0];
+    });
+    $scope.selectedValue = function(x) {
+      val = { name : x.run_nme }
+    }
+    /* end */
     $scope.urgentExec = function () {
-      $http.put('/delete/driverSchedule', $scope.form).
-        success(function(data) {
-          $scope.banner = data
+      var r = confirm("Are you sure want to update?");
+      if (r == true) {
+        console.log(val.name);
+        $http.post('/delete/driverSchedule', val).
+          success(function(data) {
+          $scope.banner = data;
         });
+        return true;
+      } else {
+        return false;
+      }
     };
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
+  /* drop down */
+  var val, foo;
+  $http.get('/get/runname_driverstep').
+  success(function(data) {
+    $scope.items = data;
+    $scope.runName= $scope.items[0];
+  });
+  $scope.selectedValue = function(x) {
+    val = { runName : x.run_nme }
+    $http.post('/get/grpNumber_driverstep', val).
+    success(function(data) {
+      $scope.units = data;
+      $scope.grpNumber= $scope.units[0];
+    });
+  }
+  $scope.selectedValue2 = function(y) {
+    foo = { grpNumber : y.grp_nbr }
+  }
+  /* end */
+
     $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_GrpNbr', $scope.form).
-        success(function(data) {
-          $scope.banner = data
+      var r = confirm("Are you sure want to update?");
+      if (r == true) {
+        var input = {
+          runName : val.runName,
+          grpNumber : foo.grpNumber,
+        }
+      $http.post('/delete/driverStep_runName_grpNbr', input).
+          success(function(data) {
+            $scope.banner = data;
         });
+        return true;
+      } else {
+        return false;
+      }
     };
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
+  /* drop down */
+  var val;
+  $http.get('/get/runname_driverstep').
+  success(function(data) {
+    $scope.items = data;
+    $scope.runName= $scope.items[0];
+  });
+  $scope.selectedValue = function(x) {
+    val = { name : x.run_nme }
+  }
+  /* end */
     $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName', $scope.form).
-        success(function(data) {
-          $scope.banner = data
+      var r = confirm("Are you sure want to update?");
+      if (r == true) {
+      $http.post('/delete/driverStep', val).
+          success(function(data) {
+            $scope.banner = data;
         });
+        return true;
+      } else {
+        return false;
+      }
     };
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
+  /* drop down */
+  var val, foo;
+  $http.get('/get/runname_driverstep').
+  success(function(data) {
+    $scope.items = data;
+    $scope.runName= $scope.items[0];
+  });
+  $scope.selectedValue = function(x) {
+    val = { runName : x.run_nme }
+    $http.post('/get/detailID_driverstep', val).
+    success(function(data) {
+      $scope.units = data;
+      $scope.driverStepID= $scope.units[0];
+    });
+  }
+  $scope.selectedValue2 = function(y) {
+    foo = { stepID : y.drvr_step_id }
+  }
+  /* end */
+
     $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
-        success(function(data) {
-          $scope.banner = data
+      var r = confirm("Are you sure want to update?");
+      if (r == true) {
+        var input = {
+          runName : val.runName,
+          stepID : foo.stepID,
+        }
+        $http.post('/delete/Driver_Step_RunName_Sid', input).
+          success(function(data) {
+          $scope.banner = data;
         });
+        return true;
+      } else {
+        return false;
+      }
     };
 });
 //controller for Delete Driver Step Detail
 app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
+  /* drop down */
+  var val;
+  $http.get('/get/runname_driverstepdetail').
+  success(function(data) {
+    $scope.items = data;
+    $scope.runName= $scope.items[0];
+  });
+  $scope.selectedValue = function(x) {
+    val = { name : x.run_name }
+  }
+  /* end */
     $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
-        success(function(data) {
-          $scope.banner = data
+      var r = confirm("Are you sure want to update?");
+      if (r == true) {
+        $http.post('/delete/Driver_Step_Detail_RunName', val).
+          success(function(data) {
+          $scope.banner = data;
         });
+        return true;
+      } else {
+        return false;
+      }
     };
 });
 
