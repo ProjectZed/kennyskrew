@@ -1,0 +1,8 @@
+12/13/2016, 11:19:28 PM: User, UPDATE, Schedule Start Time: 12, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/13/2016, 11:19:31 PM: User, UPDATE, Schedule Start Time: 13, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/13/2016, 11:19:34 PM: User, UPDATE, Schedule Start Time: 14, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/17/2016, 7:15:20 AM: User, UPDATE, Schedule Start Time: 12, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/17/2016, 3:17:01 PM: User, UPDATE, Schedule Start Time: 10, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/19/2016, 6:00:38 AM: User, UPDATE, Schedule Start Time: 3333, (run name: CLM_COBRA_EXTR_PM, audit id: 1840920014)
+12/19/2016, 6:00:46 AM: User, UPDATE, Schedule Start Time: 3333, (run name: CLM_PROP_STAFFLEGAL_EXTR, audit id: 143266)
+12/19/2016, 6:09:18 AM: User, DELETE, Driver Step, run name: CLM_CONV_SRC_STG 
