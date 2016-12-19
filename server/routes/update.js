@@ -1,3 +1,5 @@
+var writeLog = require('./writeLog');
+var fs = require('fs');
 module.exports = function(app, globalConfig){
   var db = globalConfig.db;
 
@@ -13,6 +15,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -33,6 +37,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -53,6 +59,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Valuation End Date: " + req.body.valEnd + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -73,6 +81,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Valuation Start Time: " + req.body.valStart + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -93,6 +103,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + ", (audit id: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -113,6 +125,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, SLA Date and Time: " + req.body.sla_dt + ", (run name: " + req.body.auditId + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -138,6 +152,8 @@ module.exports = function(app, globalConfig){
                 res.send("Error response");
               }
               else{
+                var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+                writeLog.writeToLog(data);
                 res.send(rows);
               }
             });
@@ -158,6 +174,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Run Status Code: " + req.body.Status + ", (run name: " + req.body.runName + ", driver step detail id: " + req.body.dtl_id + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -178,6 +196,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (driver step id: " + req.body.drvr_step_id + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -198,6 +218,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", driver step id: " + req.body.drvr_step_id + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -218,6 +240,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });
@@ -238,6 +262,8 @@ module.exports = function(app, globalConfig){
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Active Step Indicator: " + req.body.actv_step_ind + ", (run name: " + req.body.runName + ", group number: " + req.body.grp_number + ")";
+              writeLog.writeToLog(data);
               res.send(rows);
             }
           });

@@ -1,3 +1,4 @@
+var LogController = require('./logController');
 var express = require('express');
 var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
@@ -16,6 +17,8 @@ router.put('/update/scheduleStartTime', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -36,6 +39,8 @@ router.put('/update/statusCode', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -56,6 +61,8 @@ router.put('/update/valuationEnd', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -76,6 +83,8 @@ router.put('/update/valuationStart', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -96,6 +105,8 @@ router.put('/update/sla_by_audit', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              LogController.writeLog(data);
               res.send(rows);
             }
           });
@@ -116,6 +127,8 @@ router.put('/update/sla_by_runname', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -141,6 +154,8 @@ router.put('/update/status_name_grpNumder', function(req, res) {
               res.send("Error response");
             }
             else{
+              var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              LogController.writeLog(data);
               res.send(rows);
             }
           });
@@ -161,6 +176,8 @@ router.put('/update/status_name_dtlID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -181,6 +198,8 @@ router.put('/update/active_step_indicator_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -201,6 +220,8 @@ router.put('/update/active_step_indicator_runName_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -221,6 +242,8 @@ router.put('/update/active_step_indicator_runName', function(req, res) {
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });
@@ -241,6 +264,8 @@ router.put('/update/active_step_indicator_runName_grpNumber', function(req, res)
             res.send("Error response");
           }
           else{
+            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            LogController.writeLog(data);
             res.send(rows);
           }
         });

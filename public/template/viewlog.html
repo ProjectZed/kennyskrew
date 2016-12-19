@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
   <h5>Your activity history</h5>
-  <div id="logs"></div>
+  <ul>
+    <li id="logs" ng-repeat="line in banner">{{ line }}</li>
+  </ul>
 </div>
