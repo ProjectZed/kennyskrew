@@ -86,7 +86,6 @@ app.controller('navController', function($scope, $http) {
     };
 });
 
-
 //-----------------------------------------------------------------------------
 // DELETE controllers
 //-----------------------------------------------------------------------------
@@ -123,7 +122,6 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
       } else {
         return false;
       }
-
     };
 });
 //controller for Delete Driver Step
@@ -180,7 +178,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
-  /* drop down */
+    /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
   success(function(data) {

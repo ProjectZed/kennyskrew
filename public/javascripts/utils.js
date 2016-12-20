@@ -1,13 +1,13 @@
 
+function errorOut(message){
+  document.getElementById("error-message").innerHTML = message;
+}
+
 function redBorder(element){
     document.getElementById(element).style.borderColor = "red";
 }
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
-}
-
-function errorOut(message){
-  document.getElementById("error-message").innerHTML = message;
 }
 
 function hideButton(permission){
