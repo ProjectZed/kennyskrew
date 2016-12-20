@@ -2,7 +2,7 @@
 conf/
 node_modules/
 server/database/LibertyMutual.db
-./log.txt
+log.txt
 tmp
 .DS_Store
 .idea
