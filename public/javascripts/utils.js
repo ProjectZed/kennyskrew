@@ -17,3 +17,11 @@ function hideButton(permission){
   else
     exec.style.display = "none";
 }
+
+function hideBanner(){
+  document.getElementById('error-banner').style.display = "none";
+}
+
+function showBanner(){
+  document.getElementById('error-banner').style.display = "block";
+}
