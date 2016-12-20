@@ -14,8 +14,10 @@ function hideButton(permission){
   var urgentExec = document.getElementById('urgentExec');
   if(permission != "administrator")
     urgentExec.style.display = "none";
-  else
-    exec.style.display = "none";
+  else{
+    exec.style.width = "25%";
+    urgentExec.style.width = "25%";
+  }
 }
 
 function hideBanner(){
