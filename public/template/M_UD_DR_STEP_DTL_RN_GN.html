@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Update Run Status Code by Run Name and Group Number</h5>
+  <h4>Update Run Status Code by Run Name and Group Number</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="p_run_nme Input" ng-model="form.runName"/>
-		<input type="text" class="" placeholder="p_grp_nbr  Input" ng-model="form.grp_number"/>
-		<input type="text" class="" placeholder="p_status Input" ng-model="form.Status"/>
+    <h4> Run name </h4>
+    <select class="form-control" ng-model="runName" ng-change="selectedValue(runName)" ng-options="opt as opt.run_name for opt in items ">
+    </select>
+
+    <h4> Group Number </h4>
+    <select class="form-control" ng-model="grpNumber" ng-change="selectedValue2(grpNumber)" ng-options="opt as opt.grp_nbr for opt in units ">
+    </select>
+
+
+    <h4> Status Code </h4>
+    <input type="text" class="form-control" ng-model="statusCode" />
+
     <div class="submit-btn">
-      <button class="btn btn-success" type="button"> Exec </button>
-      <button class="btn btn-danger" type="button" ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()"> Exec </button>
+      <button class="btn btn-danger" type="button"ng-click="urgentExec()"> Urgent Exec </button>
     </div>
 	</form>
   <pre class="alert alert-info">{{ banner }}</pre>
