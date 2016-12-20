@@ -28,8 +28,6 @@ router.get('/login',function(req,res){
 router.post('/login', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	if(typeof(username) === 'undefined' ||
 			typeof(password) === 'undefined' ||
 			username.length == 0 || !username.trim() ||
@@ -37,51 +35,14 @@ router.post('/login', function(req, res) {
 				console.log('Empty username or password');
 				if(typeof(username) === 'undefined' &&
 						typeof(password) === 'undefined'){
-							console.log('1');
-<<<<<<< HEAD
-<<<<<<< HEAD
 						res.status(200).send("Both username and password are incorrect.");
 					}
 				else if(typeof(username) === 'undefined'){
-					console.log('2');
 					res.status(200).send("No Such User");
 				}
 				else if(typeof(password) === 'undefined'){
-					console.log('3');
 					res.status(200).send("Password Incorrect");
 				}
-=======
-	if(username.length == 0 || !username.trim() ||
-			password.length == 0 || !password.trim() ||
-			typeof(username) === undefined || typeof(password) === undefined){
-				console.log('0000');
-				console.log(username.length);
-				console.log(password.length);
-				console.log(username.trim());
-				console.log(password.trim());
->>>>>>> login page style updateing
-=======
-	if(typeof(username) === 'undefined' ||
-			typeof(password) === 'undefined' ||
-			username.length == 0 || !username.trim() ||
-			password.length == 0 || !password.trim()){
-				console.log('Empty username or password');
->>>>>>> fixed check for undefined in login
-=======
-						res.status(404).send("Both username and password are incorrect.");
-=======
-						res.status(200).send("Both username and password are incorrect.");
->>>>>>> center login page and fixed error
-					}
-				else if(typeof(username) === 'undefined'){
-					console.log('2');
-					res.status(200).send("No Such User");
-				}
-				else if(typeof(password) === 'undefined'){
-					console.log('3');
-					res.status(200).send("Password Incorrect");
-				}
->>>>>>> update login border
 	}else{
   	users.serialize(function() {
     users.all("SELECT * FROM user_info WHERE username = '" + username + "'", function(err, rows){

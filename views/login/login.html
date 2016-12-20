@@ -20,26 +20,8 @@
     <h1 class="form-signin-heading header">Welcome to Digital Dash</h1>
     <form class="form-signin" ng-controller="loginCtrl">
       <h3 class="">Please sign in</h3>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <label for="inputEmail" class="sr-only">Username</label>
-<<<<<<< HEAD
-      <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')"/>
-=======
-      <label for="inputEmail" class="sr-only">Email address</label>
-<<<<<<< HEAD
-      <input type="text" class="form-control" placeholder="Email address" id="username" ng-model="form.username" onfocus="removeRedBorder('username')"/>
->>>>>>> login page style updateing
-=======
-      <input type="username" class="form-control" placeholder="Email address" id="username" ng-model="form.username" onfocus="removeRedBorder('username')"/>
->>>>>>> border radius fixed
-=======
-      <label for="inputEmail" class="sr-only">Username</label>
-      <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')"/>
->>>>>>> center login page and fixed error
-=======
       <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')" ng-keypress="($event.which === 13)? submitLogin():0"/>
->>>>>>> enter key press on login page can login
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')" onchange="removeRedBorder('password')" ng-keypress="($event.which === 13)? submitLogin():0"/>
       <select id="env" ng-controller="environmentCtrl" ng-model="selectedEnvironment" ng-options="x for x in environments"></select>
