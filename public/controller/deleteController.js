@@ -107,7 +107,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
   hideButton(permission);
-  showBanner();
+  hideBanner();
 
     /* drop down */
   var runname;
