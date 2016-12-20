@@ -13,22 +13,12 @@ app.controller('loginCtrl', function($scope, $http) {
   document.getElementById('password').style.borderColor = "#EBE9ED";
 
   $scope.submitLogin = function () {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //console.log($scope.form);
-=======
+    console.log($scope.form);
     document.getElementById('username').style.borderColor = "#EBE9ED";
     document.getElementById('password').style.borderColor = "#EBE9ED";
-    console.log($scope.form);
->>>>>>> fixed username undefined, issue where both username and password are empty. devided to remain red border of password
-    //var env = $('#env').find(":selected").text();
-    //console.log(env);
-<<<<<<< HEAD
-=======
     //console.log($scope.form);
     //var env = $('#env').find(":selected").text();
     //console.log(env);
->>>>>>> center login page and fixed error
     if($scope.form.username === 'undefined' ||
         $scope.form.password === 'undefined' ||
         $scope.form.username.length == 0 ||
@@ -74,61 +64,16 @@ app.controller('loginCtrl', function($scope, $http) {
                 redBorder('password');
                 errorOut(error);
                 //console.log('both username and password');
-<<<<<<< HEAD
-<<<<<<< HEAD
               }else{
                 $scope.user = data
-=======
-              }else if( data === "success"){
->>>>>>> center login page and fixed error
-=======
-              }else{
-                $scope.user = data
->>>>>>> hide exec button according to permission
                 window.location.href="/";
               }
             });
           }
         };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    $http.post('/login', $scope.form).
-    success(function(data) {
-      //go to homepage.html
-      console.log(data);
-      window.location.href="/";
-    }).error(function(error){
-      if(error === "Password Incorrect"){
-        document.getElementById("password").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = "Username doesn't match password.";
-        console.log('password');
-      }else if(error === "No Such User"){
-        document.getElementById("username").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = "Username doesn't exist.";
-        console.log('username');
-      }else if( error === "Both username and password are incorrect."){
-        document.getElementById("username").style.borderColor = "red";
-        document.getElementById("password").style.borderColor = "red";
-        document.getElementById("error-message").innerHTML = error;
-        console.log('both username and password');
->>>>>>> update login border
-=======
->>>>>>> center login page and fixed error
-=======
-
->>>>>>> hide exec button according to permission
       }
     );
 
-=======
-
-      }
-    );
-
->>>>>>> not display PR when user is not admin
 function errorOut(message){
   document.getElementById("error-message").innerHTML = message;
 }
@@ -138,15 +83,6 @@ function redBorder(element){
 }
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
-}
-
-function hideButton(permission){
-  var exec = document.getElementById('exec');
-  var urgentExec = document.getElementById('urgentExec');
-  if(permission != "administrator")
-    urgentExec.style.display = "none";
-  else
-    exec.style.display = "none";
 }
 
 function hideButton(permission){
@@ -179,89 +115,37 @@ app.controller('navController', function($scope, $http) {
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     //exec button
     hideButton(permission);
 
     /* drop down */
     var val, foo;
     $http.get('/get/runname_driverschedule').
-=======
-    var val, foo;
-    $http.get('/get/driverSchedule').
->>>>>>> dropdown on first update macro
-=======
-=======
-    //exec button
-    hideButton(permission);
-
->>>>>>> hide exec button according to permission
-    /* drop down */
-    var val, foo;
-    $http.get('/get/runname_driverschedule').
->>>>>>> done update macros
     success(function(data) {
       $scope.items = data;
       $scope.runName= $scope.items[0];
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $scope.selectedValue = function(x) {
-      val = { name : x.run_nme }
-      $http.post('/get/audit_id_driverschedule', val).
-=======
 
     $scope.selectedValue = function(x) {
-      val = {
-        name : x.run_nme
-      }
-      $http.post('/get/xyz', val).
->>>>>>> dropdown on first update macro
-=======
-    $scope.selectedValue = function(x) {
       val = { name : x.run_nme }
       $http.post('/get/audit_id_driverschedule', val).
->>>>>>> done update macros
       success(function(data) {
         $scope.units = data;
         $scope.auditId= $scope.units[0];
       });
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $scope.selectedValue2 = function(y) {
-      foo = { audit : y.audit_id }
-    }
-    /* end */
-=======
 
-=======
->>>>>>> done update macros
     $scope.selectedValue2 = function(y) {
       foo = { audit : y.audit_id }
     }
-<<<<<<< HEAD
->>>>>>> dropdown on first update macro
-=======
     /* end */
->>>>>>> done update macros
 
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
         var input = {
           runName : val.name,
-<<<<<<< HEAD
-<<<<<<< HEAD
           auditId : foo.audit,
-=======
-          auditId : foo.ids,
->>>>>>> dropdown on first update macro
-=======
-          auditId : foo.audit,
->>>>>>> done update macros
           sche_start : $scope.sche_start
         }
         console.log(input);
@@ -277,14 +161,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
 });
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -325,14 +202,7 @@ app.controller('statusCode', function($scope, $http) {
 });
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -370,14 +240,7 @@ app.controller('valuationEnd', function($scope, $http) {
 });
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -462,14 +325,7 @@ app.controller('sla_by_runname', function($scope, $http) {
 
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -510,14 +366,7 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 });
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -571,14 +420,7 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -616,14 +458,7 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -651,14 +486,7 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   hideButton(permission);
-=======
->>>>>>> done update macros
-=======
-  hideButton(permission);
->>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -700,7 +528,6 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule
 app.controller('Dl_Driver_Schedule', function($scope, $http) {
-<<<<<<< HEAD
     /* drop down */
     var val;
     $http.get('/get/runname_driverschedule').
@@ -737,7 +564,6 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
-<<<<<<< HEAD
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -790,7 +616,6 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
-<<<<<<< HEAD
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -826,7 +651,6 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
-<<<<<<< HEAD
 
   /* drop down */
   var val, foo;
@@ -881,7 +705,6 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
 });
 //controller for Delete Driver Step Detail
 app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
-<<<<<<< HEAD
 
   /* drop down */
   var val;

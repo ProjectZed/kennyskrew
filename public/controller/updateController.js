@@ -56,7 +56,6 @@ app.controller('scheduleStartTime', function($scope, $http) {
 app.controller('statusCode', function($scope, $http) {
   hideButton(permission);
   hideBanner();
-
   /* drop down */
   var runmame, aid;
   $http.get('/get/runname_driverschedule').success(function(data) {
