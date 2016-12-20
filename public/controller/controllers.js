@@ -67,6 +67,7 @@ app.controller('loginCtrl', function($scope, $http) {
             });
           }
         };
+
       }
     );
 
@@ -152,7 +153,6 @@ app.controller('scheduleStartTime', function($scope, $http) {
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
   hideButton(permission);
-
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -194,7 +194,6 @@ app.controller('statusCode', function($scope, $http) {
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
   hideButton(permission);
-
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -520,6 +519,7 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule
 app.controller('Dl_Driver_Schedule', function($scope, $http) {
+<<<<<<< HEAD
     /* drop down */
     var val;
     $http.get('/get/runname_driverschedule').
@@ -555,6 +555,7 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
+<<<<<<< HEAD
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -607,6 +608,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
+<<<<<<< HEAD
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -620,7 +622,6 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
   /* end */
 
   hideButton(permission);
-
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -643,6 +644,7 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
+<<<<<<< HEAD
 
   /* drop down */
   var val, foo;
@@ -697,6 +699,7 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
 });
 //controller for Delete Driver Step Detail
 app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
+<<<<<<< HEAD
 
   /* drop down */
   var val;
