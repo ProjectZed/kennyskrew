@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Add Driver Schedule</h5>
+  <h4>Add Driver Step</h4>
+  <br />
 	<form>
-    <input type="text" class="" placeholder="SLA_DT Input" ng-model="form.sla_dt" />
-		<input type="text" class="" placeholder="SLA_TIME Input" ng-model="form.sla_time" />
-		<input type="text" class="" placeholder="RUN_NME  Input" ng-model="form.runName"/>
+
+    <h4> Audit ID </h4>
+    <input type="text" class="form-control" />
+    <h4> App name </h4>
+    <input type="text" class="form-control" />
+    <h4> Run name </h4>
+    <input type="text" class="form-control" />
+    <h4> Re Run Number </h4>
+    <input type="text" class="form-control" />
+    <h4> Schdl start dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Status code </h4>
+    <input type="text" class="form-control" />
+    <h4> Vlutn start dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Vlutn end dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Run start dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Run end dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Crt dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Lst mdfd dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> App run id </h4>
+    <input type="text" class="form-control" />
+    <h4> Sla date </h4>
+    <input type="text" class="form-control" />
+    <h4> Sla time </h4>
+    <input type="text" class="form-control" />
+
+    <br />
+
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="urgentExec()" id="exec"> Exec </button>
-      <button class="btn btn-danger" type="button" id="urgentExec"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info alert-message" id="error-banner">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

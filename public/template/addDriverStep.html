@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Add Driver Step</h5>
+  <h4>Add Driver Step</h4>
+  <br />
 	<form>
+    <h4> Driver Step ID </h4>
+    <input type="text" class="form-control" />
+    <h4> App name </h4>
+    <input type="text" class="form-control" />
+    <h4> Run name </h4>
+    <input type="text" class="form-control" />
+    <h4> Group Number </h4>
+    <input type="text" class="form-control" />
+    <h4> Group Name </h4>
+    <input type="text" class="form-control" />
+    <h4> Run order number</h4>
+    <input type="text" class="form-control" />
+    <h4> Path txt </h4>
+    <input type="text" class="form-control" />
+    <h4> Cmd txt </h4>
+    <input type="text" class="form-control" />
+    <h4> Prmtr txt </h4>
+    <input type="text" class="form-control" />
+    <h4> Grp cncrrncy ind </h4>
+    <input type="text" class="form-control" />
+    <h4> Step cncrrncy ind </h4>
+    <input type="text" class="form-control" />
+    <h4> Notify txt </h4>
+    <input type="text" class="form-control" />
+    <h4> Step typ cd </h4>
+    <input type="text" class="form-control" />
+    <h4> Step name </h4>
+    <input type="text" class="form-control" />
+    <h4> Err prcs nbr </h4>
+    <input type="text" class="form-control" />
+    <h4> Crt dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> Lst mdfd dtm </h4>
+    <input type="text" class="form-control" />
+    <h4> App run id </h4>
+    <input type="text" class="form-control" />
+    <h4> Actv Step ind </h4>
+    <input type="text" class="form-control" />
+
+    <br />
+
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="urgentExec()" id="exec"> Exec </button>
-      <button class="btn btn-danger" type="button" id="urgentExec"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
   <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
