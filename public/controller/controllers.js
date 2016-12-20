@@ -71,25 +71,18 @@ app.controller('loginCtrl', function($scope, $http) {
 
       }
     );
-<<<<<<< HEAD
 
 function errorOut(message){
   document.getElementById("error-message").innerHTML = message;
 }
 
-=======
-
-function errorOut(message){
-  document.getElementById("error-message").innerHTML = message;
-}
-
->>>>>>> 18b94178d9080cfef5f9729721584582bfa952c3
 function redBorder(element){
     document.getElementById(element).style.borderColor = "red";
 }
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
 }
+
 function hideButton(permission){
   var exec = document.getElementById('exec');
   var urgentExec = document.getElementById('urgentExec');
@@ -100,6 +93,9 @@ function hideButton(permission){
 }
 
 app.controller('navController', function($scope, $http) {
+  if(permission != "administrator")
+    document.getElementById('PR').style.display = "none";
+
     $scope.logout = function () {
       if(confirm("Are you sure want to exit?")){
         $http.get('/logout').
