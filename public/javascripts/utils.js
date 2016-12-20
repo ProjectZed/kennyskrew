@@ -28,3 +28,11 @@ function hideBanner(){
 function showBanner(){
   document.getElementById('error-banner').style.display = "block";
 }
+
+function hideBanner(){
+  document.getElementById('error-banner').style.display = "none";
+}
+
+function showBanner(){
+  document.getElementById('error-banner').style.display = "block";
+}
