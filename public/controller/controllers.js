@@ -1,3 +1,8 @@
+app.controller('macroCtrl', function($scope){
+  //console.log(permission);
+  //
+});
+
 app.controller('environmentCtrl', function($scope) {
   $scope.environments = ["Development", "Test", "Quality Assurance", "Product"];
   $scope.selectedEnvironment = "Development";
@@ -55,12 +60,14 @@ app.controller('loginCtrl', function($scope, $http) {
                 redBorder('password');
                 errorOut(error);
                 //console.log('both username and password');
-              }else if( data === "success"){
+              }else{
+                $scope.user = data
                 window.location.href="/";
               }
             });
           }
         };
+
       }
     );
 
@@ -73,6 +80,14 @@ function redBorder(element){
 }
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
+}
+function hideButton(permission){
+  var exec = document.getElementById('exec');
+  var urgentExec = document.getElementById('urgentExec');
+  if(permission != "administrator")
+    urgentExec.style.display = "none";
+  else
+    exec.style.display = "none";
 }
 
 app.controller('navController', function($scope, $http) {
@@ -93,6 +108,9 @@ app.controller('navController', function($scope, $http) {
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
+    //exec button
+    hideButton(permission);
+
     /* drop down */
     var val, foo;
     $http.get('/get/runname_driverschedule').
@@ -134,6 +152,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
 });
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -174,6 +193,7 @@ app.controller('statusCode', function($scope, $http) {
 });
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -211,6 +231,7 @@ app.controller('valuationEnd', function($scope, $http) {
 });
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -249,6 +270,7 @@ app.controller('valuationStart', function($scope, $http) {
 
 //DEMO controller for SLA Date and Time by Audit
 app.controller('sla_by_audit', function($scope, $http) {
+  hideButton(permission);
   $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -265,6 +287,7 @@ app.controller('sla_by_audit', function($scope, $http) {
 
 //controller for SLA Date and Time by run name
 app.controller('sla_by_runname', function($scope, $http) {
+  hideButton(permission);
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -293,6 +316,7 @@ app.controller('sla_by_runname', function($scope, $http) {
 
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -333,6 +357,7 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 });
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -373,6 +398,7 @@ app.controller('status_name_dtlID', function($scope, $http) {
 });
 //controller for Active Step Indicator by Driver Step ID
 app.controller('active_step_indicator_stepID', function($scope, $http) {
+  hideButton(permission);
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -385,6 +411,7 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -422,6 +449,7 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -449,6 +477,7 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 });
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
+  hideButton(permission);
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -490,6 +519,7 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule
 app.controller('Dl_Driver_Schedule', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/delete/driverSchedule', $scope.form).
         success(function(data) {
@@ -499,6 +529,7 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/delete/Driver_Step_RunName_GrpNbr', $scope.form).
         success(function(data) {
@@ -508,6 +539,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/delete/Driver_Step_RunName', $scope.form).
         success(function(data) {
@@ -517,6 +549,7 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
         success(function(data) {
@@ -526,6 +559,7 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
 });
 //controller for Delete Driver Step Detail
 app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
         success(function(data) {
@@ -539,6 +573,7 @@ app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
 //-----------------------------------------------------------------------------
 //controller for Add Driver Scedule
 app.controller('DriverSchedule', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/add/DriverSchedule', $scope.form).
         success(function(data) {
@@ -549,6 +584,7 @@ app.controller('DriverSchedule', function($scope, $http) {
 
 //controller for Add Driver Step
 app.controller('DriverStep', function($scope, $http) {
+  hideButton(permission);
     $scope.urgentExec = function () {
       $http.put('/add/DriverStep', $scope.form).
         success(function(data) {
