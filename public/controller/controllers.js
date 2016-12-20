@@ -92,6 +92,7 @@ app.controller('loginCtrl', function($scope, $http) {
         };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     $http.post('/login', $scope.form).
@@ -122,6 +123,12 @@ app.controller('loginCtrl', function($scope, $http) {
       }
     );
 
+=======
+
+      }
+    );
+
+>>>>>>> not display PR when user is not admin
 function errorOut(message){
   document.getElementById("error-message").innerHTML = message;
 }
@@ -132,6 +139,7 @@ function redBorder(element){
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
 }
+
 function hideButton(permission){
   var exec = document.getElementById('exec');
   var urgentExec = document.getElementById('urgentExec');
