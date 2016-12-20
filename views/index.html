@@ -11,8 +11,6 @@
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-  <script src="controller/app.js"></script>
-  <script src="controller/controllers.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -142,8 +140,15 @@
 				</li>
 			</ul>
 		</div>
-    <div class="shadowed rounded dynContent" ng-view="">
+    <div class="shadowed rounded dynContent" ng-view="" ng-controller="macroCtrl">
 		</div>
   </div>
+  <script>
+     var username = "<%= user.username %>";
+     var password = "<%= user.password %>";
+     var permission = "<%= user.type %>"
+  </script>
+  <script src="controller/app.js"></script>
+  <script src="controller/controllers.js"></script>
 </body>
 </html>
