@@ -5,6 +5,7 @@
 app.controller('scheduleStartTime', function($scope, $http) {
     //exec button
     hideButton(permission);
+    hideBanner();
 
     /* drop down */
     var runmame, aid;
@@ -42,6 +43,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
         }
         $http.put('/update/scheduleStartTime', input).success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2);
+          showBanner();
         });
         return true;
       } else {
@@ -53,6 +55,8 @@ app.controller('scheduleStartTime', function($scope, $http) {
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runmame, aid;
   $http.get('/get/runname_driverschedule').success(function(data) {
@@ -87,7 +91,8 @@ app.controller('statusCode', function($scope, $http) {
       }
       $http.put('/update/statusCode', input).
         success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);;
+          $scope.banner = JSON.stringify(data, null, 2);
+          showBanner();
       });
         return true;
     } else {
@@ -99,6 +104,8 @@ app.controller('statusCode', function($scope, $http) {
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runmame, aid;
   $http.get('/get/runname_driverschedule').success(function(data) {
@@ -134,6 +141,7 @@ app.controller('valuationEnd', function($scope, $http) {
     $http.put('/update/valuationEnd', input).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
+        showBanner();
       });
     }
   };
@@ -141,6 +149,7 @@ app.controller('valuationEnd', function($scope, $http) {
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
 
   /* drop down */
   var runmame, aid;
@@ -177,6 +186,7 @@ app.controller('valuationStart', function($scope, $http) {
       $http.put('/update/valuationStart', input).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
+        showBanner();
       });
     }
   };
@@ -185,6 +195,7 @@ app.controller('valuationStart', function($scope, $http) {
 //DEMO controller for SLA Date and Time by Audit
 app.controller('sla_by_audit', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
 
   var aid;
   $http.get('/get/audit_id_driverschedule').success(function(data) {
@@ -207,6 +218,7 @@ app.controller('sla_by_audit', function($scope, $http) {
         }
         $http.put('/update/sla_by_audit', input).success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2);
+          showBanner();
         });
         return true;
       } else {
@@ -218,6 +230,7 @@ app.controller('sla_by_audit', function($scope, $http) {
 //controller for SLA Date and Time by run name
 app.controller('sla_by_runname', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
 
   var runname;
   $http.get('/get/runname_driverschedule').success(function(data) {
@@ -238,10 +251,10 @@ app.controller('sla_by_runname', function($scope, $http) {
         sla_dt : $scope.sla_dt,
         sla_time : $scope.sla_time
       }
-      console.log(input);
       $http.put('/update/sla_by_runname', input).
         success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
+          showBanner();
         });
         return true;
       } else {
@@ -269,6 +282,8 @@ app.controller('sla_by_runname', function($scope, $http) {
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runname, groupNumber;
   $http.get('/get/runname_driverstepdetail').success(function(data) {
@@ -306,6 +321,7 @@ app.controller('status_name_grpNumder', function($scope, $http) {
     $http.put('/update/status_name_grpNumder', input).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
+        showBanner();
       });
       return true;
     } else {
@@ -317,6 +333,7 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
 
   /* drop down */
   var runname, detailID;
@@ -354,6 +371,7 @@ app.controller('status_name_dtlID', function($scope, $http) {
       $http.put('/update/status_name_dtlID', input).
         success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2);
+          showBanner();
         });
         return true;
       } else {
@@ -369,17 +387,16 @@ app.controller('status_name_dtlID', function($scope, $http) {
 //controller for Active Step Indicator by Driver Step ID
 app.controller('active_step_indicator_stepID', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
 
   var sid;
   $http.get('/get/detailID_driverstep').success(function(data) {
     $scope.items = data;
     $scope.drvr_step_id= $scope.items[0];
-    console.log(data[0]);
     sid = { stepID : data[0].drvr_step_id }
   });
 
   $scope.selectedValue = function(x) {
-    console.log('set');
     sid = { stepID : x.drvr_step_id }
   }
 
@@ -392,6 +409,7 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
       }
     $http.put('/update/active_step_indicator_stepID', input).success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
+        showBanner();
       });
     }
   };
@@ -400,6 +418,8 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runname, sid;
   $http.get('/get/runname_driverstep').success(function(data) {
@@ -438,6 +458,7 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
     $http.put('/update/active_step_indicator_runName_stepID', input).
       success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
+        showBanner();
       });
     }
   };
@@ -446,6 +467,8 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runname;
   $http.get('/get/runname_driverstep').success(function(data) {
@@ -468,13 +491,17 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
       $http.put('/update/active_step_indicator_runName', input).
         success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
+          showBanner();
       });
     }
   };
 });
+
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
   hideButton(permission);
+  hideBanner();
+
   /* drop down */
   var runname, groupNumber;
   $http.get('/get/runname_driverstep').success(function(data) {
@@ -513,6 +540,7 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
       $http.put('/update/active_step_indicator_runName_grpNumber', input).
         success(function(data) {
           $scope.banner = JSON.stringify(data, null, 2);
+          showBanner();
       });
     }
   };

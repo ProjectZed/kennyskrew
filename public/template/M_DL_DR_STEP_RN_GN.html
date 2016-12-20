@@ -4,10 +4,11 @@
 	<form>
 		<input type="text" class="" placeholder="p_run_nme Input" ng-model="form.runName"/>
 		<input type="text" class="" placeholder="p_grp_nbr Input" ng-model="form.grp_nbr"/>
+    <br />
     <div class="submit-btn">
       <button class="btn btn-success" type="button" id="exec"> Exec </button>
       <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>
