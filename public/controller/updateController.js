@@ -3,53 +3,46 @@
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
-    //exec button
-    hideButton(permission);
-    hideBanner();
+  //exec button
+  hideButton(permission);
+  hideBanner();
 
-    /* drop down */
-    var runmame, aid;
-    $http.get('/get/runname_driverschedule').success(function(data) {
-      $scope.items = data;
-      $scope.runName= data[0];
-      runname = { name : data[0].run_nme };
-      $http.post('/get/audit_id_driverschedule', runname).success(function(data2) {
-        $scope.units = data2;
-        $scope.auditId= data2[0];
-        aid = { audit : data2[0].audit_id }
-      });
+  /* drop down */
+  var runmame, aid;
+  $http.get('/get/runname_driverschedule').success(function(data) {
+    $scope.items = data;
+    $scope.runName= data[0];
+    runname = { name : data[0].run_nme };
+    $http.post('/get/audit_id_driverschedule', runname).success(function(data2) {
+      $scope.units = data2;
+      $scope.auditId= data2[0];
+      aid = { audit : data2[0].audit_id }
     });
+  });
 
-    $scope.selectedValue = function(x) {
-      runmame = { name : x.run_nme }
-      $http.post('/get/audit_id_driverschedule', runmame).success(function(data) {
-        $scope.units = data;
-        $scope.auditId= data[0];
-      });
+  $scope.selectedValue = function(x) {
+    runmame = { name : x.run_nme }
+    $http.post('/get/audit_id_driverschedule', runmame).success(function(data) {
+      $scope.units = data;
+      $scope.auditId= data[0];
+    });
+  }
+
+  $scope.selectedValue2 = function(y) {
+    aid = { audit : y.audit_id }
+  }
+  /* end */
+
+  $scope.urgentExec = function(bool){
+    var route ='/update/scheduleStartTime';
+    var input = {
+      runName : runname.name,
+      auditId : aid.audit,
+      sche_start : $scope.sche_start,
+      isUrgent : bool
     }
-
-    $scope.selectedValue2 = function(y) {
-      aid = { audit : y.audit_id }
-    }
-    /* end */
-
-    $scope.urgentExec = function () {
-      var r = confirm("Are you sure want to update?");
-      if (r == true) {
-        var input = {
-          runName : runname.name,
-          auditId : aid.audit,
-          sche_start : $scope.sche_start
-        }
-        $http.put('/update/scheduleStartTime', input).success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);
-          showBanner();
-        });
-        return true;
-      } else {
-        return false;
-      }
-    };
+    exec(route,input,$http,$scope);
+  }
 });
 
 // controller for Update Status Code
@@ -81,24 +74,16 @@ app.controller('statusCode', function($scope, $http) {
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.name,
-        auditId : aid.audit,
-        statusCode : $scope.Status
-      }
-      $http.put('/update/statusCode', input).
-        success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);
-          showBanner();
-      });
-        return true;
-    } else {
-        return false;
+  $scope.urgentExec = function(bool){
+    var route ="/update/statusCode";
+    var input = {
+      runName : runname.name,
+      auditId : aid.audit,
+      statusCode : $scope.Status,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
 
 //controller for Valuation End Date
@@ -130,21 +115,16 @@ app.controller('valuationEnd', function($scope, $http) {
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.name,
-        auditId : aid.audit,
-        valEnd : $scope.valEnd
-      }
-    $http.put('/update/valuationEnd', input).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-        showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ="/update/valuationEnd";
+    var input = {
+      unName : runname.name,
+      auditId : aid.audit,
+      valEnd : $scope.valEnd,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
@@ -175,21 +155,16 @@ app.controller('valuationStart', function($scope, $http) {
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.name,
-        auditId : aid.audit,
-        valStart : $scope.valStart
-      }
-      $http.put('/update/valuationStart', input).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-        showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ='/update/valuationStart';
+    var input = {
+      runName : runname.name,
+      auditId : aid.audit,
+      valStart : $scope.valStart,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
 
 //DEMO controller for SLA Date and Time by Audit
@@ -208,23 +183,16 @@ app.controller('sla_by_audit', function($scope, $http) {
     aid = { audit : x.audit_id }
   }
 
-  $scope.urgentExec = function () {
-      var r = confirm("Are you sure want to update?");
-      if (r == true) {
-        var input = {
-          auditId : aid.audit,
-          sla_dt : $scope.sla_dt,
-          sla_time : $scope.sla_time
-        }
-        $http.put('/update/sla_by_audit', input).success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);
-          showBanner();
-        });
-        return true;
-      } else {
-        return false;
-      }
-    };
+  $scope.urgentExec = function(bool){
+    var route ='/update/sla_by_audit';
+    var input = {
+      auditId : aid.audit,
+      sla_dt : $scope.sla_dt,
+      sla_time : $scope.sla_time,
+      isUrgent : bool
+    }
+    exec(route,input,$http,$scope);
+  }
 });
 
 //controller for SLA Date and Time by run name
@@ -243,24 +211,16 @@ app.controller('sla_by_runname', function($scope, $http) {
     runname = { name : x.run_nme };
   }
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.name,
-        sla_dt : $scope.sla_dt,
-        sla_time : $scope.sla_time
-      }
-      $http.put('/update/sla_by_runname', input).
-        success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
-          showBanner();
-        });
-        return true;
-      } else {
-        return false;
-      }
-    };
+  $scope.urgentExec = function(bool){
+    var route ='/update/sla_by_runname';
+    var input = {
+      runName : runname.name,
+      sla_dt : $scope.sla_dt,
+      sla_time : $scope.sla_time,
+      isUrgent : bool
+    }
+    exec(route,input,$http,$scope);
+  }
 });
 //controller for  Historical SLA Date and Time
 // app.controller('histoy_SLA', function($scope, $http) {
@@ -310,24 +270,16 @@ app.controller('status_name_grpNumder', function($scope, $http) {
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.runName,
-        grpNumber : groupNumber.grpNumber,
-        statusCode : $scope.statusCode
-      }
-    $http.put('/update/status_name_grpNumder', input).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
-        showBanner();
-      });
-      return true;
-    } else {
-      return false;
+  $scope.urgentExec = function(bool){
+    var route ='/update/status_name_grpNumder';
+    var input = {
+      runName : runname.runName,
+      grpNumber : groupNumber.grpNumber,
+      statusCode : $scope.statusCode,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
 
 //controller for Run Status Code by Run Name and Driver Step Detail ID
@@ -360,27 +312,32 @@ app.controller('status_name_dtlID', function($scope, $http) {
     detailID = { detailID : y.drvr_step_dtl_id }
   }
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.runName,
-        detailID : detailID.detailID,
-        statusCode : $scope.statusCode
-      }
-      $http.put('/update/status_name_dtlID', input).
-        success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);
-          showBanner();
-        });
-        return true;
-      } else {
-        return false;
-      }
-  };
+  $scope.urgentExec = function(bool){
+    var route ="/update/status_name_dtlID";
+    var input = {
+      runName : runname.runName,
+      detailID : detailID.detailID,
+      statusCode : $scope.statusCode,
+      isUrgent : bool
+    }
+    exec(route,input,$http,$scope);
+  }
 });
 
+function exec(route, input,$http,$scope) {
+  var r = confirm("Are you sure want to update?");
+  if (r == true) {
+    $http.put(route, input).
+    success(function(data) {
+      $scope.banner = JSON.stringify(data, null, 2);
+      showBanner();
+    });
 
+    return true;
+  } else {
+    return false;
+  }
+}
 //-----------------------------------------------------------------------------
 // UPDATE STEP controller
 //-----------------------------------------------------------------------------
@@ -400,21 +357,16 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
     sid = { stepID : x.drvr_step_id }
   }
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        drvr_step_id : sid.stepID,
-        actv_step_ind : $scope.actv_step_ind
-      }
-    $http.put('/update/active_step_indicator_stepID', input).success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-        showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ="/update/active_step_indicator_stepID";
+    var input = {
+      drvr_step_id : sid.stepID,
+      actv_step_ind : $scope.actv_step_ind,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
-
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   hideButton(permission);
@@ -447,21 +399,17 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.runName,
-        stepID : sid.stepID,
-        actv_step_ind : $scope.actv_step_ind
-      }
-    $http.put('/update/active_step_indicator_runName_stepID', input).
-      success(function(data) {
-        $scope.banner = JSON.stringify(data, null, 2);
-        showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ="/update/active_step_indicator_runName_stepID";
+    var input = {
+      runName : runname.runName,
+      stepID : sid.stepID,
+      actv_step_ind : $scope.actv_step_ind,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
+
 });
 
 //controller for Update Active Step Indicator by Run Name
@@ -481,20 +429,15 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
     runname = { runName : x.run_nme }
   }
   /* end */
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.runName,
-        actv_step_ind : $scope.actv_step_ind
-      }
-      $http.put('/update/active_step_indicator_runName', input).
-        success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2) + "\n ...";
-          showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ="/update/active_step_indicator_runName";
+    var input = {
+      runName : runname.runName,
+      actv_step_ind : $scope.actv_step_ind,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
 
 //controller for Update Active Step Indicator by Run Name and Group Number
@@ -529,19 +472,14 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
   }
   /* end */
 
-  $scope.urgentExec = function () {
-    var r = confirm("Are you sure want to update?");
-    if (r == true) {
-      var input = {
-        runName : runname.runName,
-        grpNumber : groupNumber.grpNumber,
-        actv_step_ind : $scope.actv_step_ind
-      }
-      $http.put('/update/active_step_indicator_runName_grpNumber', input).
-        success(function(data) {
-          $scope.banner = JSON.stringify(data, null, 2);
-          showBanner();
-      });
+  $scope.urgentExec = function(bool){
+    var route ="/update/active_step_indicator_runName_grpNumber";
+    var input = {
+      runName : runname.runName,
+      grpNumber : groupNumber.grpNumber,
+      actv_step_ind : $scope.actv_step_ind,
+      isUrgent : bool
     }
-  };
+    exec(route,input,$http,$scope);
+  }
 });
