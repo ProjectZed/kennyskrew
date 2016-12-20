@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <style>
   li:nth-child(even) {
-    background-color: #cfcaca;
+    background-color: #f1f1f1;
+  }
+  li:nth-child(odd) {
+    background-color: #fafafa;
+  }
+  .logs {
+    padding: 5px;
+    padding-left: 20px;
   }
 </style>
-<div class="shadowed rounded dynContent" style="">
+<div class="shadowed rounded dynContent" style="background-color: white;">
   <h5>Your activity history</h5>
-  <ul style="list-style-type: none;">
-    <li id="logs" ng-repeat="line in banner">{{ line }}</li>
+  <ul style="list-style-type: none; padding-left: 0px;">
+    <li class="logs" ng-repeat="line in banner">{{ line }}</li>
   </ul>
 </div>
