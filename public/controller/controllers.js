@@ -68,6 +68,7 @@ app.controller('loginCtrl', function($scope, $http) {
             });
           }
         };
+
       }
     );
 
@@ -80,6 +81,14 @@ function redBorder(element){
 }
 function removeRedBorder(element){
     document.getElementById(element).style.borderColor = "#EBE9ED";
+}
+function hideButton(permission){
+  var exec = document.getElementById('exec');
+  var urgentExec = document.getElementById('urgentExec');
+  if(permission != "administrator")
+    urgentExec.style.display = "none";
+  else
+    exec.style.display = "none";
 }
 
 function hideButton(permission){
@@ -523,6 +532,7 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule
 app.controller('Dl_Driver_Schedule', function($scope, $http) {
+<<<<<<< HEAD
     /* drop down */
     var val;
     $http.get('/get/runname_driverschedule').
@@ -534,6 +544,7 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
       val = { name : x.run_nme }
     }
     /* end */
+
   hideButton(permission);
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
@@ -558,6 +569,7 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
+<<<<<<< HEAD
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -610,6 +622,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
+<<<<<<< HEAD
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -645,6 +658,7 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
 });
 //controller for Delete Driver Step
 app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
+<<<<<<< HEAD
 
   /* drop down */
   var val, foo;
@@ -699,6 +713,7 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
 });
 //controller for Delete Driver Step Detail
 app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
+<<<<<<< HEAD
 
   /* drop down */
   var val;
