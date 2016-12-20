@@ -57,13 +57,9 @@
  .dropdown > .btn{
 	color:#002663;
  }
- select{
-	 margin:8px;
- }
  .dynContent form > input, h5{
 	display:block;
 	padding:0px;
-	margin:8px;
  }
 
  .hist > span{
@@ -103,4 +99,7 @@
 
 .form-control {
 		width: 250px;
+}
+#urgentExec{
+	margin-bottom: 15px;
 }
