@@ -52,6 +52,6 @@ app.use('/', routes);
 app.use('/', updateRoutes);
 app.use('/', deleteRoutes);
 
-app.listen(80, function() {
+app.listen(3000, function() {
     console.log("App listening on port 3000");
 });
