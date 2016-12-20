@@ -324,6 +324,10 @@ app.controller('status_name_dtlID', function($scope, $http) {
   }
 });
 
+//Joseph Geneva
+//this function is a helper function for the execution buttons.
+//by allowing data to be passed in, code duplication is minimized
+//in addition, changing the new code is easy, small parts can be edited concurrently
 function exec(route, input,$http,$scope) {
   var r = confirm("Are you sure want to update?");
   if (r == true) {
@@ -332,7 +336,6 @@ function exec(route, input,$http,$scope) {
       $scope.banner = JSON.stringify(data, null, 2);
       showBanner();
     });
-
     return true;
   } else {
     return false;
