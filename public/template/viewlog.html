@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+<style>
+  li:nth-child(even) {
+    background-color: #cfcaca;
+  }
+</style>
 <div class="shadowed rounded dynContent" style="">
   <h5>Your activity history</h5>
-  <ul>
+  <ul style="list-style-type: none;">
     <li id="logs" ng-repeat="line in banner">{{ line }}</li>
   </ul>
 </div>
