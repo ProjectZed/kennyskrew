@@ -11,6 +11,7 @@ app.controller('environmentCtrl', function($scope) {
 app.controller('loginCtrl', function($scope, $http) {
   document.getElementById('username').style.borderColor = "#EBE9ED";
   document.getElementById('password').style.borderColor = "#EBE9ED";
+
   $scope.submitLogin = function () {
     //console.log($scope.form);
     //var env = $('#env').find(":selected").text();
