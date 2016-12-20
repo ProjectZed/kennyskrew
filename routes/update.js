@@ -135,7 +135,16 @@ router.post('/get/detailID_driverstep', function (req, res) {
 });
 
 
-
+router.put('/update/*', function(req, res,next) {
+  console.log("this is the body: "+ JSON.stringify(req.body));
+  console.log(req.originalUrl); // '/admin/new this is it! the route finder!
+  if(req.body.isUrgent){
+    console.log("urgent!");
+  }else{
+    console.log("not that urgent");
+  }
+  next()
+})
 
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
