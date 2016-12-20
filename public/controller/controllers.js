@@ -71,11 +71,19 @@ app.controller('loginCtrl', function($scope, $http) {
 
       }
     );
+<<<<<<< HEAD
 
 function errorOut(message){
   document.getElementById("error-message").innerHTML = message;
 }
 
+=======
+
+function errorOut(message){
+  document.getElementById("error-message").innerHTML = message;
+}
+
+>>>>>>> 18b94178d9080cfef5f9729721584582bfa952c3
 function redBorder(element){
     document.getElementById(element).style.borderColor = "red";
 }
