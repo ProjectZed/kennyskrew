@@ -11,12 +11,11 @@
     <select class="form-control" ng-model="grpNumber" ng-change="selectedValue2(grpNumber)" ng-options="opt as opt.grp_nbr for opt in units ">
     </select>
     <br />
-
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" > Exec </button>
-      <button class="btn btn-danger" type="button" ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

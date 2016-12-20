@@ -11,8 +11,6 @@
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-  <script src="controller/app.js"></script>
-  <script src="controller/controllers.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -25,16 +23,6 @@
                       <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand logo" href="#">DigitalDash</a>
-                  <form class= "navbar-form navbar-left" role ="search">
-                    <div class= "input-group">
-                      <input ref="key" type ="text" class= "form-control" placeholder="Search"/>
-                      <span class= "input-group-btn">
-                          <button type = "button" class= "btn btn-default" >
-                            <span class= "glyphicon glyphicon-search"></span>
-                          </button>
-                      </span>
-                    </div>
-                  </form>
               </div>
 
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navController">
@@ -45,17 +33,17 @@
                       <li>
                         <a href="#Logs">Logs</a>
                       </li>
-                      <li class="nav-icon">
+                      <li class="nav-icon" id="PR">
                         <a class= "dropdown-toggle" data-toggle = "dropdown" href = "#">
                           PeerReview
                           <span class= "badge">2</span>
                         </a>
                         <ul class= "dropdown-menu">
                           <li>
-                            <a href = "#">PeerReview 1</a>
+                            <a href = "#" >PeerReview 1</a>
                           </li>
                           <li>
-                            <a href = "#">PeerReview 2</a>
+                            <a href = "#" >PeerReview 2</a>
                           </li>
                         </ul>
                       </li>
@@ -118,7 +106,7 @@
 						</ul>
 					</div>
 				</li>
-        <li class="rounded" style="padding:0px;">
+        <!--<li class="rounded" style="padding:0px;">
 					<div class="dropdown">
 						<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">View
 						<span class="caret"></span></button>
@@ -140,11 +128,20 @@
 						  <li><a href="#">Current Running</a></li>
 						</ul>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
-    <div class="shadowed rounded dynContent" ng-view="">
+    <div class="shadowed rounded dynContent" ng-view="" ng-controller="macroCtrl">
 		</div>
   </div>
+  <script>
+     var username = "<%= user.username %>";
+     var password = "<%= user.password %>";
+     var permission = "<%= user.type %>"
+  </script>
+  <script src="controller/app.js"></script>
+  <script src="javascripts/utils.js"></script>
+  <script src="controller/controllers.js"></script>
+  <script src="controller/updateController.js"></script>
 </body>
 </html>

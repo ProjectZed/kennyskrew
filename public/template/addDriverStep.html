@@ -2,13 +2,10 @@
 <div class="shadowed rounded dynContent" style="">
   <h5>Add Driver Step</h5>
 	<form>
-
-
-    
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="urgentExec()"> Exec </button>
-      <button class="btn btn-danger" type="button"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="urgentExec()" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

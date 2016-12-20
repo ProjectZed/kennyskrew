@@ -12,13 +12,17 @@ var LogController = require("./logController");
 router.get('/',checkLogin);
 router.get('/', function(req, res) {
 	console.log('get index');
-  res.render('index');
+	console.log(req.session.user);
+	var user = null;
+	if(req.session.user)
+		user = { user: req.session.user};
+  res.render('index.html', user);
 });
 
 // router.get('/login',checkNotLogin);
 router.get('/login',function(req,res){
 	console.log('get login page');
-	res.render('login/login');
+	res.render('login/login.html');
 });
 
 router.post('/login', function(req, res) {
@@ -31,15 +35,12 @@ router.post('/login', function(req, res) {
 				console.log('Empty username or password');
 				if(typeof(username) === 'undefined' &&
 						typeof(password) === 'undefined'){
-							console.log('1');
 						res.status(200).send("Both username and password are incorrect.");
 					}
 				else if(typeof(username) === 'undefined'){
-					console.log('2');
 					res.status(200).send("No Such User");
 				}
 				else if(typeof(password) === 'undefined'){
-					console.log('3');
 					res.status(200).send("Password Incorrect");
 				}
 	}else{
@@ -50,17 +51,17 @@ router.post('/login', function(req, res) {
         }
         else {
 					console.log('rows');
-					console.log(rows);
 					if(rows.length > 0){
 						console.log('row more than 0');
 						var user = rows[0];
 						if(user.password === password){
 								var user = {
 									username : user.username,
-									password : user.password
+									password : user.password,
+									type : user.type
 								}
 								req.session.user = user;
-								res.status(200).send("success");
+								res.status(200).send(user);
 						}else{
 							res.status(200).send("Password Incorrect");
 						}

@@ -17,6 +17,210 @@ router.get('/get/runname_driverschedule', function (req, res) {
     });
   });
 });
+
+router.post('/get/audit_id_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+//get aid limit 500
+router.get('/get/audit_id_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT audit_id FROM C_DRIVER_SCHEDULE LIMIT 500", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/runname_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_name FROM C_DRIVER_STEP_DETAIL", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/detailID_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+
+router.get('/get/driverSchedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
+        if(err){
+          console.log("error querrying");
+        }else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+
+router.get('/get/runname_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/runname_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_nme FROM C_DRIVER_STEP", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }else{
+          res.send(rows);
+        }
+      });
+    });
+  });
+
+router.post('/get/audit_id_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT drvr_step_id FROM C_DRIVER_STEP LIMIT 1000", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/runname_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT run_name FROM C_DRIVER_STEP_DETAIL", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/detailID_driverstepdetail', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }else{
+          res.send(rows);
+        }
+      });
+    });
+  });
+
 router.post('/get/audit_id_driverschedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
@@ -66,6 +270,69 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
     });
   });
 });
+router.post('/get/grpNumber_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.get('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT drvr_step_id FROM C_DRIVER_STEP LIMIT 1000", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+router.post('/get/grpNumber_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
 
 router.get('/get/runname_driverstep', function (req, res) {
     db.serialize(function() {
@@ -91,9 +358,10 @@ router.post('/get/grpNumber_driverstep', function (req, res) {
     });
   });
 });
-router.post('/get/detailID_driverstep', function (req, res) {
+
+router.get('/get/detailID_driverstep', function (req, res) {
     db.serialize(function() {
-      db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
+      db.all("SELECT DISTINCT drvr_step_id FROM C_DRIVER_STEP LIMIT 1000", function(err, rows){
         if(err){
           res.send("error querrying");
         }
@@ -103,9 +371,6 @@ router.post('/get/detailID_driverstep', function (req, res) {
     });
   });
 });
-
-
-
 
 router.put('/update/scheduleStartTime', function(req, res) {
   db.serialize(function() {
@@ -268,6 +533,7 @@ router.put('/update/status_name_grpNumder', function(req, res) {
 
 router.put('/update/status_name_dtlID', function(req, res) {
   db.serialize(function() {
+    console.log(req.body);
     db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.statusCode + "' WHERE run_name = '" + req.body.runName + "' AND drvr_step_dtl_id = " + req.body.detailID + " ", function(err){
       if(err){
         res.send("Error when querrying");
