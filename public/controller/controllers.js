@@ -74,16 +74,22 @@ app.controller('loginCtrl', function($scope, $http) {
                 errorOut(error);
                 //console.log('both username and password');
 <<<<<<< HEAD
+<<<<<<< HEAD
               }else{
                 $scope.user = data
 =======
               }else if( data === "success"){
 >>>>>>> center login page and fixed error
+=======
+              }else{
+                $scope.user = data
+>>>>>>> hide exec button according to permission
                 window.location.href="/";
               }
             });
           }
         };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -109,6 +115,9 @@ app.controller('loginCtrl', function($scope, $http) {
 >>>>>>> update login border
 =======
 >>>>>>> center login page and fixed error
+=======
+
+>>>>>>> hide exec button according to permission
       }
     );
 
@@ -151,6 +160,7 @@ app.controller('navController', function($scope, $http) {
 app.controller('scheduleStartTime', function($scope, $http) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     //exec button
     hideButton(permission);
 
@@ -162,6 +172,11 @@ app.controller('scheduleStartTime', function($scope, $http) {
     $http.get('/get/driverSchedule').
 >>>>>>> dropdown on first update macro
 =======
+=======
+    //exec button
+    hideButton(permission);
+
+>>>>>>> hide exec button according to permission
     /* drop down */
     var val, foo;
     $http.get('/get/runname_driverschedule').
@@ -242,9 +257,13 @@ app.controller('scheduleStartTime', function($scope, $http) {
 // controller for Update Status Code
 app.controller('statusCode', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -286,9 +305,13 @@ app.controller('statusCode', function($scope, $http) {
 //controller for Valuation End Date
 app.controller('valuationEnd', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -327,9 +350,13 @@ app.controller('valuationEnd', function($scope, $http) {
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverschedule').
@@ -415,9 +442,13 @@ app.controller('sla_by_runname', function($scope, $http) {
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -459,9 +490,13 @@ app.controller('status_name_grpNumder', function($scope, $http) {
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstepdetail').
@@ -516,9 +551,13 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
@@ -557,9 +596,13 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val;
   $http.get('/get/runname_driverstep').
@@ -588,9 +631,13 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 //controller for Update Active Step Indicator by Run Name and Group Number
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   hideButton(permission);
 =======
 >>>>>>> done update macros
+=======
+  hideButton(permission);
+>>>>>>> hide exec button according to permission
   /* drop down */
   var val, foo;
   $http.get('/get/runname_driverstep').
