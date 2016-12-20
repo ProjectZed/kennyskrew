@@ -30,4 +30,25 @@
 12/20/2016, 6:57:49 AM: User, DELETE, Driver Step, run name: CUST_SAT, groupNumber: 50
 12/20/2016, 6:58:11 AM: User, DELETE, Driver Step, run name: CFE, driver step id: 8600003
 12/20/2016, 6:58:24 AM: User, DELETE, Driver Step, run name: CFE, driver step id: 8600005
-12/20/2016, 6:58:51 AM: User, DELETE, Driver Step Detail, run name: BI_DIST_CAD_DLY
+12/20/2016, 6:58:51 AM: User, DELETE, Driver Step Detail, run name: BI_DIST_CAD_DLY12/20/2016, 4:54:29 PM: User, UPDATE, Schedule Start Time: 3, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/20/2016, 5:21:11 PM: User, DELETE, Driver Schedule, run name: undefined 
+12/20/2016, 5:21:23 PM: User, DELETE, Driver Step, run name: undefined 
+12/20/2016, 5:21:36 PM: User, DELETE, Driver Schedule, run name: undefined 
+12/20/2016, 5:35:36 PM: User, DELETE, Driver Schedule, run name: CLM_ACS_EXTR 
+12/20/2016, 5:36:44 PM: User, DELETE, Driver Schedule, run name: CLM_AIB_RPT_REQUEST_EXTR 
+12/20/2016, 5:36:57 PM: User, DELETE, Driver Schedule, run name: CLM_COBRA_EXTR_FIN 
+12/20/2016, 5:41:51 PM: User, DELETE, Driver Step, run name: CLM_ACS_EXTR 
+12/20/2016, 5:41:56 PM: User, DELETE, Driver Step, run name: CLM_AIB_RPT_REQUEST_EXTR 
+12/20/2016, 5:42:00 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_FIN_URS 
+12/20/2016, 5:42:06 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_FIN 
+12/20/2016, 5:46:43 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_AM, groupNumber: 50 
+12/20/2016, 5:46:59 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_AM, groupNumber: 100 
+12/20/2016, 5:47:25 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_AM, groupNumber: 400 
+12/20/2016, 5:47:42 PM: User, DELETE, Driver Step, run name: CLM_CONV_PMT_BAL, groupNumber: 1000 
+12/20/2016, 6:04:13 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_AM, driver step id: 19400010 
+12/20/2016, 6:04:21 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_AM, driver step id: 19400019 
+12/20/2016, 6:04:32 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_PM, driver step id: 19400058 
+12/20/2016, 6:04:42 PM: User, DELETE, Driver Step, run name: CLM_COBRA_EXTR_PM, driver step id: 19400060 
+12/20/2016, 6:08:44 PM: User, DELETE, Driver Step Detail, run name: CDI_2_O
+12/20/2016, 6:08:49 PM: User, DELETE, Driver Step Detail, run name: S_2_O_CL_FA_ISO_NRT
+12/20/2016, 6:09:01 PM: User, DELETE, Driver Step Detail, run name: O_2_D_LIFE_APTX_ALPHA_NRT
