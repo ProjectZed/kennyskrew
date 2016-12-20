@@ -123,6 +123,7 @@ app.controller('loginCtrl', function($scope, $http) {
       }
     );
 
+<<<<<<< HEAD
 =======
 
       }
@@ -149,6 +150,8 @@ function hideButton(permission){
     exec.style.display = "none";
 }
 
+=======
+>>>>>>> update for driver schedule
 app.controller('navController', function($scope, $http) {
   if(permission != "administrator")
     document.getElementById('PR').style.display = "none";
@@ -166,6 +169,7 @@ app.controller('navController', function($scope, $http) {
 
 
 //-----------------------------------------------------------------------------
+<<<<<<< HEAD
 // UPDATE controller
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
@@ -687,6 +691,8 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
 });
 
 //-----------------------------------------------------------------------------
+=======
+>>>>>>> update for driver schedule
 // DELETE controllers
 //-----------------------------------------------------------------------------
 //controller for Delete Driver Schedule

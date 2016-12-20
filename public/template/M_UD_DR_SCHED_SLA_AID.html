@@ -4,14 +4,14 @@
   <br />
 	<form>
     <h4> Audit ID </h4>
-    <input type="text" class="form-control" ng-model="form.auditId" />
+    <select class="form-control" ng-model="auditId" ng-change="selectedValue(auditId)" ng-options="opt as opt.audit_id for opt in aids "/>
 
     <h4> SLA date </h4>
-    <input type="text" class="form-control" ng-model="form.sla_dt" />
+    <input type="text" class="form-control" ng-model="sla_dt" />
 
 
     <h4> SLA time </h4>
-    <input type="text" class="form-control" ng-model="form.sla_time" />
+    <input type="text" class="form-control" ng-model="sla_time" />
 
     <div class="submit-btn">
       <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>
