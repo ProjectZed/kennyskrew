@@ -14,7 +14,7 @@
  }
 
  .menu-btn{
-	 	width: 150px;
+	 	width: 205px;
  }
  .mainMenu{
 	display:block;
@@ -57,13 +57,9 @@
  .dropdown > .btn{
 	color:#002663;
  }
- select{
-	 margin:8px;
- }
  .dynContent form > input, h5{
 	display:block;
 	padding:0px;
-	margin:8px;
  }
 
  .hist > span{
@@ -95,4 +91,17 @@
 
 .alert{
 	margin-top: 15px;
+}
+
+.input-append .btn.dropdown-toggle {
+    float: none;
+}
+
+.form-control {
+		width: 250px;
+}
+
+#urgentExec, #exec{
+	width: 50%;
+	margin-bottom: 15px;
 }

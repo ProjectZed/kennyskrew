@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Update Active Step Indicator by Driver Step ID</h5>
+  <h4>Update Active Step Indicator by Driver Step ID</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="p_drvr_step_id Input" ng-model="form.drvr_step_id"/>
-		<input type="text" class="" placeholder="p_actv_step_ind Input" ng-model="form.actv_step_ind"/>
+    <h4> Driver Step ID </h4>
+    <select class="form-control" ng-model="drvr_step_id" ng-change="selectedValue(drvr_step_id)" ng-options="opt as opt.drvr_step_id for opt in items "/>
+
+    <h4> Active Step Indicator </h4>
+    <input type="text" class="form-control" ng-model="actv_step_ind" />
+    <br />
     <div class="submit-btn">
-      <button class="btn btn-success" type="button"> Exec </button>
-      <button class="btn btn-danger" type="button" ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

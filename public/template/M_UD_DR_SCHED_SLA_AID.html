@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Update SLA Date and Time by Audit ID</h5>
+  <h4>Update SLA Date and Time by Audit ID</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="SLA_DT Input" ng-model="form.sla_dt" />
-		<input type="text" class="" placeholder="SLA_TIME Input" ng-model="form.sla_time" />
-		<input type="text" class="" placeholder="AUDT_ID Input" ng-model="form.auditId" />
+    <h4> Audit ID </h4>
+    <select class="form-control" ng-model="auditId" ng-change="selectedValue(auditId)" ng-options="opt as opt.audit_id for opt in aids "/>
+
+    <h4> SLA date </h4>
+    <input type="text" class="form-control" ng-model="sla_dt" />
+
+
+    <h4> SLA time </h4>
+    <input type="text" class="form-control" ng-model="sla_time" />
+
+    <br />
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="Exec()"> Exec </button>
-      <button class="btn btn-danger" type="button"ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

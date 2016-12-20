@@ -26,10 +26,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
           templateUrl: "template/M_UD_DR_SCHED_SLA_RN.html",
           controller: "sla_by_runname"
       })
-      .when("/M_UD_DR_SCHED_H_SLA_RN", {
-          templateUrl: "template/M_UD_DR_SCHED_H_SLA_RN.html",
-          controller: "histoy_SLA"
-      })
+      // .when("/M_UD_DR_SCHED_H_SLA_RN", {
+      //     templateUrl: "template/M_UD_DR_SCHED_H_SLA_RN.html",
+      //     controller: "histoy_SLA"
+      // })
       .when("/M_UD_DR_STEP_DTL_RN_GN", {
           templateUrl: "template/M_UD_DR_STEP_DTL_RN_GN.html",
           controller: "status_name_grpNumder"
@@ -87,7 +87,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       //route for view logs
       .when("/Logs", {
           templateUrl: "template/viewlog.html",
-          controller: ""
+          controller: "ViewLog"
       })
       //route for peer review
       .when("/PeerReview", {

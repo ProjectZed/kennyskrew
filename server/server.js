@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var routes = require('../routes/index');
 var updateRoutes = require('../routes/update');
+var deleteRoutes = require('../routes/delete');
 var sqlite3 = require('sqlite3').verbose();
 var logger = require('morgan');
 var log4js = require('log4js');
@@ -27,8 +28,8 @@ logger.setLevel('INFO');
 
 app.set('views', path.join(__dirname, '../views'));
 app.engine('.html', ejs.__express);
-app.set('view engine', 'html');
-//app.set('view engine', 'ejs');
+//app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 //your database location
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
@@ -49,6 +50,7 @@ app.use(log4js.connectLogger(logger, {level: 'auto', format:':method :url'}));
 
 app.use('/', routes);
 app.use('/', updateRoutes);
+app.use('/', deleteRoutes);
 
 app.listen(80, function() {
     console.log("App listening on port 3000");

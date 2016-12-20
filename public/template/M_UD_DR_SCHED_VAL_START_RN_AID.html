@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Update Valuation Start time by Run Name and Audit ID</h5>
+  <h4>Update Valuation Start time by Run Name and Audit ID</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="p_run_nme Input" ng-model="form.runName"/>
-		<input type="text" class="" placeholder="p_audt_id Input" ng-model="form.auditId"/>
-		<input type="text" class="" placeholder="p_val_start Input" ng-model="form.valStart"/>
+    <h4> Run name </h4>
+    <select class="form-control" ng-model="runName" ng-change="selectedValue(runName)" ng-options="opt as opt.run_nme for opt in items ">
+    </select>
+
+    <h4> Audit ID </h4>
+    <select class="form-control" ng-model="auditId" ng-change="selectedValue2(auditId)" ng-options="opt as opt.audit_id for opt in units ">
+    </select>
+
+    <h4> Valuation Start </h4>
+		<input type="text" class="form-control" ng-model="valStart"/>
+
+    <br />
+
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" > Exec </button>
-      <button class="btn btn-danger" type="button" ng-click="urgentExec()"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button" ng-click="urgentExec()" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
-  <pre class="alert alert-info">{{ banner }}</pre>
+  <pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>
