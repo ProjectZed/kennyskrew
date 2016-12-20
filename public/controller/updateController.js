@@ -33,6 +33,10 @@ app.controller('scheduleStartTime', function($scope, $http) {
     }
     /* end */
 
+    $scope.exec = function(){
+      console.log('lol');
+    }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -80,6 +84,10 @@ app.controller('statusCode', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    console.log('lol');
+  }
+  
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
