@@ -4,14 +4,14 @@
   <br />
 	<form>
     <h4> Run Name </h4>
-    <input type="text" class="form-control" ng-model="form.runName" />
+    <select class="form-control" ng-model="runName" ng-change="selectedValue(runName)" ng-options="opt as opt.run_nme for opt in runnames "/>
 
     <h4> SLA date </h4>
-    <input type="text" class="form-control" ng-model="form.sla_dt" />
+    <input type="text" class="form-control" ng-model="sla_dt" />
 
 
     <h4> SLA time </h4>
-    <input type="text" class="form-control" ng-model="form.sla_time" />
+    <input type="text" class="form-control" ng-model="sla_time" />
 
     <div class="submit-btn">
       <button class="btn btn-success" type="button" ng-click="Exec()" id="exec"> Exec </button>

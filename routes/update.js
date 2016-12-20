@@ -17,9 +17,24 @@ router.get('/get/runname_driverschedule', function (req, res) {
     });
   });
 });
+
 router.post('/get/audit_id_driverschedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT audit_id FROM C_DRIVER_SCHEDULE WHERE run_nme = '" + req.body.name + "' ", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+//get aid limit 500
+router.get('/get/audit_id_driverschedule', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT audit_id FROM C_DRIVER_SCHEDULE LIMIT 500", function(err, rows){
         if(err){
           res.send("error querrying");
         }
