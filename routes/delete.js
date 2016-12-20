@@ -15,7 +15,7 @@ router.post('/delete/driverSchedule', function (req, res) {
         else{
           var data = "User, DELETE, Driver Schedule, run name: " + req.body.name + " ";
           LogController.writeLog(data);
-          res.send("Deleted Successfully !");
+          res.send(req.body.name);
         }
     });
   });
@@ -30,7 +30,8 @@ router.post('/delete/driverStep', function (req, res) {
         else{
           var data = "User, DELETE, Driver Step, run name: " + req.body.name + " ";
           LogController.writeLog(data)
-          res.send("Deleted Successfully !");
+          var deleted = "run name: " + req.body.name + " ";
+          res.send(deleted);
         }
     });
   });
@@ -45,7 +46,8 @@ router.post('/delete/driverStep_runName_grpNbr', function (req, res) {
         else{
           var data = "User, DELETE, Driver Step, run name: " + req.body.runName + ", groupNumber: " + req.body.grpNumber + " ";
           LogController.writeLog(data);
-          res.send("Deleted Successfully !");
+          var deleted = " run name: " + req.body.runName + ", groupNumber: " + req.body.grpNumber + " ";
+          res.send(deleted);
         }
     });
   });
@@ -60,7 +62,8 @@ router.post('/delete/Driver_Step_RunName_Sid', function (req, res) {
         else{
           var data = "User, DELETE, Driver Step, run name: " + req.body.runName + ", driver step id: " + req.body.stepID + " ";
           LogController.writeLog(data);
-          res.send("Deleted Successfully !");
+          var deleted = " run name: " + req.body.runName + ", driver step id: " + req.body.stepID + " ";
+          res.send(deleted);
         }
     });
   });
@@ -73,9 +76,10 @@ router.post('/delete/Driver_Step_Detail_RunName', function (req, res) {
           res.send("error querrying");
         }
         else{
-          var data = "User, DELETE, Driver Step Detail, run name: " + req.body.runName + "";
+          var data = "User, DELETE, Driver Step Detail, run name: " + req.body.name + "";
           LogController.writeLog(data);
-          res.send("Deleted Successfully !");
+          var deleted = "run name: " + req.body.name + " ";
+          res.send(deleted);
         }
     });
   });

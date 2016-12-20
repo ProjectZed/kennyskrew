@@ -504,15 +504,22 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
-        console.log(val.name);
         $http.post('/delete/driverSchedule', val).
           success(function(data) {
-          $scope.banner = data;
+          $scope.banner = "Deleted " + data + " Successfully !";
+          //refresh items after Delete
+          $http.get('/get/runname_driverschedule').
+          success(function(data) {
+            $scope.items = data;
+            $scope.runName= $scope.items[0];
+          });
+          //end
         });
         return true;
       } else {
         return false;
       }
+
     };
 });
 //controller for Delete Driver Step
@@ -545,8 +552,20 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
           grpNumber : foo.grpNumber,
         }
       $http.post('/delete/driverStep_runName_grpNbr', input).
+        success(function(data) {
+          $scope.banner = "Deleted " + data + " Successfully !";
+          //refresh item list
+          $http.get('/get/runname_driverstep').
+            success(function(data) {
+              $scope.items = data;
+              $scope.runName= $scope.items[0];
+            });
+          $http.post('/get/grpNumber_driverstep', null).
           success(function(data) {
-            $scope.banner = data;
+            $scope.units = data;
+            $scope.grpNumber= $scope.units[0];
+          });
+          //end
         });
         return true;
       } else {
@@ -571,8 +590,15 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
       $http.post('/delete/driverStep', val).
+        success(function(data) {
+          $scope.banner = "Deleted " + data + " Successfully !";
+          //refresh items after Delete
+          $http.get('/get/runname_driverstep').
           success(function(data) {
-            $scope.banner = data;
+            $scope.items = data;
+            $scope.runName= $scope.items[0];
+          });
+          //end
         });
         return true;
       } else {
@@ -611,7 +637,19 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
         }
         $http.post('/delete/Driver_Step_RunName_Sid', input).
           success(function(data) {
-          $scope.banner = data;
+            $scope.banner = "Deleted " + data + " Successfully !";
+            //refresh item list
+            $http.get('/get/runname_driverstep').
+              success(function(data) {
+                $scope.items = data;
+                $scope.runName= $scope.items[0];
+              });
+            $http.post('/get/detailID_driverstep', null).
+            success(function(data) {
+              $scope.units = data;
+              $scope.driverStepID= $scope.units[0];
+            });
+            //end
         });
         return true;
       } else {
@@ -637,7 +675,12 @@ app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
       if (r == true) {
         $http.post('/delete/Driver_Step_Detail_RunName', val).
           success(function(data) {
-          $scope.banner = data;
+          $scope.banner = "Deleted " + data + " Successfully !";
+          $http.get('/get/runname_driverstepdetail').
+          success(function(data) {
+            $scope.items = data;
+            $scope.runName= $scope.items[0];
+          });
         });
         return true;
       } else {
