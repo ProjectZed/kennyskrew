@@ -1,6 +1,6 @@
 !.gitkeep
 node_modules/
-server/database/LibertMutual.db
+server/database/LibertyMutual.db
 tmp
 .DS_Store
 .idea
