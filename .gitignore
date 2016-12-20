@@ -1,8 +1,8 @@
 !.gitkeep
 conf/
 node_modules/
-server/database/
-log.txt
+server/database/LibertyMutual.db
+./log.txt
 tmp
 .DS_Store
 .idea
