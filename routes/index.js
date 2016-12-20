@@ -58,6 +58,7 @@ router.post('/login', function(req, res) {
 								var user = {
 									username : user.username,
 									password : user.password,
+									email: user.email,
 									type : user.type
 								}
 								req.session.user = user;
