@@ -105,7 +105,7 @@ function checkLogin(req,res,next){
 router.get('/Logs', function(req, res) {
   LogController.readLog((result) => {
     var array = result.toString().split("\n");
-  	res.send(array.slice(0, array.length-1));
+  	res.send(array.slice(0, array.length-1).reverse());
   });
 });
 
