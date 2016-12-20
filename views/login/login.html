@@ -11,6 +11,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="../controller/app.js"></script>
   <script src="../controller/controllers.js"></script>
+  <script src="../javascripts/utils.js"></script>
   <base href="/">
 </head>
 <body>
@@ -22,6 +23,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
       <label for="inputEmail" class="sr-only">Username</label>
+<<<<<<< HEAD
       <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')"/>
 =======
       <label for="inputEmail" class="sr-only">Email address</label>
@@ -35,8 +37,11 @@
       <label for="inputEmail" class="sr-only">Username</label>
       <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')"/>
 >>>>>>> center login page and fixed error
+=======
+      <input type="username" class="form-control" placeholder="Username" id="username" ng-model="form.username" onfocus="removeRedBorder('username')" onchange="removeRedBorder('username')" ng-keypress="($event.which === 13)? submitLogin():0"/>
+>>>>>>> enter key press on login page can login
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')" onchange="removeRedBorder('password')"/>
+      <input type="password" class="form-control" placeholder="Password" id="password" ng-model="form.password" onfocus="removeRedBorder('password')" onchange="removeRedBorder('password')" ng-keypress="($event.which === 13)? submitLogin():0"/>
       <select id="env" ng-controller="environmentCtrl" ng-model="selectedEnvironment" ng-options="x for x in environments"></select>
 
       <!--
