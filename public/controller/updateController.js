@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// UPDATE controller
+// UPDATE SCHEDULE controller
 //-----------------------------------------------------------------------------
 //controller for Update Schedule Start time
 app.controller('scheduleStartTime', function($scope, $http) {
@@ -262,26 +262,36 @@ app.controller('sla_by_runname', function($scope, $http) {
 //   };
 // });
 
+
+//-----------------------------------------------------------------------------
+// UPDATE STEP DETAIL controller
+//-----------------------------------------------------------------------------
 //controller for Run Status Code by Run Name and Group Number
 app.controller('status_name_grpNumder', function($scope, $http) {
   hideButton(permission);
   /* drop down */
-  var val, foo;
-  $http.get('/get/runname_driverstepdetail').
-  success(function(data) {
+  var runname, groupNumber;
+  $http.get('/get/runname_driverstepdetail').success(function(data) {
     $scope.items = data;
-    $scope.runName= $scope.items[0];
+    $scope.runName= data[0];
+    runname = { runName : data[0].run_name };
+    $http.post('/get/grpNumber_driverstepdetail', runname).success(function(data2) {
+      $scope.units = data2;
+      $scope.grpNumber= $scope.units[0];
+      groupNumber = { grpNumber : data2[0].grp_nbr }
+    });
   });
+
   $scope.selectedValue = function(x) {
-    val = { runName : x.run_name }
-    $http.post('/get/grpNumber_driverstepdetail', val).
-    success(function(data) {
+    runname = { runName : x.run_name }
+    $http.post('/get/grpNumber_driverstepdetail', runname).success(function(data) {
       $scope.units = data;
       $scope.grpNumber= $scope.units[0];
+      groupNumber = { grpNumber : data[0].grp_nbr }
     });
   }
   $scope.selectedValue2 = function(y) {
-    foo = { grpNumber : y.grp_nbr }
+    groupNumber = { grpNumber : y.grp_nbr }
   }
   /* end */
 
@@ -289,8 +299,8 @@ app.controller('status_name_grpNumder', function($scope, $http) {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
       var input = {
-        runName : val.runName,
-        grpNumber : foo.grpNumber,
+        runName : runname.runName,
+        grpNumber : groupNumber.grpNumber,
         statusCode : $scope.statusCode
       }
     $http.put('/update/status_name_grpNumder', input).
@@ -303,35 +313,42 @@ app.controller('status_name_grpNumder', function($scope, $http) {
     }
   };
 });
+
 //controller for Run Status Code by Run Name and Driver Step Detail ID
 app.controller('status_name_dtlID', function($scope, $http) {
   hideButton(permission);
+
   /* drop down */
-  var val, foo;
-  $http.get('/get/runname_driverstepdetail').
-  success(function(data) {
+  var runname, detailID;
+  $http.get('/get/runname_driverstepdetail').success(function(data) {
     $scope.items = data;
-    $scope.runName= $scope.items[0];
+    $scope.runName= data[0];
+    runname = { runName : data[0].run_name };
+    $http.post('/get/detailID_driverstepdetail', runname).success(function(data2) {
+      $scope.units = data2;
+      $scope.detailID= $scope.units[0];
+      detailID = { detailID : data2[0].drvr_step_dtl_id }
+    });
   });
+
   $scope.selectedValue = function(x) {
-    val = { runName : x.run_name }
-    $http.post('/get/detailID_driverstepdetail', val).
-    success(function(data) {
+    runname = { runName : x.run_name }
+    $http.post('/get/detailID_driverstepdetail', runname).success(function(data) {
       $scope.units = data;
       $scope.detailID= $scope.units[0];
+      detailID = { detailID : data.drvr_step_dtl_id }
     });
   }
   $scope.selectedValue2 = function(y) {
-    foo = { detailID : y.drvr_step_dtl_id }
+    detailID = { detailID : y.drvr_step_dtl_id }
   }
-  /* end */
 
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
       var input = {
-        runName : val.runName,
-        detailID : foo.detailID,
+        runName : runname.runName,
+        detailID : detailID.detailID,
         statusCode : $scope.statusCode
       }
       $http.put('/update/status_name_dtlID', input).
@@ -344,39 +361,69 @@ app.controller('status_name_dtlID', function($scope, $http) {
       }
   };
 });
+
+
+//-----------------------------------------------------------------------------
+// UPDATE STEP controller
+//-----------------------------------------------------------------------------
 //controller for Active Step Indicator by Driver Step ID
 app.controller('active_step_indicator_stepID', function($scope, $http) {
   hideButton(permission);
+
+  var sid;
+  $http.get('/get/detailID_driverstep').success(function(data) {
+    $scope.items = data;
+    $scope.drvr_step_id= $scope.items[0];
+    console.log(data[0]);
+    sid = { stepID : data[0].drvr_step_id }
+  });
+
+  $scope.selectedValue = function(x) {
+    console.log('set');
+    sid = { stepID : x.drvr_step_id }
+  }
+
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
-    $http.put('/update/active_step_indicator_stepID', $scope.form).
-      success(function(data) {
+      var input = {
+        drvr_step_id : sid.stepID,
+        actv_step_ind : $scope.actv_step_ind
+      }
+    $http.put('/update/active_step_indicator_stepID', input).success(function(data) {
         $scope.banner = JSON.stringify(data, null, 2);
       });
     }
   };
 });
+
 //controller for Update Active Step Indicator by Run Name and Driver Step ID
 app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   hideButton(permission);
   /* drop down */
-  var val, foo;
-  $http.get('/get/runname_driverstep').
-  success(function(data) {
+  var runname, sid;
+  $http.get('/get/runname_driverstep').success(function(data) {
     $scope.items = data;
     $scope.runName= $scope.items[0];
+    runname = { runName : data[0].run_nme }
+    $http.post('/get/detailID_driverstep', runname).success(function(data2) {
+      $scope.units = data2;
+      $scope.driverStepID= $scope.units[0];
+      sid = { stepID : data2[0].drvr_step_id }
+    });
   });
+
   $scope.selectedValue = function(x) {
-    val = { runName : x.run_nme }
-    $http.post('/get/detailID_driverstep', val).
-    success(function(data) {
+    runname = { runName : x.run_nme }
+    $http.post('/get/detailID_driverstep', runname).success(function(data) {
       $scope.units = data;
       $scope.driverStepID= $scope.units[0];
+      sid = { stepID : data[0].drvr_step_id }
     });
   }
+
   $scope.selectedValue2 = function(y) {
-    foo = { stepID : y.drvr_step_id }
+    sid = { stepID : y.drvr_step_id }
   }
   /* end */
 
@@ -384,8 +431,8 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
       var input = {
-        runName : val.runName,
-        stepID : foo.stepID,
+        runName : runname.runName,
+        stepID : sid.stepID,
         actv_step_ind : $scope.actv_step_ind
       }
     $http.put('/update/active_step_indicator_runName_stepID', input).
@@ -395,25 +442,27 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
     }
   };
 });
+
 //controller for Update Active Step Indicator by Run Name
 app.controller('active_step_indicator_runName', function($scope, $http) {
   hideButton(permission);
   /* drop down */
-  var val;
-  $http.get('/get/runname_driverstep').
-  success(function(data) {
+  var runname;
+  $http.get('/get/runname_driverstep').success(function(data) {
     $scope.items = data;
     $scope.runName= $scope.items[0];
+    runname = { runName : data[0].run_nme }
   });
+
   $scope.selectedValue = function(x) {
-    val = { runName : x.run_nme }
+    runname = { runName : x.run_nme }
   }
   /* end */
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
       var input = {
-        runName : val.runName,
+        runName : runname.runName,
         actv_step_ind : $scope.actv_step_ind
       }
       $http.put('/update/active_step_indicator_runName', input).
@@ -427,22 +476,29 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
 app.controller('active_step_indicator_runName_grpNumber', function($scope, $http) {
   hideButton(permission);
   /* drop down */
-  var val, foo;
-  $http.get('/get/runname_driverstep').
-  success(function(data) {
+  var runname, groupNumber;
+  $http.get('/get/runname_driverstep').success(function(data) {
     $scope.items = data;
     $scope.runName= $scope.items[0];
+    runname = { runName : data[0].run_nme }
+    $http.post('/get/grpNumber_driverstep', runname).success(function(data2) {
+      $scope.units = data2;
+      $scope.grpNumber= $scope.units[0];
+      groupNumber = { grpNumber : data2[0].grp_nbr }
+    });
   });
+
   $scope.selectedValue = function(x) {
-    val = { runName : x.run_nme }
-    $http.post('/get/grpNumber_driverstep', val).
-    success(function(data) {
+    runname = { runName : x.run_nme }
+    $http.post('/get/grpNumber_driverstep', runname).success(function(data) {
       $scope.units = data;
       $scope.grpNumber= $scope.units[0];
+      groupNumber = { grpNumber : data.grp_nbr }
     });
   }
+
   $scope.selectedValue2 = function(y) {
-    foo = { grpNumber : y.grp_nbr }
+    groupNumber = { grpNumber : y.grp_nbr }
   }
   /* end */
 
@@ -450,8 +506,8 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
     var r = confirm("Are you sure want to update?");
     if (r == true) {
       var input = {
-        runName : val.runName,
-        grpNumber : foo.grpNumber,
+        runName : runname.runName,
+        grpNumber : groupNumber.grpNumber,
         actv_step_ind : $scope.actv_step_ind
       }
       $http.put('/update/active_step_indicator_runName_grpNumber', input).
