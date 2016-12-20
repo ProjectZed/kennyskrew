@@ -96,7 +96,17 @@
 					</ul>
 				  </div>
 				</li>
-        <li class="rounded" style="padding:0px;">
+				<li class="rounded" style="padding:0px;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">Add
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li><a href="#AddDriverSchedule">Driver Schedule</a></li>
+						  <li><a href="#AddDriverStep">Driver Step</a></li>
+						</ul>
+					</div>
+				</li>
+        <!--<li class="rounded" style="padding:0px;">
 					<div class="dropdown">
 						<button class="btn dropdown-toggle menu-btn" type="button" data-toggle="dropdown">View
 						<span class="caret"></span></button>
@@ -118,7 +128,7 @@
 						  <li><a href="#">Current Running</a></li>
 						</ul>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
     <div class="shadowed rounded dynContent" ng-view="" ng-controller="macroCtrl">
