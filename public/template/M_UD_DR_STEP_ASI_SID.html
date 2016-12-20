@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h4>Update Active Step Indicator by Run Name and Driver Step ID</h4>
+  <h4>Update Active Step Indicator by Driver Step ID</h4>
   <br />
 	<form>
     <h4> Driver Step ID </h4>
-    <input type="text" class="form-control" ng-model="form.drvr_step_id" />
+    <select class="form-control" ng-model="drvr_step_id" ng-change="selectedValue(drvr_step_id)" ng-options="opt as opt.drvr_step_id for opt in items "/>
 
     <h4> Active Step Indicator </h4>
-    <input type="text" class="form-control" ng-model="form.actv_step_ind" />
+    <input type="text" class="form-control" ng-model="actv_step_ind" />
 
     <div class="submit-btn">
 <<<<<<< HEAD

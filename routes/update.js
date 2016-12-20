@@ -71,6 +71,7 @@ router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/detailID_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -212,6 +213,20 @@ router.post('/get/grpNumber_driverstep', function (req, res) {
     });
   });
 });
+
+router.get('/get/detailID_driverstep', function (req, res) {
+    db.serialize(function() {
+      db.all("SELECT DISTINCT drvr_step_id FROM C_DRIVER_STEP LIMIT 1000", function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
 router.post('/get/detailID_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -395,6 +410,7 @@ router.put('/update/status_name_grpNumder', function(req, res) {
 
 router.put('/update/status_name_dtlID', function(req, res) {
   db.serialize(function() {
+    console.log(req.body);
     db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.statusCode + "' WHERE run_name = '" + req.body.runName + "' AND drvr_step_dtl_id = " + req.body.detailID + " ", function(err){
       if(err){
         res.send("Error when querrying");
