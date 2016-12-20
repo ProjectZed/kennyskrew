@@ -31,3 +31,8 @@
 12/20/2016, 6:58:11 AM: User, DELETE, Driver Step, run name: CFE, driver step id: 8600003 
 12/20/2016, 6:58:24 AM: User, DELETE, Driver Step, run name: CFE, driver step id: 8600005 
 12/20/2016, 6:58:51 AM: User, DELETE, Driver Step Detail, run name: BI_DIST_CAD_DLY
+12/20/2016, 1:30:42 PM: User, DELETE, Driver Step Detail, run name: O_2_D_LIFE_APTX_ALPHA_NRT
+12/20/2016, 1:31:12 PM: User, DELETE, Driver Step Detail, run name: S_2_O_CLAIMS_CL_CNTR_NRT
+12/20/2016, 1:31:16 PM: User, DELETE, Driver Step Detail, run name: S_2_O_CL_FA_ISO_NRT
+12/20/2016, 1:31:18 PM: User, DELETE, Driver Step Detail, run name: S_2_O_CL_FA_ISO_NRT
+12/20/2016, 1:31:22 PM: User, DELETE, Driver Step Detail, run name: S_2_O_CL_FA_ISO_NRT

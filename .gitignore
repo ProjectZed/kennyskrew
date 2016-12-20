@@ -1,6 +1,8 @@
 !.gitkeep
+conf/
 node_modules/
-gui/bower_components/
+server/database/
+log.txt
 tmp
 .DS_Store
 .idea
