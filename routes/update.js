@@ -4,6 +4,37 @@ var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
+var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
+
+router.post('/pending', function(req, res){
+  console.log(req.body);
+  console.log(req.body.para5);
+  pending.serialize(function() {
+    pending.all("INSERT INTO pending_task (initiator, time, type, " +
+    "permission, macro, nParams, para1, para2, para3, para4, para5, " +
+    "para6, para7, para8, para9, para10, para11, para12, para13, " +
+     "para14, para15, para16) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      [req.body.initiator, req.body.time, req.body.type, req.body.permission,
+        req.body.macro, req.body.nParams, req.body.para1, req.body.para2,
+        req.body.para3, req.body.para4, req.body.para5, req.body.para6,
+        req.body.para7, req.body.para8, req.body.para9, req.body.para10,
+        req.body.para10, req.body.para11, req.body.para12, req.body.para13,
+        req.body.para14, req.body.para15, req.body.para16
+      ],
+      function(err, rows){
+        if(err){
+          console.log('error');
+          console.log(err);
+          res.send("error querrying");
+        }
+        else{
+          console.log('success');
+          console.log(rows);
+          res.send(rows);
+        }
+    });
+  });
+});
 
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
@@ -57,6 +88,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -82,7 +114,6 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
   });
 });
 
-
 router.get('/get/driverSchedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
@@ -94,7 +125,6 @@ router.get('/get/driverSchedule', function (req, res) {
     });
   });
 });
-
 
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
@@ -121,6 +151,7 @@ router.get('/get/runname_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -184,6 +215,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -196,6 +228,7 @@ router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/detailID_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -246,6 +279,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -258,6 +292,7 @@ router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/detailID_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -270,6 +305,7 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -308,6 +344,7 @@ router.post('/get/detailID_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -346,6 +383,7 @@ router.get('/get/runname_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){

@@ -34,7 +34,20 @@ app.controller('scheduleStartTime', function($scope, $http) {
     /* end */
 
     $scope.exec = function(){
-      console.log('lol');
+      var input = {
+        initiator : username,
+        time : new Date().getTime(),
+        type : "UPDATE",
+        permission : permission,
+        macro: "UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
+        nParams: 3,
+        para1: $scope.sche_start,
+        para2: runname.name,
+        para3: aid.audit
+      }
+      $http.post('/pending', input).success(function(data) {
+        console.log('lol');
+      });
     }
 
     $scope.urgentExec = function () {
