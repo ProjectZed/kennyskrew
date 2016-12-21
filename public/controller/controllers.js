@@ -14,6 +14,8 @@ app.controller('loginCtrl', function($scope, $http) {
 
   $scope.submitLogin = function () {
     //console.log($scope.form);
+    document.getElementById('username').style.borderColor = "#EBE9ED";
+    document.getElementById('password').style.borderColor = "#EBE9ED";
     //var env = $('#env').find(":selected").text();
     //console.log(env);
     if($scope.form.username === 'undefined' ||
@@ -45,8 +47,7 @@ app.controller('loginCtrl', function($scope, $http) {
               errorOut('Empty Password');
           }
         }else{
-          $http.post('/login', $scope.form).
-            success(function(data) {
+          $http.post('/login', $scope.form).success(function(data) {
               //go to homepage.html
               if(data === "Password Incorrect"){
                 redBorder('password');
@@ -68,9 +69,7 @@ app.controller('loginCtrl', function($scope, $http) {
             });
           }
         };
-
-      }
-    );
+      });
 
 app.controller('navController', function($scope, $http) {
   if(permission != "administrator")
@@ -84,61 +83,6 @@ app.controller('navController', function($scope, $http) {
           window.location.reload();
         });;
       }
-    };
-});
-
-
-//-----------------------------------------------------------------------------
-// DELETE controllers
-//-----------------------------------------------------------------------------
-//controller for Delete Driver Schedule
-app.controller('Dl_Driver_Schedule', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/delete/driverSchedule', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
-//controller for Delete Driver Step
-app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_GrpNbr', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
-//controller for Delete Driver Step
-app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
-//controller for Delete Driver Step
-app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
-//controller for Delete Driver Step Detail
-app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/delete/Driver_Step_RunName_Sid', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
     };
 });
 

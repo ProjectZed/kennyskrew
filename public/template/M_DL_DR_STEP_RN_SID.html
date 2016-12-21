@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <div class="shadowed rounded dynContent" style="">
-  <h5>Delete all entries by Run Name and Driver Step ID</h5>
+  <h4>Delete Driver Step by Run Name and Driver Step ID</h4>
+  <br />
 	<form>
-		<input type="text" class="" placeholder="p_run_nme Input" ng-model="form.runName"/>
-		<input type="text" class="" placeholder="p_drvr_step_id  Input" ng-model="form.drvr_step_id"/>
+    <h4> Run name </h4>
+    <select class="form-control" ng-model="runName" ng-change="selectedValue(runName)" ng-options="opt as opt.run_nme for opt in items ">
+    </select>
+
+    <h4> Driver Step ID </h4>
+    <select class="form-control" ng-model="driverStepID" ng-change="selectedValue2(driverStepID)" ng-options="opt as opt.drvr_step_id for opt in units ">
+    </select>
+
     <br />
     <div class="submit-btn">
       <button class="btn btn-success" type="button"  ng-click="urgentExec(false)" id="exec"> Exec </button>

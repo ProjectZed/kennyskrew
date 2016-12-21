@@ -35,15 +35,12 @@ router.post('/login', function(req, res) {
 				console.log('Empty username or password');
 				if(typeof(username) === 'undefined' &&
 						typeof(password) === 'undefined'){
-							console.log('1');
 						res.status(200).send("Both username and password are incorrect.");
 					}
 				else if(typeof(username) === 'undefined'){
-					console.log('2');
 					res.status(200).send("No Such User");
 				}
 				else if(typeof(password) === 'undefined'){
-					console.log('3');
 					res.status(200).send("Password Incorrect");
 				}
 	}else{
@@ -61,6 +58,7 @@ router.post('/login', function(req, res) {
 								var user = {
 									username : user.username,
 									password : user.password,
+									email: user.email,
 									type : user.type
 								}
 								req.session.user = user;
@@ -108,7 +106,7 @@ function checkLogin(req,res,next){
 router.get('/Logs', function(req, res) {
   LogController.readLog((result) => {
     var array = result.toString().split("\n");
-  	res.send(array.slice(0, array.length-1));
+  	res.send(array.slice(0, array.length-1).reverse());
   });
 });
 
