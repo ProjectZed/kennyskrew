@@ -68,6 +68,7 @@ app.controller('ResCtrl', function($scope, $http, $routeParams){
 app.controller('PRPageCtrl', function($scope, $http, $routeParams){
   hideBanner();
   document.getElementById("comment").style.display = "none";
+  $scope.isCheck = 0;
 
   if(permission == "administrator"){
     $http.get('/pending/' + $routeParams.id ).success(function(data) {
@@ -84,7 +85,9 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
   }
 
   $scope.prove = function () {
+    if(!$scope.isCheck){
     if(confirm("Are you sure want to prove?")){
+    $scope.isCheck = 1;
     var params = JSON.parse($scope.params);
     var input = {
       id: $scope.id,
@@ -114,10 +117,16 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
     });
   }
 }
+}
 
   $scope.decline = function () {
+    console.log('decline');
+    console.log($scope.isCheck);
+    if(!$scope.isCheck){
     var comment = prompt("Please enter your comment", "");
     if(comment != null){
+      console.log('in dec');
+      $scope.isCheck = 1;
       var input = {
         receiver : $scope.initiator,
         time : new Date().toString(),
@@ -174,6 +183,7 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
       });
     }
   }
+}
 
 });
 

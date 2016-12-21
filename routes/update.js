@@ -6,6 +6,18 @@ var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
 
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:cs320useonly@smtp.gmail.com');
+
+/*var mailOptions = {
+    from: '"Elvis ?" <chongzechen07@gmail.com>', // sender address
+    to: 'chongzechen07@gmail.com', // list of receivers
+    subject: 'Requesting PeerReview', // Subject line
+    text: 'Please login and PR', // plaintext body
+    html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+};*/
+
+
 router.post('/delete/pending', function(req, res) {
   pending.serialize(function() {
     pending.all("DELETE FROM pending_task WHERE id = " + req.body.id, function(err){
@@ -145,6 +157,19 @@ router.post('/pending', function(req, res){
           res.send("error querrying");
         }
         else{
+          var mailOptions = {
+              from: '"Elvis" <digitaldashlm07@gmail.com>', // sender address
+              to: 'digitaldashlm@gmail.com', // list of receivers
+              subject: 'Requesting PeerReview', // Subject line
+              text: 'Please login and PR', // plaintext body
+              html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+              return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+          });
           console.log('success');
           console.log(rows);
           res.send(rows);
