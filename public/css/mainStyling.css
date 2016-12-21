@@ -14,7 +14,7 @@
  }
 
  .menu-btn{
-	 	width: 150px;
+	 	width: 205px;
  }
  .mainMenu{
 	display:block;
@@ -100,6 +100,7 @@
 .form-control {
 		width: 250px;
 }
+
 #urgentExec, #exec{
 	width: 50%;
 	margin-bottom: 15px;

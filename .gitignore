@@ -1,6 +1,6 @@
 !.gitkeep
 node_modules/
-gui/bower_components/
+server/database/LibertyMutual.db
 tmp
 .DS_Store
 .idea
