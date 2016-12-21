@@ -44,6 +44,17 @@
                           </li>
                         </ul>
                       </li>
+                      <li class="nav-icon" ng-controller="ResCtrl">
+                        <a class= "dropdown-toggle" data-toggle = "dropdown">
+                          Response
+                          <span class= "badge" id="Res-badge">2</span>
+                        </a>
+                        <ul class= "dropdown-menu">
+                          <li ng-repeat="msg in $root.msgs track by $index">
+                            <a ng-href="#/Response/{{msg.id}}">{{msg.initiator}}</a>
+                          </li>
+                        </ul>
+                      </li>
                       <li>
                         <a href="#" ng-click="logout()">LogOut</a>
                       </li>

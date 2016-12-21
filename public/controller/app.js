@@ -93,5 +93,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       .when("/PeerReview/:id", {
           templateUrl: "template/peerreview.html",
           controller: "PRPageCtrl"
+      })
+      .when("/Response/:id", {
+          templateUrl: "template/peerreview.html",
+          controller: "ResPageCtrl"
       });
   }]);

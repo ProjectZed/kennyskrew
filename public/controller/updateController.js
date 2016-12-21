@@ -42,12 +42,27 @@ app.controller('scheduleStartTime', function($scope, $http) {
         macro: "UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
         params: JSON.stringify([$scope.sche_start, runname.name, aid.audit])
       }
-      $http.post('/pending', input).success(function(data) {
-        if(permission == "administrator") window.location.reload();
-        else {
+      $http.post('/pending', input).success(function(data1) {
+        if(permission == "administrator"){
+        $http.get('/pending').success(function(data) {
+          var prs = [];
+          for(var i = 0; i< data.length; i++){
+            prs.push({
+              id: data[i].id,
+              initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+            });
+          }
+          $scope.$root.prs = prs;
+          if(data.length == 0){
+            document.getElementById("badge").style.display = "none";
+          }else{
+            document.getElementById("badge").style.display = "inline-block";
+            document.getElementById("badge").innerHTML = data.length;
+          }
+        });
+      }
           $scope.banner = "Macro is waiting to get PR...";
           showBanner();
-        }
       });
     }
 

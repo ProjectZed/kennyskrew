@@ -47,7 +47,7 @@ pending.serialize(function() {
       "initiator TEXT, time TEXT, type TEXT, permission TEXT, " +
       "macro TEXT, params TEXT)");
     pending.run("CREATE TABLE IF NOT EXISTS pending_response (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-      "receiver TEXT, time TEXT, type TEXT, permission TEXT, macro TEXT, params TEXT, comment TEXT)");
+      "receiver TEXT, time TEXT, type TEXT, permission TEXT, macro TEXT, params TEXT, comment TEXT, read INTEGER)");
 });
 
 //Config middleware

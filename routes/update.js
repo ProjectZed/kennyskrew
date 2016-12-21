@@ -6,6 +6,81 @@ var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
 
+router.post('/delete/pending', function(req, res) {
+  pending.serialize(function() {
+    pending.all("DELETE FROM pending_task WHERE id = " + req.body.id, function(err){
+      if(err){
+        res.send("Error when querrying");
+      }
+      else {
+        res.send("delete pending successfully");
+      }
+    });
+  });
+});
+
+router.put('/response/:id', function(req, res) {
+  pending.serialize(function() {
+    pending.all("UPDATE pending_response SET read = 1 WHERE id = " + req.params.id, function(err){
+      if(err){
+        console.log(err);
+        res.send("Error when querrying");
+      }
+      else {
+        res.send("Marked read true successfully");
+      }
+    });
+  });
+});
+
+router.get('/response/id/:id', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_response where id = " + req.params.id, function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.get('/response/username/:username', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_response where receiver = '" + req.params.username + "'", function(err, rows){
+      if(err){
+        console.log(err);
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.post('/response', function(req, res){
+  pending.serialize(function() {
+    pending.all("INSERT INTO pending_response (receiver, time, type, " +
+    "permission, macro, params, comment, read) VALUES (?,?,?,?,?,?,?,?)",
+      [req.body.receiver, req.body.time, req.body.type,
+        req.body.permission, req.body.macro, req.body.params, req.body.comment, req.body.read],
+      function(err, rows){
+        if(err){
+          console.log('error');
+          console.log(err);
+          res.send("error querrying");
+        }
+        else{
+          console.log('success');
+          console.log(rows);
+          res.send(rows);
+        }
+    });
+  });
+});
+
 router.post('/run', function(req, res){
   console.log(req.body);
   db.serialize(function() {
