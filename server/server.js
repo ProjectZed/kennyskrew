@@ -41,6 +41,14 @@ var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db"
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
 });*/
+var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
+pending.serialize(function() {
+    pending.run("CREATE TABLE IF NOT EXISTS pending_task (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "initiator TEXT, time TEXT, type TEXT, permission TEXT, " +
+      "macro TEXT, params TEXT)");
+    pending.run("CREATE TABLE IF NOT EXISTS pending_response (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "receiver TEXT, time TEXT, type TEXT, permission TEXT, macro TEXT, params TEXT, comment TEXT, read INTEGER)");
+});
 
 //Config middleware
 app.use(bodyParser.urlencoded({ extended : false }));

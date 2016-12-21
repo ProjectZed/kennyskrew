@@ -105,3 +105,8 @@
 	width: 50%;
 	margin-bottom: 15px;
 }
+
+#proveBtn, #declineBtn{
+	width: 25%;
+	margin: 15px 0px;
+}

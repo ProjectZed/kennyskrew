@@ -4,6 +4,166 @@ var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
+var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
+
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:cs320useonly@smtp.gmail.com');
+
+/*var mailOptions = {
+    from: '"Elvis ?" <chongzechen07@gmail.com>', // sender address
+    to: 'chongzechen07@gmail.com', // list of receivers
+    subject: 'Requesting PeerReview', // Subject line
+    text: 'Please login and PR', // plaintext body
+    html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+};*/
+
+
+router.post('/delete/pending', function(req, res) {
+  pending.serialize(function() {
+    pending.all("DELETE FROM pending_task WHERE id = " + req.body.id, function(err){
+      if(err){
+        res.send("Error when querrying");
+      }
+      else {
+        res.send("delete pending successfully");
+      }
+    });
+  });
+});
+
+router.put('/response/:id', function(req, res) {
+  pending.serialize(function() {
+    pending.all("UPDATE pending_response SET read = 1 WHERE id = " + req.params.id, function(err){
+      if(err){
+        res.send("Error when querrying");
+      }
+      else {
+        res.send("Marked read true successfully");
+      }
+    });
+  });
+});
+
+router.get('/response/id/:id', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_response where id = " + req.params.id, function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.get('/response/username/:username', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_response where receiver = '" + req.params.username + "'", function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.post('/response', function(req, res){
+  pending.serialize(function() {
+    pending.all("INSERT INTO pending_response (receiver, time, type, " +
+    "permission, macro, params, comment, read) VALUES (?,?,?,?,?,?,?,?)",
+      [req.body.receiver, req.body.time, req.body.type,
+        req.body.permission, req.body.macro, req.body.params, req.body.comment, req.body.read],
+      function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          res.send(rows);
+        }
+    });
+  });
+});
+
+router.post('/run', function(req, res){
+  db.serialize(function() {
+    db.all(req.body.macro, req.body.params ,function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        pending.serialize(function() {
+          pending.all("DELETE FROM pending_task WHERE id = " + req.body.id ,function(err, rows){
+            if(err){
+              res.send("error delete macro from pending");
+            }
+            else{
+              res.send("Run successfully!");
+            }
+          });
+        });
+      }
+    });
+  });
+});
+
+router.get('/pending', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_task", function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.get(['/pending/:id', '/PeerReview/:id'], function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_task where id = " + req.params.id, function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.post('/pending', function(req, res){
+  pending.serialize(function() {
+    pending.all("INSERT INTO pending_task (initiator, time, type, " +
+    "permission, macro, params) VALUES (?,?,?,?,?,?)",
+      [req.body.initiator, req.body.time, req.body.type,
+        req.body.permission, req.body.macro, req.body.params],
+      function(err, rows){
+        if(err){
+          res.send("error querrying");
+        }
+        else{
+          var mailOptions = {
+              from: '"Elvis" <digitaldashlm07@gmail.com>', // sender address
+              to: 'digitaldashlm@gmail.com', // list of receivers
+              subject: 'Requesting PeerReview', // Subject line
+              text: 'Please login and PR', // plaintext body
+              html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+              return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+          });
+          res.send(rows);
+        }
+    });
+  });
+});
 
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
@@ -57,6 +217,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -82,19 +243,17 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
   });
 });
 
-
 router.get('/get/driverSchedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
         if(err){
-          console.log("error querrying");
+          res.send("error querrying");
         }else{
           res.send(rows);
         }
     });
   });
 });
-
 
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
@@ -121,6 +280,7 @@ router.get('/get/runname_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -184,6 +344,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -196,6 +357,7 @@ router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/detailID_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -246,6 +408,7 @@ router.get('/get/runname_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -258,6 +421,7 @@ router.post('/get/grpNumber_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/detailID_driverstepdetail', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_dtl_id FROM C_DRIVER_STEP_DETAIL WHERE run_name = '" + req.body.runName + "' ", function(err, rows){
@@ -270,6 +434,7 @@ router.post('/get/detailID_driverstepdetail', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -308,6 +473,7 @@ router.post('/get/detailID_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -346,6 +512,7 @@ router.get('/get/runname_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -533,7 +700,6 @@ router.put('/update/status_name_grpNumder', function(req, res) {
 
 router.put('/update/status_name_dtlID', function(req, res) {
   db.serialize(function() {
-    console.log(req.body);
     db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.statusCode + "' WHERE run_name = '" + req.body.runName + "' AND drvr_step_dtl_id = " + req.body.detailID + " ", function(err){
       if(err){
         res.send("Error when querrying");

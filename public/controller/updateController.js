@@ -33,6 +33,39 @@ app.controller('scheduleStartTime', function($scope, $http) {
     }
     /* end */
 
+    $scope.exec = function(){
+      var input = {
+        initiator : username,
+        time : new Date().toString(),
+        type : "UPDATE",
+        permission : permission,
+        macro: "UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
+        params: JSON.stringify([$scope.sche_start, runname.name, aid.audit])
+      }
+      $http.post('/pending', input).success(function(data1) {
+        if(permission == "administrator"){
+        $http.get('/pending').success(function(data) {
+          var prs = [];
+          for(var i = 0; i< data.length; i++){
+            prs.push({
+              id: data[i].id,
+              initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+            });
+          }
+          $scope.$root.prs = prs;
+          if(data.length == 0){
+            document.getElementById("badge").style.display = "none";
+          }else{
+            document.getElementById("badge").style.display = "inline-block";
+            document.getElementById("badge").innerHTML = data.length;
+          }
+        });
+      }
+          $scope.banner = "Macro is waiting to get PR...";
+          showBanner();
+      });
+    }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to update?");
       if (r == true) {
@@ -79,6 +112,10 @@ app.controller('statusCode', function($scope, $http) {
     aid = { audit : y.audit_id }
   }
   /* end */
+
+  $scope.exec = function(){
+    console.log('lol');
+  }
 
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
@@ -129,6 +166,10 @@ app.controller('valuationEnd', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    console.log('lol');
+  }
+
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -145,6 +186,7 @@ app.controller('valuationEnd', function($scope, $http) {
     }
   };
 });
+
 //controller for Valuation Start time
 app.controller('valuationStart', function($scope, $http) {
   hideButton(permission);
@@ -173,6 +215,10 @@ app.controller('valuationStart', function($scope, $http) {
     aid = { audit : y.audit_id }
   }
   /* end */
+
+  $scope.exec = function(){
+    console.log('lol');
+  }
 
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
@@ -205,6 +251,10 @@ app.controller('sla_by_audit', function($scope, $http) {
 
   $scope.selectedValue = function(x) {
     aid = { audit : x.audit_id }
+  }
+
+  $scope.exec = function(){
+    console.log('lol');
   }
 
   $scope.urgentExec = function () {
@@ -240,6 +290,10 @@ app.controller('sla_by_runname', function($scope, $http) {
 
   $scope.selectedValue = function(x) {
     runname = { name : x.run_nme };
+  }
+
+  $scope.exec = function(){
+    console.log('lol');
   }
 
   $scope.urgentExec = function () {
@@ -309,6 +363,10 @@ app.controller('status_name_grpNumder', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    console.log('lol');
+  }
+
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -359,6 +417,10 @@ app.controller('status_name_dtlID', function($scope, $http) {
     detailID = { detailID : y.drvr_step_dtl_id }
   }
 
+  $scope.exec = function(){
+    console.log('lol');
+  }
+
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -397,6 +459,10 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
 
   $scope.selectedValue = function(x) {
     sid = { stepID : x.drvr_step_id }
+  }
+
+  $scope.exec = function(){
+    console.log('lol');
   }
 
   $scope.urgentExec = function () {
@@ -446,6 +512,10 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    console.log('lol');
+  }
+
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
     if (r == true) {
@@ -479,6 +549,11 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
   $scope.selectedValue = function(x) {
     runname = { runName : x.run_nme }
   }
+
+  $scope.exec = function(){
+    console.log('lol');
+  }
+
   /* end */
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");
@@ -527,6 +602,10 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
     groupNumber = { grpNumber : y.grp_nbr }
   }
   /* end */
+
+  $scope.exec = function(){
+    console.log('lol');
+  }
 
   $scope.urgentExec = function () {
     var r = confirm("Are you sure want to update?");

@@ -11,8 +11,6 @@ var LogController = require("./logController");
 /* GET home page. */
 router.get('/',checkLogin);
 router.get('/', function(req, res) {
-	console.log('get index');
-	console.log(req.session.user);
 	var user = null;
 	if(req.session.user)
 		user = { user: req.session.user};
@@ -21,7 +19,6 @@ router.get('/', function(req, res) {
 
 // router.get('/login',checkNotLogin);
 router.get('/login',function(req,res){
-	console.log('get login page');
 	res.render('login/login.html');
 });
 
@@ -32,7 +29,6 @@ router.post('/login', function(req, res) {
 			typeof(password) === 'undefined' ||
 			username.length == 0 || !username.trim() ||
 			password.length == 0 || !password.trim()){
-				console.log('Empty username or password');
 				if(typeof(username) === 'undefined' &&
 						typeof(password) === 'undefined'){
 						res.status(200).send("Both username and password are incorrect.");
@@ -50,9 +46,7 @@ router.post('/login', function(req, res) {
           console.log("Fail authenticate");
         }
         else {
-					console.log('rows');
 					if(rows.length > 0){
-						console.log('row more than 0');
 						var user = rows[0];
 						if(user.password === password){
 								var user = {
