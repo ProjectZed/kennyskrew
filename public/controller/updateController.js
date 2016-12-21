@@ -36,17 +36,18 @@ app.controller('scheduleStartTime', function($scope, $http) {
     $scope.exec = function(){
       var input = {
         initiator : username,
-        time : new Date().getTime(),
+        time : new Date().toString(),
         type : "UPDATE",
         permission : permission,
         macro: "UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
-        nParams: 3,
-        para1: $scope.sche_start,
-        para2: runname.name,
-        para3: aid.audit
+        params: JSON.stringify([$scope.sche_start, runname.name, aid.audit])
       }
       $http.post('/pending', input).success(function(data) {
-        console.log('lol');
+        if(permission == "administrator") window.location.reload();
+        else {
+          $scope.banner = "Macro is waiting to get PR...";
+          showBanner();
+        }
       });
     }
 

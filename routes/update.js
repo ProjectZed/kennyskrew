@@ -6,21 +6,63 @@ var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
 
+router.post('/run', function(req, res){
+  console.log(req.body);
+  db.serialize(function() {
+    db.all(req.body.macro, req.body.params ,function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        pending.serialize(function() {
+          pending.all("DELETE FROM pending_task WHERE id = " + req.body.id ,function(err, rows){
+            if(err){
+              console.log(err);
+              res.send("error delete macro from pending");
+            }
+            else{
+              res.send("Run successfully!");
+            }
+          });
+        });
+      }
+    });
+  });
+});
+
+router.get('/pending', function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_task", function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
+router.get(['/pending/:id', '/PeerReview/:id'], function(req, res){
+  pending.serialize(function() {
+    pending.all("SELECT * FROM pending_task where id = " + req.params.id, function(err, rows){
+      if(err){
+        res.send("error querrying");
+      }
+      else{
+        res.send(rows);
+      }
+    });
+  });
+});
+
 router.post('/pending', function(req, res){
   console.log(req.body);
-  console.log(req.body.para5);
   pending.serialize(function() {
     pending.all("INSERT INTO pending_task (initiator, time, type, " +
-    "permission, macro, nParams, para1, para2, para3, para4, para5, " +
-    "para6, para7, para8, para9, para10, para11, para12, para13, " +
-     "para14, para15, para16) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-      [req.body.initiator, req.body.time, req.body.type, req.body.permission,
-        req.body.macro, req.body.nParams, req.body.para1, req.body.para2,
-        req.body.para3, req.body.para4, req.body.para5, req.body.para6,
-        req.body.para7, req.body.para8, req.body.para9, req.body.para10,
-        req.body.para10, req.body.para11, req.body.para12, req.body.para13,
-        req.body.para14, req.body.para15, req.body.para16
-      ],
+    "permission, macro, params) VALUES (?,?,?,?,?,?)",
+      [req.body.initiator, req.body.time, req.body.type,
+        req.body.permission, req.body.macro, req.body.params],
       function(err, rows){
         if(err){
           console.log('error');

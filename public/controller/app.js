@@ -90,8 +90,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
           controller: "ViewLog"
       })
       //route for peer review
-      .when("/PeerReview", {
+      .when("/PeerReview/:id", {
           templateUrl: "template/peerreview.html",
-          controller: ""
+          controller: "PRPageCtrl"
       });
   }]);

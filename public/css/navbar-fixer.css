@@ -35,4 +35,9 @@
       display:block !important;
   }
 
+  #urgentExec, #exec{
+  	width: 25%;
+  	margin-bottom: 15px;
+  }
+
 }

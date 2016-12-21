@@ -1,5 +1,16 @@
 <!DOCTYPE html>
-<div class="shadowed rounded dynContent" style="">
-	<h5>Your pending peer request</h5>
-	<div id="peer"></div>
+<div class="shadowed rounded dynContent">
+	<h4>Pending Peer Review: </h4>
+
+  <h5>Initiator: {{initiator}}</h5>
+	<h5>Request type: {{type}}</h5>
+	<h5>Permission: {{permission}}</h5>
+	<h5>Request time: {{time}}</h5>
+	<h5>Macro: {{macro}}</h5>
+	<h5>Params: {{params}}</h5>
+	<div class="submit-btn">
+		<button class="btn btn-success" type="button" ng-click="prove()" id="proveBtn"> Prove </button>
+		<button class="btn btn-danger" type="button" ng-click="decline()" id="declineBtn"> Decline </button>
+	</div>
+	<pre class="alert alert-info" id="error-banner">{{ banner }}</pre>
 </div>

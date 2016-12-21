@@ -1,6 +1,70 @@
-app.controller('macroCtrl', function($scope){
-  //console.log(permission);
-  //
+app.controller('PRPageCtrl', function($scope, $http, $routeParams){
+  hideBanner();
+
+  $http.get('/pending/' + $routeParams.id ).success(function(data) {
+    if(data.length != 0){
+      $scope.id = data[0].id;
+      $scope.initiator = data[0].initiator;
+      $scope.type = data[0].type;
+      $scope.permission = data[0].permission;
+      $scope.time = data[0].time;
+      $scope.macro = data[0].macro;
+      $scope.params = data[0].params;
+    }
+  });
+
+  $scope.prove = function () {
+    var params = JSON.parse($scope.params);
+    var input = {
+      id: $scope.id,
+      macro: $scope.macro,
+      params: params
+    }
+    $http.post('/run', input).success(function(data) {
+      if(data == "Run successfully!"){
+        $http.get('/pending').success(function(data) {
+          var prs = [];
+          for(var i = 0; i< data.length; i++){
+            prs.push({
+              id: data[i].id,
+              initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+            });
+          }
+          $scope.$root.prs = prs;
+          if(data.length == 0){
+            document.getElementById("badge").style.display = "none";
+          }else{
+            document.getElementById("badge").innerHTML = data.length;
+          }
+        });
+      }
+      $scope.banner = data;
+      showBanner();
+    });
+  }
+
+  $scope.decline = function () {
+    var comment = prompt("Please enter your comment", "");
+  }
+
+});
+
+app.controller('PRCtrl', function($scope, $http){
+  $http.get('/pending').success(function(data) {
+    var prs = [];
+    for(var i = 0; i< data.length; i++){
+      prs.push({
+        id: data[i].id,
+        initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+      });
+    }
+    $scope.$root.prs = prs;
+    if(data.length == 0){
+      document.getElementById("badge").style.display = "none";
+    }else{
+      document.getElementById("badge").innerHTML = data.length;
+    }
+  });
 });
 
 app.controller('environmentCtrl', function($scope) {
@@ -63,7 +127,7 @@ app.controller('loginCtrl', function($scope, $http) {
                 errorOut(error);
                 //console.log('both username and password');
               }else{
-                $scope.user = data
+                $scope.user = data;
                 window.location.href="/";
               }
             });
@@ -73,8 +137,7 @@ app.controller('loginCtrl', function($scope, $http) {
 
 app.controller('navController', function($scope, $http) {
   if(permission != "administrator")
-    document.getElementById('PR').style.display = "none";
-
+    document.getElementById('PR-text').innerHTML = "Msg";
     $scope.logout = function () {
       if(confirm("Are you sure want to exit?")){
         $http.get('/logout').

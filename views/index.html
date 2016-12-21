@@ -33,17 +33,14 @@
                       <li>
                         <a href="#Logs">Logs</a>
                       </li>
-                      <li class="nav-icon" id="PR">
-                        <a class= "dropdown-toggle" data-toggle = "dropdown" href = "#">
+                      <li class="nav-icon" id="PR" ng-controller="PRCtrl">
+                        <a class= "dropdown-toggle" data-toggle = "dropdown" id="PR-text">
                           PeerReview
-                          <span class= "badge">2</span>
+                          <span class= "badge" id="badge">2</span>
                         </a>
                         <ul class= "dropdown-menu">
-                          <li>
-                            <a href = "#PeerReview" >PeerReview 1</a>
-                          </li>
-                          <li>
-                            <a href = "#PeerReview" >PeerReview 2</a>
+                          <li ng-repeat="pr in $root.prs track by $index">
+                            <a ng-href="#/PeerReview/{{pr.id}}">{{pr.initiator}}</a>
                           </li>
                         </ul>
                       </li>
@@ -131,7 +128,7 @@
 				</li>-->
 			</ul>
 		</div>
-    <div class="shadowed rounded dynContent" ng-view="" ng-controller="macroCtrl">
+    <div class="shadowed rounded dynContent" ng-view="">
 		</div>
   </div>
   <script>
@@ -139,6 +136,7 @@
      var password = "<%= user.password %>";
      var email = "<%= user.email %>";
      var permission = "<%= user.type %>";
+     var nPR;
   </script>
   <script src="controller/app.js"></script>
   <script src="javascripts/utils.js"></script>

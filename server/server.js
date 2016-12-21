@@ -41,14 +41,14 @@ var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db"
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
     users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
 });*/
-/*var users = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
-users.serialize(function() {
-    users.run("CREATE TABLE IF NOT EXISTS pending_task (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
+pending.serialize(function() {
+    pending.run("CREATE TABLE IF NOT EXISTS pending_task (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
       "initiator TEXT, time TEXT, type TEXT, permission TEXT, " +
-      "macro TEXT, nParams INTEGER, para1 TEXT, para2 TEXT, para3 TEXT, para4 TEXT," +
-      "para5 TEXT, para6 TEXT, para7 TEXT, para8 TEXT, para9 TEXT, para10 TEXT, " +
-      "para11 TEXT, para12 TEXT, para13 TEXT, para14 TEXT, para15 TEXT, para16 TEXT)");
-});*/
+      "macro TEXT, params TEXT)");
+    pending.run("CREATE TABLE IF NOT EXISTS pending_response (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "receiver TEXT, time TEXT, type TEXT, permission TEXT, macro TEXT, params TEXT, comment TEXT)");
+});
 
 //Config middleware
 app.use(bodyParser.urlencoded({ extended : false }));
