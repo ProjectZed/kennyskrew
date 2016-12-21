@@ -17,6 +17,12 @@ var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:
     html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
 };*/
 
+/*router.get('/admin/email', function(req.res){
+  pending.serialize(function() {
+    pending.all("", function(err, row){
+
+    });
+});*/
 
 router.post('/delete/pending', function(req, res) {
   pending.serialize(function() {

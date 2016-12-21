@@ -1,1 +1,7 @@
 12/21/2016, 2:32:25 AM: User, UPDATE, Schedule Start Time: 123, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/21/2016, 11:00:30 AM: User, UPDATE, Schedule Start Time: 00:00:02, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/21/2016, 1:19:10 PM: User, UPDATE, Schedule Start Time: undefined, (run name: CLM_ACS_EXTR, audit id: 1799120014)
+12/21/2016, 1:24:19 PM: User, UPDATE, Schedule Start Time: undefined, (run name: undefined, audit id: 1799120014)
+12/21/2016, 1:25:24 PM: User, UPDATE, Schedule Start Time: undefined, (run name: CLM_ACS_EXTR, audit id: undefined)
+12/21/2016, 1:33:45 PM: User, UPDATE, Schedule Start Time: undefined, (run name: CDI_2_O, audit id: undefined)
+12/21/2016, 1:43:42 PM: User, UPDATE, Schedule Start Time: undefined, (run name: undefined, audit id: undefined)

@@ -37,7 +37,7 @@ app.controller('scheduleStartTime', function($scope, $http) {
       var input = {
         initiator : username,
         time : new Date().toString(),
-        type : "UPDATE",
+        type : "UPDATE SCHED START",
         permission : permission,
         macro: "UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
         params: JSON.stringify([$scope.sche_start, runname.name, aid.audit])
@@ -114,7 +114,36 @@ app.controller('statusCode', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE STTS",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_SCHEDULE SET stts_cd = ? WHERE run_nme = ? AND audit_id = ?",
+      params: JSON.stringify([$scope.Status, runname.name, aid.audit])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -167,7 +196,36 @@ app.controller('valuationEnd', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE VAL END",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_SCHEDULE SET vlutn_end_dtm = ? WHERE run_nme = ? AND audit_id = ?",
+      params: JSON.stringify([$scope.valEnd, runname.name, aid.audit])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -217,7 +275,36 @@ app.controller('valuationStart', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE VAL START",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_SCHEDULE SET vlutn_start_dtm = ? WHERE run_nme = ? AND audit_id = ?",
+      params: JSON.stringify([$scope.valStart, runname.name, aid.audit])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -254,7 +341,36 @@ app.controller('sla_by_audit', function($scope, $http) {
   }
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE SLA",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_SCHEDULE SET sla_date = ?, sla_time = ? WHERE audit_id = ?",
+      params: JSON.stringify([$scope.sla_dt, $scope.sla_time, aid.audit])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -293,7 +409,36 @@ app.controller('sla_by_runname', function($scope, $http) {
   }
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE SLA",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_SCHEDULE SET sla_date = ?, sla_time = ? WHERE run_nme = ?",
+      params: JSON.stringify([$scope.sla_dt, $scope.sla_time, runname.name])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -364,7 +509,36 @@ app.controller('status_name_grpNumder', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE RUN STATUS CODE",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = ? WHERE run_name = ? AND grp_nbr = ?",
+      params: JSON.stringify([$scope.statusCode, runname.runName, groupNumber.grpNumber])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -418,7 +592,36 @@ app.controller('status_name_dtlID', function($scope, $http) {
   }
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE RUN STATUS CODE",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = ? WHERE run_name = ? AND drvr_step_dtl_id = ?",
+      params: JSON.stringify([$scope.statusCode, runname.runName, detailID.detailID])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -462,7 +665,36 @@ app.controller('active_step_indicator_stepID', function($scope, $http) {
   }
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE ASI by DSI",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP SET actv_step_ind = ? WHERE drvr_step_id = ? ",
+      params: JSON.stringify([$scope.actv_step_ind, sid.stepID])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -513,7 +745,36 @@ app.controller('active_step_indicator_runName_stepID', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE ASI by RN DSI",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP SET actv_step_ind = ? WHERE run_nme = ? AND drvr_step_id = ?",
+      params: JSON.stringify([$scope.actv_step_ind, runname.runName, sid.stepID])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
@@ -551,7 +812,36 @@ app.controller('active_step_indicator_runName', function($scope, $http) {
   }
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE ASI by RN",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP SET actv_step_ind = ? WHERE run_nme = ?",
+      params: JSON.stringify([$scope.actv_step_ind, runname.runName])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   /* end */
@@ -604,7 +894,36 @@ app.controller('active_step_indicator_runName_grpNumber', function($scope, $http
   /* end */
 
   $scope.exec = function(){
-    console.log('lol');
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "UPDATE ASI by RN GN",
+      permission : permission,
+      macro: "UPDATE C_DRIVER_STEP SET actv_step_ind = ? WHERE run_nme = ? AND grp_nbr = ?",
+      params: JSON.stringify([$scope.actv_step_ind, runname.runName, groupNumber.grpNumber])
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
   }
 
   $scope.urgentExec = function () {
