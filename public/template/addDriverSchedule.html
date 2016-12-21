@@ -6,8 +6,8 @@
 		<input type="text" class="" placeholder="SLA_TIME Input" ng-model="form.sla_time" />
 		<input type="text" class="" placeholder="RUN_NME  Input" ng-model="form.runName"/>
     <div class="submit-btn">
-      <button class="btn btn-success" type="button" ng-click="urgentExec()" id="exec"> Exec </button>
-      <button class="btn btn-danger" type="button" id="urgentExec"> Urgent Exec </button>
+      <button class="btn btn-success" type="button" ng-click="urgentExec(false)" id="exec"> Exec </button>
+      <button class="btn btn-danger" type="button"  ng-click="urgentExec(true)" id="urgentExec"> Urgent Exec </button>
     </div>
 	</form>
   <pre class="alert alert-info alert-message" id="error-banner">{{ banner }}</pre>

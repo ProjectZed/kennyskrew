@@ -4,6 +4,7 @@ var sqlite3 = require('sqlite3').verbose();
 var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
+var pending = new sqlite3.Database(__dirname + "/../server/database/PeerReview.db");
 
 router.get('/get/runname_driverschedule', function (req, res) {
     db.serialize(function() {
@@ -321,6 +322,42 @@ router.post('/get/grpNumber_driverstep', function (req, res) {
   });
 });
 
+router.put('/update/*', function(req, res,next) {
+  console.log("this is the body: "+ JSON.stringify(req.body));
+  vars = req.body;
+
+  console.log(req.originalUrl); // this is it! the route finder!
+  var date = new Date().toLocaleString();
+  var datearr = date.split(',');
+
+  //vars for the insert statement
+  var macro  = req.originalUrl;
+  devEmail = "testdata";
+  managerEmail = "testdata";
+  var month_year_day = datearr[0];
+  var time_of_request = datearr[1];
+
+  if(req.body.isUrgent){
+    console.log("urgent!, skip!");
+  }else{
+    vars.isUrgent = true;
+    vars = JSON.stringify(vars);
+    var pendingString = "INSERT INTO pendingMacro (`macro`,`devsEmail`,`managerEmail`,`date_of_request`,`time_of_request`,`vars`) ";
+    var values = "VALUES ( '" +macro+"' , '"+devEmail+"','"+managerEmail+"','"+time_of_request + "',' " +time_of_request + "','" + vars + "')";
+    pending.serialize(function() {
+      var ourtable = pendingString + values;
+      pending.run(ourtable, function(err){
+        if(err){
+          console.log("Error when querrying: " + err);
+          res.send("Error when querrying: " + err);
+        }
+      });
+    });
+    console.log("not that urgent");
+  }
+  next()
+});
+
 router.post('/get/detailID_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT drvr_step_id FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
@@ -346,6 +383,7 @@ router.get('/get/runname_driverstep', function (req, res) {
     });
   });
 });
+
 router.post('/get/grpNumber_driverstep', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT grp_nbr FROM C_DRIVER_STEP WHERE run_nme = '" + req.body.runName + "' ", function(err, rows){
