@@ -153,6 +153,7 @@ router.put('/update/*', function(req, res,next) {
 
   if(req.body.isUrgent){
     console.log("urgent!, skip!");
+    next();
   }else{
     vars.isUrgent = true;
     vars = JSON.stringify(vars);
@@ -168,8 +169,8 @@ router.put('/update/*', function(req, res,next) {
       });
     });
     console.log("not that urgent");
+    res.send("Need approval to run");
   }
-  next()
 })
 
 
