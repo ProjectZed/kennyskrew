@@ -120,12 +120,9 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
 }
 
   $scope.decline = function () {
-    console.log('decline');
-    console.log($scope.isCheck);
     if(!$scope.isCheck){
     var comment = prompt("Please enter your comment", "");
     if(comment != null){
-      console.log('in dec');
       $scope.isCheck = 1;
       var input = {
         receiver : $scope.initiator,

@@ -35,7 +35,6 @@ router.put('/response/:id', function(req, res) {
   pending.serialize(function() {
     pending.all("UPDATE pending_response SET read = 1 WHERE id = " + req.params.id, function(err){
       if(err){
-        console.log(err);
         res.send("Error when querrying");
       }
       else {
@@ -62,7 +61,6 @@ router.get('/response/username/:username', function(req, res){
   pending.serialize(function() {
     pending.all("SELECT * FROM pending_response where receiver = '" + req.params.username + "'", function(err, rows){
       if(err){
-        console.log(err);
         res.send("error querrying");
       }
       else{
@@ -80,13 +78,9 @@ router.post('/response', function(req, res){
         req.body.permission, req.body.macro, req.body.params, req.body.comment, req.body.read],
       function(err, rows){
         if(err){
-          console.log('error');
-          console.log(err);
           res.send("error querrying");
         }
         else{
-          console.log('success');
-          console.log(rows);
           res.send(rows);
         }
     });
@@ -94,7 +88,6 @@ router.post('/response', function(req, res){
 });
 
 router.post('/run', function(req, res){
-  console.log(req.body);
   db.serialize(function() {
     db.all(req.body.macro, req.body.params ,function(err, rows){
       if(err){
@@ -104,7 +97,6 @@ router.post('/run', function(req, res){
         pending.serialize(function() {
           pending.all("DELETE FROM pending_task WHERE id = " + req.body.id ,function(err, rows){
             if(err){
-              console.log(err);
               res.send("error delete macro from pending");
             }
             else{
@@ -144,7 +136,6 @@ router.get(['/pending/:id', '/PeerReview/:id'], function(req, res){
 });
 
 router.post('/pending', function(req, res){
-  console.log(req.body);
   pending.serialize(function() {
     pending.all("INSERT INTO pending_task (initiator, time, type, " +
     "permission, macro, params) VALUES (?,?,?,?,?,?)",
@@ -152,8 +143,6 @@ router.post('/pending', function(req, res){
         req.body.permission, req.body.macro, req.body.params],
       function(err, rows){
         if(err){
-          console.log('error');
-          console.log(err);
           res.send("error querrying");
         }
         else{
@@ -170,8 +159,6 @@ router.post('/pending', function(req, res){
             }
             console.log('Message sent: ' + info.response);
           });
-          console.log('success');
-          console.log(rows);
           res.send(rows);
         }
     });
@@ -260,7 +247,7 @@ router.get('/get/driverSchedule', function (req, res) {
     db.serialize(function() {
       db.all("SELECT DISTINCT run_nme FROM C_DRIVER_SCHEDULE", function(err, rows){
         if(err){
-          console.log("error querrying");
+          res.send("error querrying");
         }else{
           res.send(rows);
         }
@@ -713,7 +700,6 @@ router.put('/update/status_name_grpNumder', function(req, res) {
 
 router.put('/update/status_name_dtlID', function(req, res) {
   db.serialize(function() {
-    console.log(req.body);
     db.all("UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" + req.body.statusCode + "' WHERE run_name = '" + req.body.runName + "' AND drvr_step_dtl_id = " + req.body.detailID + " ", function(err){
       if(err){
         res.send("Error when querrying");
