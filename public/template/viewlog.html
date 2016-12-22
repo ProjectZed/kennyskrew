@@ -10,10 +10,37 @@
     padding: 5px;
     padding-left: 20px;
   }
+  .red{
+    color:red;
+  }
 </style>
 <div class="shadowed rounded dynContent" style="background-color: white;">
-  <h5>Your activity history</h5>
+  <div class="input-group date datepicker" data-provide="datepicker" ng-controller="logCtrl">
+    <input type="text" class="form-control" data-date-format="MM/DD/YYYY" style="text-align: center;">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+  </div>
+  <h3>Your activity history</h3>
   <ul style="list-style-type: none; padding-left: 0px;">
-    <li class="logs" ng-repeat="line in banner">{{ line }}</li>
+    <li class="logs" ng-repeat="line in $root.banner">
+      <div class = "red" ng-if="line.deny == 1">
+        <h5><span >Execute Time:</span> {{line.time}}</h5>
+        <h5><span >User name:</span> {{line.username}}</h5>
+        <h5><span >User permission:</span> {{line.permission}}</h5>
+        <h5><span >Execute Macro:</span> <br/>{{line.macro}}</h5>
+        <h5><span >Result:</span> {{line.urgent}}</h5>
+        <h5><span >Comment:</span> {{line.comment}}</h5>
+      </div>
+      <div ng-if="line.deny == 0">
+        <h5><span >Execute Time:</span> {{line.time}}</h5>
+        <h5><span >User name:</span> {{line.username}}</h5>
+        <h5><span >User permission:</span> {{line.permission}}</h5>
+        <h5><span >Execute Macro:</span> <br/>{{line.macro}}</h5>
+        <h5><span >Result:</span> {{line.urgent}}</h5>
+        <h5><span >Comment:</span> {{line.comment}}</h5>
+      </div>
+    </li>
   </ul>
+  <pre class="alert alert-info" id="error-banner">{{ error }}</pre>
 </div>

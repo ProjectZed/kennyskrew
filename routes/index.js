@@ -56,6 +56,7 @@ router.post('/login', function(req, res) {
 									type : user.type
 								}
 								req.session.user = user;
+								req.session.save();
 								res.status(200).send(user);
 						}else{
 							res.status(200).send("Password Incorrect");
@@ -89,7 +90,6 @@ function checkNotLogin(req,res,next){
 
 function checkLogin(req,res,next){
 	console.log('checkLogin');
-	log.debug(req.session.user);
 	if(!req.session.user){
 		console.log(req.session.user);
 		return res.redirect('/login');
@@ -97,11 +97,32 @@ function checkLogin(req,res,next){
 	next();
 }
 
-router.get('/Logs', function(req, res) {
-  LogController.readLog((result) => {
-    var array = result.toString().split("\n");
-  	res.send(array.slice(0, array.length-1).reverse());
-  });
+router.get('/Logs/:filename', function(req, res) {
+	var prefix = "./logs/";
+	fs.stat(prefix + req.params.filename, function(err, stats) {
+  	if(err){
+    	res.send("There is no logs in such day.")
+		}else{
+			LogController.readLog(req.params.filename, (result) => {
+		    var array = result.toString().split("\n");
+				var reverseArr = array.slice(0, array.length-1).reverse();
+				for(var index = 0; index < reverseArr.length; index++){
+					reverseArr[index] = reverseArr[index].split(",");
+					reverseArr[index] = {
+						time: reverseArr[index][0],
+						permission: reverseArr[index][1],
+						username: reverseArr[index][2],
+						macro: reverseArr[index][3],
+						urgent: reverseArr[index][4],
+						comment: reverseArr[index][5],
+						deny: reverseArr[index][6] == undefined ? 0 : 1
+					};
+				}
+		  	res.send(reverseArr);
+		  });
+		}
+	});
+
 });
 
 module.exports = router;

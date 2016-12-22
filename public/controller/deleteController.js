@@ -19,6 +19,43 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
     }
     /* end */
 
+    $scope.exec = function(){
+      var comment = prompt("Please enter your comment", "");
+      if(comment != null){
+      var input = {
+        initiator : username,
+        time : new Date().toString(),
+        type : "DELETE SCHED by RN",
+        permission : permission,
+        macro: "DELETE FROM C_DRIVER_SCHEDULE WHERE run_nme = ?",
+        params: JSON.stringify([runname.name]),
+        comment: comment
+      }
+      $http.post('/pending', input).success(function(data1) {
+        if(permission == "administrator"){
+        $http.get('/pending').success(function(data) {
+          var prs = [];
+          for(var i = 0; i< data.length; i++){
+            prs.push({
+              id: data[i].id,
+              initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+            });
+          }
+          $scope.$root.prs = prs;
+          if(data.length == 0){
+            document.getElementById("badge").style.display = "none";
+          }else{
+            document.getElementById("badge").style.display = "inline-block";
+            document.getElementById("badge").innerHTML = data.length;
+          }
+        });
+      }
+          $scope.banner = "Macro is waiting to get PR...";
+          showBanner();
+      });
+    }
+    }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to delete?");
       if (r == true) {
@@ -73,6 +110,43 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "DELETE SCHED by RN GNR",
+      permission : permission,
+      macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ? AND grp_nbr = ?",
+      params: JSON.stringify([runname.runName, groupNumber.grpNumber]),
+      comment: comment
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
+  }
+  }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to delete?");
       if (r == true) {
@@ -120,6 +194,43 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
     runname = { name : x.run_nme }
   }
   /* end */
+
+  $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "DELETE STEP by RN",
+      permission : permission,
+      macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ?",
+      params: JSON.stringify([runname.name]),
+      comment: comment
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
+  }
+  }
 
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to delete?");
@@ -172,6 +283,43 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
   }
   /* end */
 
+  $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "DELETE STEP by RN SID",
+      permission : permission,
+      macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ? AND drvr_step_id = ?",
+      params: JSON.stringify([runname.runName, sid.stepID]),
+      comment: comment
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
+  }
+  }
+
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to delete?");
       if (r == true) {
@@ -220,6 +368,43 @@ app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
     runname = { name : x.run_name }
   }
   /* end */
+
+  $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
+    var input = {
+      initiator : username,
+      time : new Date().toString(),
+      type : "DELETE STEP DETAIL by RN",
+      permission : permission,
+      macro: "DELETE FROM C_DRIVER_STEP_DETAIL WHERE run_name = ?",
+      params: JSON.stringify([runname.name]),
+      comment: comment
+    }
+    $http.post('/pending', input).success(function(data1) {
+      if(permission == "administrator"){
+      $http.get('/pending').success(function(data) {
+        var prs = [];
+        for(var i = 0; i< data.length; i++){
+          prs.push({
+            id: data[i].id,
+            initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+          });
+        }
+        $scope.$root.prs = prs;
+        if(data.length == 0){
+          document.getElementById("badge").style.display = "none";
+        }else{
+          document.getElementById("badge").style.display = "inline-block";
+          document.getElementById("badge").innerHTML = data.length;
+        }
+      });
+    }
+        $scope.banner = "Macro is waiting to get PR...";
+        showBanner();
+    });
+  }
+  }
 
     $scope.urgentExec = function () {
       var r = confirm("Are you sure want to delete?");

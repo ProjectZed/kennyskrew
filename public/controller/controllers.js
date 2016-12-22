@@ -1,3 +1,25 @@
+app.controller('logCtrl', function($scope, $http){
+  hideBanner();
+  $('.datepicker').datepicker('update', new Date());
+  $('.datepicker').datepicker()
+    .on('changeDate', function(e) {
+      hideBanner();
+      var date = $('.datepicker input').val().replace(/\//g, "_");
+      var filename = date + ".txt";
+      $http.get('/Logs/' + filename).
+      success(function(data) {
+        if(data == "There is no logs in such day."){
+          $scope.$root.banner = [];
+          document.getElementById("error-banner").innerHTML = data;
+          showBanner();
+        }else{
+          $scope.$root.banner = data;
+        }
+      });
+    });
+});
+
+
 app.controller('ResPageCtrl', function($scope, $http, $routeParams){
   hideBanner();
 
@@ -67,7 +89,6 @@ app.controller('ResCtrl', function($scope, $http, $routeParams){
 
 app.controller('PRPageCtrl', function($scope, $http, $routeParams){
   hideBanner();
-  document.getElementById("comment").style.display = "none";
   $scope.isCheck = 0;
 
   if(permission == "administrator"){
@@ -80,6 +101,7 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
         $scope.time = data[0].time;
         $scope.macro = data[0].macro;
         $scope.params = data[0].params;
+        $scope.comment = data[0].comment;
       }
     });
   }
@@ -92,7 +114,10 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
     var input = {
       id: $scope.id,
       macro: $scope.macro,
-      params: params
+      params: params,
+      initiator: $scope.initiator,
+      permission: $scope.permission,
+      comment: $scope.comment
     }
     $http.post('/run', input).success(function(data) {
       if(data == "Run successfully!"){
@@ -110,10 +135,63 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
           }else{
             document.getElementById("badge").innerHTML = data.length;
           }
+          var input = {
+            receiver : $scope.initiator,
+            time : new Date().toString(),
+            type : $scope.type,
+            permission : $scope.permission,
+            macro: $scope.macro,
+            params: $scope.params,
+            comment: "Your PR got approved!",
+            read: 0
+          }
+          $http.post('/response', input).success(function(data) {
+            $scope.banner = "Run successfully! and sending Response...";
+            showBanner();
+            $http.post('/delete/pending', {id: $scope.id, receiver: $scope.initiator, comment: "Your PR got approved!"}).success(function(data) {
+              if(data == "delete pending successfully"){
+                $http.get('/pending').success(function(data) {
+                  var prs = [];
+                  for(var i = 0; i< data.length; i++){
+                    prs.push({
+                      id: data[i].id,
+                      initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+                    });
+                  }
+                  $scope.$root.prs = prs;
+                  if(data.length == 0){
+                    document.getElementById("badge").style.display = "none";
+                  }else{
+                    document.getElementById("badge").innerHTML = data.length;
+                  }
+                  $http.get('/response/username/' + username).success(function(data) {
+                    var msgs = [];
+                    var size = 0;
+                    for(var i = 0; i< data.length; i++){
+                      if(!data[i].read){
+                        msgs.push({
+                          id: data[i].id,
+                          initiator: (size+1) + ". Response : " + data[i].type
+                        });
+                        size++;
+                      }
+                    }
+                    $scope.$root.msgs = msgs;
+                    if(size == 0){
+                      document.getElementById("Res-badge").style.display = "none";
+                    }else{
+                      document.getElementById("Res-badge").style.display = "inline-block";
+                      document.getElementById("Res-badge").innerHTML = size;
+                    }
+                  });
+
+                });
+              }
+            });
+          });
+
         });
       }
-      $scope.banner = data;
-      showBanner();
     });
   }
 }
@@ -137,7 +215,7 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
       $http.post('/response', input).success(function(data) {
         $scope.banner = "Sent Response...";
         showBanner();
-        $http.post('/delete/pending', {id: $scope.id}).success(function(data) {
+        $http.post('/delete/pending', {id: $scope.id, receiver: $scope.initiator, comment: comment}).success(function(data) {
           if(data == "delete pending successfully"){
             $http.get('/pending').success(function(data) {
               var prs = [];
@@ -172,6 +250,18 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
                   document.getElementById("Res-badge").style.display = "inline-block";
                   document.getElementById("Res-badge").innerHTML = size;
                 }
+                var params = JSON.parse($scope.params);
+                var input = {
+                  macro: $scope.macro,
+                  params: params,
+                  initiator: $scope.initiator,
+                  permission: $scope.permission,
+                  comment: comment,
+                  result: "This PR has been denied"
+                }
+                $http.post("/writeDenyToLog", input).success(function(data) {
+                });
+
               });
 
             });
@@ -286,37 +376,21 @@ app.controller('navController', function($scope, $http) {
     };
 });
 
-//-----------------------------------------------------------------------------
-// ADD controllers
-//-----------------------------------------------------------------------------
-//controller for Add Driver Scedule
-app.controller('DriverSchedule', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/add/DriverSchedule', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
-
-//controller for Add Driver Step
-app.controller('DriverStep', function($scope, $http) {
-  hideButton(permission);
-    $scope.urgentExec = function () {
-      $http.put('/add/DriverStep', $scope.form).
-        success(function(data) {
-          $scope.banner = data
-        });
-    };
-});
 
 /*
  * Controller for view log file
  */
  app.controller('ViewLog', function($scope, $http) {
-   $http.get('/Logs').
-   success(function(data) {
-     $scope.banner = data
+   hideBanner();
+   var date = new Date();
+   var filename = (date.getMonth()+1) + "_" + date.getDate() + "_" + date.getFullYear() + ".txt";
+   $http.get('/Logs/' + filename).success(function(data) {
+     if(data == "There is no logs in such day."){
+       $scope.$root.banner = [];
+       document.getElementById("error-banner").innerHTML = data;
+       showBanner();
+     }else{
+      $scope.$root.banner = data;
+    }
    });
  });

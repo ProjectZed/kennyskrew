@@ -14,6 +14,12 @@ Digital Dash
 #Login Username 'admin'
 #Login Password 'abcd'
 
+#Login Username 'developer'
+#Login Password 'abcd'
+
+#Email username digitaldashlm@gmail.com
+#Email password cs320useonly
+
 #Project file
 client side file:
 
