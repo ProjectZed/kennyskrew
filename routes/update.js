@@ -131,6 +131,12 @@ router.post('/run', function(req, res){
               res.send("error delete macro from pending");
             }
             else{
+              var macro = req.body.macro;
+              for(var i = 0; i< req.body.params.length; i++){
+                macro = macro.replace('?', req.body.params[i]);
+              }
+              var data = req.body.permission + "," +req.body.initiator + "," + macro + ",PR and Approve by " + req.session.user.username + "," + req.body.comment;
+              LogController.writeLog(data);
               res.send("Run successfully!");
             }
           });
@@ -606,7 +612,12 @@ router.put('/update/scheduleStartTime', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",Update Schedule Start time = " +
+            req.body.sche_start + " WHERE run_nme = " +
+            req.body.runName + " and Audit ID = " +
+            req.body.auditId + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -628,7 +639,12 @@ router.put('/update/statusCode', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_SCHEDULE SET stts_cd = " +
+            req.body.statusCode + " WHERE run_nme = " +
+            req.body.runName + " and Audit ID = " +
+            req.body.auditId + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -650,7 +666,12 @@ router.put('/update/valuationEnd', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_SCHEDULE SET vlutn_end_dtm = '" +
+            req.body.valEnd + "' WHERE run_nme = '" +
+            req.body.runName + "' AND audit_id = " +
+            req.body.auditId + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -672,7 +693,12 @@ router.put('/update/valuationStart', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_SCHEDULE SET vlutn_start_dtm = '" +
+            req.body.valStart + "' WHERE run_nme = '" +
+            req.body.runName + "' AND audit_id = " +
+            req.body.auditId + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -694,7 +720,12 @@ router.put('/update/sla_by_audit', function(req, res) {
               res.send("Error response");
             }
             else{
-              var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              var data = req.session.user.type + "," +
+              req.session.user.username +
+              ",UPDATE C_DRIVER_SCHEDULE SET sla_date = '" +
+              req.body.sla_dt + "' and sla_time = '" +
+              req.body.sla_time + "' WHERE audit_id = " +
+              req.body.auditId + ",UrgentExecute,none";
               LogController.writeLog(data);
               res.send(rows);
             }
@@ -716,7 +747,12 @@ router.put('/update/sla_by_runname', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_SCHEDULE SET sla_date = '" +
+            req.body.sla_dt + "' and sla_time = '" +
+            req.body.sla_time + "' WHERE run_nme = '" +
+            req.body.runName + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -743,7 +779,12 @@ router.put('/update/status_name_grpNumder', function(req, res) {
               res.send("Error response");
             }
             else{
-              var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+              var data = req.session.user.type + "," +
+              req.session.user.username +
+              ",UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" +
+              req.body.statusCode + "' WHERE run_name = '" +
+              req.body.runName + "' AND grp_nbr = " +
+              req.body.grpNumber + ",UrgentExecute,none";
               LogController.writeLog(data);
               res.send(rows);
             }
@@ -765,7 +806,12 @@ router.put('/update/status_name_dtlID', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = '" +
+            req.body.statusCode + "' WHERE run_name = '" +
+            req.body.runName + "' AND drvr_step_dtl_id = " +
+            req.body.detailID + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -787,7 +833,11 @@ router.put('/update/active_step_indicator_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_STEP SET actv_step_ind = '" +
+            req.body.actv_step_ind + "' WHERE drvr_step_id = '" +
+            req.body.drvr_step_id + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -809,7 +859,12 @@ router.put('/update/active_step_indicator_runName_stepID', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_STEP SET actv_step_ind = '" +
+            req.body.actv_step_ind + "' WHERE run_nme = '" +
+            req.body.runName + "' AND drvr_step_id = '" +
+            req.body.stepID + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -831,7 +886,11 @@ router.put('/update/active_step_indicator_runName', function(req, res) {
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_STEP SET actv_step_ind = '" +
+            req.body.actv_step_ind + "' WHERE run_nme = '" +
+            req.body.runName + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }
@@ -853,7 +912,12 @@ router.put('/update/active_step_indicator_runName_grpNumber', function(req, res)
             res.send("Error response");
           }
           else{
-            var data = "User, UPDATE, Schedule Start Time: " + req.body.sche_start + ", (run name: " + req.body.runName + ", audit id: " + req.body.auditId + ")";
+            var data = req.session.user.type + "," +
+            req.session.user.username +
+            ",UPDATE C_DRIVER_STEP SET actv_step_ind = '" +
+            req.body.actv_step_ind + "' WHERE run_nme = '" +
+            req.body.runName + "' AND grp_nbr = " +
+            req.body.grpNumber + ",UrgentExecute,none";
             LogController.writeLog(data);
             res.send(rows);
           }

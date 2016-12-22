@@ -1,3 +1,24 @@
+app.controller('logCtrl', function($scope, $http){
+  hideBanner();
+  $('.datepicker').datepicker('update', new Date());
+  $('.datepicker').datepicker()
+    .on('changeDate', function(e) {
+      hideBanner();
+      var date = $('.datepicker input').val().replace(/\//g, "_");
+      var filename = date + ".txt";
+      $http.get('/Logs/' + filename).
+      success(function(data) {
+        if(data == "There is no logs in such day."){
+          $scope.$root.banner = [];
+          document.getElementById("error-banner").innerHTML = data;
+          showBanner();
+        }else
+          $scope.$root.banner = data;
+      });
+    });
+});
+
+
 app.controller('ResPageCtrl', function($scope, $http, $routeParams){
   hideBanner();
 
@@ -92,7 +113,10 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
     var input = {
       id: $scope.id,
       macro: $scope.macro,
-      params: params
+      params: params,
+      initiator: $scope.initiator,
+      permission: $scope.permission,
+      comment: $scope.comment
     }
     $http.post('/run', input).success(function(data) {
       if(data == "Run successfully!"){
@@ -344,8 +368,15 @@ app.controller('navController', function($scope, $http) {
  * Controller for view log file
  */
  app.controller('ViewLog', function($scope, $http) {
-   $http.get('/Logs').
-   success(function(data) {
-     $scope.banner = data
+   hideBanner();
+   var date = new Date();
+   var filename = (date.getMonth()+1) + "_" + date.getDate() + "_" + date.getFullYear() + ".txt";
+   $http.get('/Logs/' + filename).success(function(data) {
+     if(data == "There is no logs in such day."){
+       $scope.$root.banner = [];
+       document.getElementById("error-banner").innerHTML = data;
+       showBanner();
+     }else
+      $scope.$root.banner = data;
    });
  });

@@ -1,0 +1,20 @@
+1:42:30 AM,administrator,admin,Update Schedule Start time = AAA by Run Name = CLM_COBRA_EXTR_FIN and Audit ID = 1803920014,UrgentExecute
+2:05:08 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?with Params AAA,CLM_COBRA_EXTR_FIN,1803920014,PR and Approve by admin,good
+2:10:39 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = ? WHERE run_nme = ? AND audit_id = ?,PR and Approve by admin,PPP
+2:12:05 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = OOO WHERE run_nme = CLM_COBRA_EXTR_FIN AND audit_id = 1803920014,PR and Approve by admin,PPP
+2:14:22 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET schdl_start_dtm = LLL WHERE run_nme = CLM_COBRA_EXTR_FIN AND audit_id = 1803920014,PR and Approve by admin,lll
+2:15:04 AM,User, UPDATE, Schedule Start Time: undefined, (run name: CLM_COBRA_EXTR_FIN, audit id: 1803920014)
+2:15:24 AM,administrator,admin,Update Schedule Start time = PPP by Run Name = CLM_COBRA_EXTR_FIN and Audit ID = 1803920014,UrgentExecute,none
+2:16:17 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET stts_cd = PPP WHERE run_nme = CLM_COBRA_EXTR_FIN AND audit_id = 1803920014,PR and Approve by admin,lll
+2:29:56 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET stts_cd = ooo WHERE run_nme = CLM_COBRA_EXTR_FIN and Audit ID = 1803920014,UrgentExecute,none
+2:30:27 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET vlutn_end_dtm = 'ooo' WHERE run_nme = 'CLM_COBRA_EXTR_FIN' AND audit_id = 1803920014,UrgentExecute,none
+2:30:37 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET vlutn_start_dtm = 'ooo' WHERE run_nme = 'CLM_COBRA_EXTR_FIN' AND audit_id = 1803920014,UrgentExecute,none
+2:30:45 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET sla_date = 'o', sla_time = 'p' WHERE audit_id = 1803920014,UrgentExecute,none
+2:30:52 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET sla_date = 'o', sla_time = 'p' WHERE run_nme = 'CLM_COBRA_EXTR_FIN,UrgentExecute,none
+2:32:13 AM,administrator,admin,UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = 'q' WHERE run_name = 'S_2_O_CLAIMS_CL_CNTR_NRT' AND grp_nbr = 10,UrgentExecute,none
+2:32:19 AM,administrator,admin,UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = 'q' WHERE run_name = 'S_2_O_CLAIMS_CL_CNTR_NRT' AND drvr_step_dtl_id = 16707810316,UrgentExecute,none
+2:32:44 AM,administrator,admin,UPDATE C_DRIVER_STEP SET actv_step_ind = 'w' WHERE drvr_step_id = '19500007,UrgentExecute,none
+2:32:50 AM,administrator,admin,UPDATE C_DRIVER_STEP SET actv_step_ind = 'w' WHERE run_nme = 'CLM_COBRA_EXTR_FIN' AND drvr_step_id = '19500007,UrgentExecute,none
+2:32:56 AM,administrator,admin,UPDATE C_DRIVER_STEP SET actv_step_ind = 'w' WHERE run_nme = 'CLM_COBRA_EXTR_FIN,UrgentExecute,none
+2:33:02 AM,administrator,admin,UPDATE C_DRIVER_STEP SET actv_step_ind = 'w' WHERE run_nme = 'CLM_COBRA_EXTR_FIN' AND grp_nbr = 50,UrgentExecute,none
+2:34:23 AM,administrator,admin,UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = 'R' WHERE run_name = 'S_2_O_CLAIMS_CL_CNTR_NRT' AND grp_nbr = 10,UrgentExecute,none

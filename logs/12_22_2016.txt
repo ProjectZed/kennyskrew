@@ -1,0 +1,14 @@
+2:34:28 AM,administrator,admin,UPDATE C_DRIVER_STEP_DETAIL SET run_stts_cd = 'R' WHERE run_name = 'S_2_O_CLAIMS_CL_CNTR_NRT' AND drvr_step_dtl_id = 16707810316,UrgentExecute,none
+2:34:51 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET sla_date = 'Q' and sla_time = 'W' WHERE audit_id = 1803920014,UrgentExecute,none
+2:35:00 AM,administrator,admin,UPDATE C_DRIVER_SCHEDULE SET sla_date = 'Q'and sla_time = 'W' WHERE run_nme = 'CLM_COBRA_EXTR_FIN,UrgentExecute,none
+2:36:23 AM,administrator,admin,DELETE FROM C_DRIVER_SCHEDULE WHERE run_nme = CLM_COBRA_EXTR_FIN,PR and Approve by admin,pp
+2:41:54 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = 'CLM_COBRA_EXTR_FIN' ,UrgentExecute,none
+2:42:01 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = 'CLM_COBRA_EXTR_FIN_URS' AND grp_nbr = 50,UrgentExecute,none
+2:42:05 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = 'CLM_COBRA_EXTR_FIN_URS' AND drvr_step_id = '20600007,UrgentExecute,none
+2:42:12 AM,administrator,admin,DELETE FROM C_DRIVER_STEP_DETAIL WHERE run_name = 'S_2_O_CLAIMS_CL_CNTR_NRT,UrgentExecute,none
+2:43:01 AM,administrator,admin,DELETE FROM C_DRIVER_SCHEDULE WHERE run_nme = CLM_COBRA_EXTR_FIN_URS,PR and Approve by admin,delete
+2:43:29 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_FIN_URS,PR and Approve by admin,goo
+2:43:53 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_PM AND grp_nbr = 50,PR and Approve by admin,lalala
+2:44:13 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_PM AND drvr_step_id = 19400059,PR and Approve by admin,ooo
+2:44:30 AM,administrator,admin,DELETE FROM C_DRIVER_STEP_DETAIL WHERE run_name = S_2_O_CL_FA_ISO_NRT,PR and Approve by admin,llloo
+3:50:14 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_PM,PR and Approve by admin,i wanna do that
