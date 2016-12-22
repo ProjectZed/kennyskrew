@@ -110,10 +110,63 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
           }else{
             document.getElementById("badge").innerHTML = data.length;
           }
+          var input = {
+            receiver : $scope.initiator,
+            time : new Date().toString(),
+            type : $scope.type,
+            permission : $scope.permission,
+            macro: $scope.macro,
+            params: $scope.params,
+            comment: "Your PR got approved!",
+            read: 0
+          }
+          $http.post('/response', input).success(function(data) {
+            $scope.banner = "Run successfully! and sending Response...";
+            showBanner();
+            $http.post('/delete/pending', {id: $scope.id, receiver: $scope.initiator, comment: "Your PR got approved!"}).success(function(data) {
+              if(data == "delete pending successfully"){
+                $http.get('/pending').success(function(data) {
+                  var prs = [];
+                  for(var i = 0; i< data.length; i++){
+                    prs.push({
+                      id: data[i].id,
+                      initiator: (i+1) + ". " + data[i].initiator + " : " + data[i].type
+                    });
+                  }
+                  $scope.$root.prs = prs;
+                  if(data.length == 0){
+                    document.getElementById("badge").style.display = "none";
+                  }else{
+                    document.getElementById("badge").innerHTML = data.length;
+                  }
+                  $http.get('/response/username/' + username).success(function(data) {
+                    var msgs = [];
+                    var size = 0;
+                    for(var i = 0; i< data.length; i++){
+                      if(!data[i].read){
+                        msgs.push({
+                          id: data[i].id,
+                          initiator: (size+1) + ". Response : " + data[i].type
+                        });
+                        size++;
+                      }
+                    }
+                    $scope.$root.msgs = msgs;
+                    if(size == 0){
+                      document.getElementById("Res-badge").style.display = "none";
+                    }else{
+                      document.getElementById("Res-badge").style.display = "inline-block";
+                      document.getElementById("Res-badge").innerHTML = size;
+                    }
+                  });
+
+                });
+              }
+            });
+          });
+
         });
       }
-      $scope.banner = data;
-      showBanner();
     });
   }
 }
@@ -137,7 +190,7 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
       $http.post('/response', input).success(function(data) {
         $scope.banner = "Sent Response...";
         showBanner();
-        $http.post('/delete/pending', {id: $scope.id}).success(function(data) {
+        $http.post('/delete/pending', {id: $scope.id, receiver: $scope.initiator, comment: comment}).success(function(data) {
           if(data == "delete pending successfully"){
             $http.get('/pending').success(function(data) {
               var prs = [];

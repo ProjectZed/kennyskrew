@@ -24,6 +24,38 @@ router.post('/delete/pending', function(req, res) {
         res.send("Error when querrying");
       }
       else {
+        users.serialize(function() {
+          users.all("SELECT email from user_info where username = '" + req.body.receiver + "'", function(err, row){
+            if(err){
+              res.send("Error when querrying");
+            }
+            else {
+              var emails = "";
+              for(var i = 0; i<row.length; i++){
+                emails += row[i].email;
+                if(i != row.length - 1){
+                  emails += ", "
+                }
+              }
+              var mailOptions = {
+                  from: '"Elvis" <digitaldashlm@gmail.com>', // sender address
+                  to: emails, // list of receivers
+                  subject: 'Responding to your PeerReview', // Subject line
+                  text: req.body.comment, // plaintext body
+                  html: '<h3>Peer Review: </h3>' +
+                          '<h5>Receiver: ' + req.body.receiver + '</h5>' +
+                           '<h5>Comment: ' + req.body.comment + '</h5>' // html body
+              };
+              transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                  return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+              });
+
+            }
+          });
+        });
         res.send("delete pending successfully");
       }
     });
