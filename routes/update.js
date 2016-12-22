@@ -5,7 +5,7 @@ var router = express.Router();
 var log = require('log4js').getLogger("index");
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
-
+var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:cs320useonly@smtp.gmail.com');
 
@@ -16,13 +16,6 @@ var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:
     text: 'Please login and PR', // plaintext body
     html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
 };*/
-
-/*router.get('/admin/email', function(req.res){
-  pending.serialize(function() {
-    pending.all("", function(err, row){
-
-    });
-});*/
 
 router.post('/delete/pending', function(req, res) {
   pending.serialize(function() {
@@ -144,26 +137,43 @@ router.get(['/pending/:id', '/PeerReview/:id'], function(req, res){
 router.post('/pending', function(req, res){
   pending.serialize(function() {
     pending.all("INSERT INTO pending_task (initiator, time, type, " +
-    "permission, macro, params) VALUES (?,?,?,?,?,?)",
+    "permission, macro, params, comment) VALUES (?,?,?,?,?,?,?)",
       [req.body.initiator, req.body.time, req.body.type,
-        req.body.permission, req.body.macro, req.body.params],
+        req.body.permission, req.body.macro, req.body.params, req.body.comment],
       function(err, rows){
         if(err){
           res.send("error querrying");
         }
         else{
-          var mailOptions = {
-              from: '"Elvis" <digitaldashlm07@gmail.com>', // sender address
-              to: 'digitaldashlm@gmail.com', // list of receivers
-              subject: 'Requesting PeerReview', // Subject line
-              text: 'Please login and PR', // plaintext body
-              html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
-          };
-          transporter.sendMail(mailOptions, function(error, info){
-            if(error){
-              return console.log(error);
-            }
-            console.log('Message sent: ' + info.response);
+          users.serialize(function() {
+            users.all("SELECT email from user_info where type = 'administrator'", function(err, row){
+              if(err){
+                res.send("Error when querrying");
+              }
+              else {
+                var emails = "";
+                for(var i = 0; i<row.length; i++){
+                  emails += row[i].email;
+                  if(i != row.length - 1){
+                    emails += ", "
+                  }
+                }
+                var mailOptions = {
+                    from: '"Elvis" <digitaldashlm@gmail.com>', // sender address
+                    to: emails, // list of receivers
+                    subject: 'Requesting PeerReview', // Subject line
+                    text: 'Please login and PR', // plaintext body
+                    html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if(error){
+                    return console.log(error);
+                  }
+                  console.log('Message sent: ' + info.response);
+                });
+
+              }
+            });
           });
           res.send(rows);
         }

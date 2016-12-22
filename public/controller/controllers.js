@@ -67,7 +67,6 @@ app.controller('ResCtrl', function($scope, $http, $routeParams){
 
 app.controller('PRPageCtrl', function($scope, $http, $routeParams){
   hideBanner();
-  document.getElementById("comment").style.display = "none";
   $scope.isCheck = 0;
 
   if(permission == "administrator"){
@@ -80,6 +79,7 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
         $scope.time = data[0].time;
         $scope.macro = data[0].macro;
         $scope.params = data[0].params;
+        $scope.comment = data[0].comment;
       }
     });
   }

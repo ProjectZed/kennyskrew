@@ -35,17 +35,17 @@ app.set('view engine', 'ejs');
 var db = new sqlite3.Database(__dirname + "/../server/database/LibertyMutual.db");
 
 //user table
-//var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
-/*users.serialize(function() {
+/*var users = new sqlite3.Database(__dirname + "/../server/database/Users.db");
+users.serialize(function() {
     users.run("CREATE TABLE IF NOT EXISTS user_info (id INT PRIMARY KEY, username TEXT, password TEXT, email TEXT, type TEXT)");
-    users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', '@gmail.com', 'developer']);
-    users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', '@gmail.com', 'administrator']);
+    users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [1, 'developer', 'abcd', 'fake@gmail.com', 'developer']);
+    users.run("INSERT OR REPLACE INTO user_info VALUES (?,?,?,?,?)", [2, 'admin', 'abcd', 'digitaldashlm@gmail.com', 'administrator']);
 });*/
 var pending = new sqlite3.Database(__dirname + "/../server/database/Pending.db");
 pending.serialize(function() {
     pending.run("CREATE TABLE IF NOT EXISTS pending_task (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
       "initiator TEXT, time TEXT, type TEXT, permission TEXT, " +
-      "macro TEXT, params TEXT)");
+      "macro TEXT, params TEXT, comment TEXT)");
     pending.run("CREATE TABLE IF NOT EXISTS pending_response (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
       "receiver TEXT, time TEXT, type TEXT, permission TEXT, macro TEXT, params TEXT, comment TEXT, read INTEGER)");
 });

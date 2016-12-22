@@ -20,13 +20,16 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
     /* end */
 
     $scope.exec = function(){
+      var comment = prompt("Please enter your comment", "");
+      if(comment != null){
       var input = {
         initiator : username,
         time : new Date().toString(),
         type : "DELETE SCHED by RN",
         permission : permission,
         macro: "DELETE FROM C_DRIVER_SCHEDULE WHERE run_nme = ?",
-        params: JSON.stringify([runname.name])
+        params: JSON.stringify([runname.name]),
+        comment: comment
       }
       $http.post('/pending', input).success(function(data1) {
         if(permission == "administrator"){
@@ -50,6 +53,7 @@ app.controller('Dl_Driver_Schedule', function($scope, $http) {
           $scope.banner = "Macro is waiting to get PR...";
           showBanner();
       });
+    }
     }
 
     $scope.urgentExec = function () {
@@ -107,13 +111,16 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
     var input = {
       initiator : username,
       time : new Date().toString(),
       type : "DELETE SCHED by RN GNR",
       permission : permission,
       macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ? AND grp_nbr = ?",
-      params: JSON.stringify([runname.runName, groupNumber.grpNumber])
+      params: JSON.stringify([runname.runName, groupNumber.grpNumber]),
+      comment: comment
     }
     $http.post('/pending', input).success(function(data1) {
       if(permission == "administrator"){
@@ -137,6 +144,7 @@ app.controller('Dl_Driver_Step_RunName_GrpNbr', function($scope, $http) {
         $scope.banner = "Macro is waiting to get PR...";
         showBanner();
     });
+  }
   }
 
     $scope.urgentExec = function () {
@@ -188,13 +196,16 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
     var input = {
       initiator : username,
       time : new Date().toString(),
       type : "DELETE STEP by RN",
       permission : permission,
       macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ?",
-      params: JSON.stringify([runname.name])
+      params: JSON.stringify([runname.name]),
+      comment: comment
     }
     $http.post('/pending', input).success(function(data1) {
       if(permission == "administrator"){
@@ -218,6 +229,7 @@ app.controller('Dl_Driver_Step_RunName', function($scope, $http) {
         $scope.banner = "Macro is waiting to get PR...";
         showBanner();
     });
+  }
   }
 
     $scope.urgentExec = function () {
@@ -272,13 +284,16 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
     var input = {
       initiator : username,
       time : new Date().toString(),
       type : "DELETE STEP by RN SID",
       permission : permission,
       macro: "DELETE FROM C_DRIVER_STEP WHERE run_nme = ? AND drvr_step_id = ?",
-      params: JSON.stringify([runname.runName, sid.stepID])
+      params: JSON.stringify([runname.runName, sid.stepID]),
+      comment: comment
     }
     $http.post('/pending', input).success(function(data1) {
       if(permission == "administrator"){
@@ -302,6 +317,7 @@ app.controller('Dl_Driver_Step_RunName_Sid', function($scope, $http) {
         $scope.banner = "Macro is waiting to get PR...";
         showBanner();
     });
+  }
   }
 
     $scope.urgentExec = function () {
@@ -354,13 +370,16 @@ app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
   /* end */
 
   $scope.exec = function(){
+    var comment = prompt("Please enter your comment", "");
+    if(comment != null){
     var input = {
       initiator : username,
       time : new Date().toString(),
       type : "DELETE STEP DETAIL by RN",
       permission : permission,
       macro: "DELETE FROM C_DRIVER_STEP_DETAIL WHERE run_name = ?",
-      params: JSON.stringify([runname.name])
+      params: JSON.stringify([runname.name]),
+      comment: comment
     }
     $http.post('/pending', input).success(function(data1) {
       if(permission == "administrator"){
@@ -384,6 +403,7 @@ app.controller('Dl_Driver_Step_Detail_RunName', function($scope, $http) {
         $scope.banner = "Macro is waiting to get PR...";
         showBanner();
     });
+  }
   }
 
     $scope.urgentExec = function () {
