@@ -17,6 +17,15 @@ var transporter = nodemailer.createTransport('smtps://digitaldashlm%40gmail.com:
     html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
 };*/
 
+router.post('/writeDenyToLog', function(req, res) {
+  var macro = req.body.macro;
+  for(var i = 0; i< req.body.params.length; i++){
+    macro = macro.replace('?', req.body.params[i]);
+  }
+  var data = req.body.permission + "," +req.body.initiator + "," + macro + "," + req.body.result + " by " + req.session.user.username + "," + req.body.comment + ",1";
+  LogController.writeLog(data);
+});
+
 router.post('/delete/pending', function(req, res) {
   pending.serialize(function() {
     pending.all("DELETE FROM pending_task WHERE id = " + req.body.id, function(err){

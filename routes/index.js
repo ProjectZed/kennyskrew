@@ -90,7 +90,6 @@ function checkNotLogin(req,res,next){
 
 function checkLogin(req,res,next){
 	console.log('checkLogin');
-	log.debug(req.session.user);
 	if(!req.session.user){
 		console.log(req.session.user);
 		return res.redirect('/login');
@@ -115,7 +114,8 @@ router.get('/Logs/:filename', function(req, res) {
 						username: reverseArr[index][2],
 						macro: reverseArr[index][3],
 						urgent: reverseArr[index][4],
-						comment: reverseArr[index][5]
+						comment: reverseArr[index][5],
+						deny: reverseArr[index][6] == undefined ? 0 : 1
 					};
 				}
 		  	res.send(reverseArr);

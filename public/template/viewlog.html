@@ -24,12 +24,22 @@
   <h3>Your activity history</h3>
   <ul style="list-style-type: none; padding-left: 0px;">
     <li class="logs" ng-repeat="line in $root.banner">
-      <h5><span class="red">Execute Time:</span> {{line.time}}</h5>
-      <h5><span class="red">User name:</span> {{line.username}}</h5>
-      <h5><span class="red">User permission:</span> {{line.permission}}</h5>
-      <h5><span class="red">Execute Macro:</span> <br/>{{line.macro}}</h5>
-      <h5><span class="red">Execute Method:</span> {{line.urgent}}</h5>
-      <h5><span class="red">Comment:</span> {{line.comment}}</h5>
+      <div class = "red" ng-if="line.deny == 1">
+        <h5><span >Execute Time:</span> {{line.time}}</h5>
+        <h5><span >User name:</span> {{line.username}}</h5>
+        <h5><span >User permission:</span> {{line.permission}}</h5>
+        <h5><span >Execute Macro:</span> <br/>{{line.macro}}</h5>
+        <h5><span >Result:</span> {{line.urgent}}</h5>
+        <h5><span >Comment:</span> {{line.comment}}</h5>
+      </div>
+      <div ng-if="line.deny == 0">
+        <h5><span >Execute Time:</span> {{line.time}}</h5>
+        <h5><span >User name:</span> {{line.username}}</h5>
+        <h5><span >User permission:</span> {{line.permission}}</h5>
+        <h5><span >Execute Macro:</span> <br/>{{line.macro}}</h5>
+        <h5><span >Result:</span> {{line.urgent}}</h5>
+        <h5><span >Comment:</span> {{line.comment}}</h5>
+      </div>
     </li>
   </ul>
   <pre class="alert alert-info" id="error-banner">{{ error }}</pre>

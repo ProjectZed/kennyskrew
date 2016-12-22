@@ -12,3 +12,4 @@
 2:44:13 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_PM AND drvr_step_id = 19400059,PR and Approve by admin,ooo
 2:44:30 AM,administrator,admin,DELETE FROM C_DRIVER_STEP_DETAIL WHERE run_name = S_2_O_CL_FA_ISO_NRT,PR and Approve by admin,llloo
 3:50:14 AM,administrator,admin,DELETE FROM C_DRIVER_STEP WHERE run_nme = CLM_COBRA_EXTR_PM,PR and Approve by admin,i wanna do that
+4:45:18 AM,administrator,admin,DELETE FROM C_DRIVER_SCHEDULE WHERE run_nme = CLM_COBRA_EXTR_PM,This PR has been denied by admin,I did deny you,1

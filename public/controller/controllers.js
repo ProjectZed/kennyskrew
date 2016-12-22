@@ -12,8 +12,9 @@ app.controller('logCtrl', function($scope, $http){
           $scope.$root.banner = [];
           document.getElementById("error-banner").innerHTML = data;
           showBanner();
-        }else
+        }else{
           $scope.$root.banner = data;
+        }
       });
     });
 });
@@ -249,6 +250,18 @@ app.controller('PRPageCtrl', function($scope, $http, $routeParams){
                   document.getElementById("Res-badge").style.display = "inline-block";
                   document.getElementById("Res-badge").innerHTML = size;
                 }
+                var params = JSON.parse($scope.params);
+                var input = {
+                  macro: $scope.macro,
+                  params: params,
+                  initiator: $scope.initiator,
+                  permission: $scope.permission,
+                  comment: comment,
+                  result: "This PR has been denied"
+                }
+                $http.post("/writeDenyToLog", input).success(function(data) {
+                });
+
               });
 
             });
@@ -376,7 +389,8 @@ app.controller('navController', function($scope, $http) {
        $scope.$root.banner = [];
        document.getElementById("error-banner").innerHTML = data;
        showBanner();
-     }else
+     }else{
       $scope.$root.banner = data;
+    }
    });
  });
