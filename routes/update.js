@@ -162,8 +162,15 @@ router.post('/pending', function(req, res){
                     from: '"Elvis" <digitaldashlm@gmail.com>', // sender address
                     to: emails, // list of receivers
                     subject: 'Requesting PeerReview', // Subject line
-                    text: 'Please login and PR', // plaintext body
-                    html: '<b>PPPPPPPPPPPRRRRRRRRRRRRR ?</b>' // html body
+                    text: req.body.comment, // plaintext body
+                    html: '<h3>Pending Peer Review: </h3>' +
+                            '<h5>Initiator: ' + req.body.initiator + '</h5>' +
+                  	         '<h5>Request type: ' + req.body.type + '</h5>' +
+                             '<h5>Permission: ' + req.body.permission + '</h5>' +
+                  	         '<h5>Request time: ' + req.body.time + '</h5>' +
+                  	         '<h5>Macro: ' + req.body.macro + '</h5>' +
+                  	         '<h5>Params: ' + req.body.params + '</h5>' +
+                  	         '<h5>Comment: ' + req.body.comment + '</h5>' // html body
                 };
                 transporter.sendMail(mailOptions, function(error, info){
                   if(error){
